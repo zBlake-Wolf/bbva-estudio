@@ -3,39 +3,37 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#081826" />
+  <meta name="theme-color" content="#eaf3fa" />
   <title>Banca desde cero · Guía interactiva</title>
   <meta name="description" content="Guía interactiva para estudiar banca desde cero, conceptos, temas, atención telefónica y venta cruzada." />
-  <link rel="stylesheet" href="styles.css?v=10" />
-  <link rel="stylesheet" href="guide.css?v=10" />
-  <link rel="stylesheet" href="minimal.css?v=10" />
+  <link rel="stylesheet" href="styles.css?v=11" />
+  <link rel="stylesheet" href="guide.css?v=11" />
+  <link rel="stylesheet" href="minimal.css?v=11" />
 </head>
 <body>
-  <header class="hero">
-    <div class="hero__inner">
-      <div class="eyebrow">GUÍA PERSONAL DE ESTUDIO · BANCA REMOTA</div>
-      <h1>Banca desde cero <span>tema por tema, sin revolverte xd</span></h1>
-      <p>Primero aprende cómo funciona un banco desde cero. Después avanza por TDD, TDC, estado de cuenta, autenticación, fraude, SPEI, cheques y los temas de tu certificación.</p>
-      <div class="hero__actions">
-        <button class="primary" data-go="guia">Empezar guía desde cero</button>
-        <button class="secondary" id="randomBtn">🎲 Concepto al azar</button>
-      </div>
-      <div class="notice">
-        <strong>Importante:</strong> material personal de estudio. No es un sitio oficial de BBVA. El manual base es de diciembre de 2022; para autenticación, límites, horarios, comisiones, escalamiento y pasos operativos usa siempre el CUC vigente.
-      </div>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <button class="brand-button" data-go="guia" aria-label="Ir a la guía">
+        <span class="brand-mark">B</span>
+        <span class="brand-copy">
+          <strong>Banca desde cero</strong>
+          <small>Guía personal de estudio</small>
+        </span>
+      </button>
+
+      <nav class="topnav" aria-label="Secciones">
+        <div class="topnav__inner">
+          <button class="navtab active" data-tab="guia">Guía</button>
+          <button class="navtab" data-tab="aprender">Conceptos</button>
+          <button class="navtab" data-tab="identificadores">Identificadores</button>
+          <button class="navtab" data-tab="casos">Casos</button>
+          <button class="navtab" data-tab="quiz">Quiz</button>
+          <button class="navtab" data-tab="favoritos">Favoritos <span id="favCount">0</span></button>
+          <button class="navtab nav-random" id="randomBtn" type="button">Azar</button>
+        </div>
+      </nav>
     </div>
   </header>
-
-  <nav class="topnav" aria-label="Secciones">
-    <div class="topnav__inner">
-      <button class="navtab active" data-tab="guia">🧭 Guía desde cero</button>
-      <button class="navtab" data-tab="aprender">📚 Conceptos</button>
-      <button class="navtab" data-tab="identificadores">🔢 Identificadores</button>
-      <button class="navtab" data-tab="casos">🎧 Casos de llamada</button>
-      <button class="navtab" data-tab="quiz">🧠 Mini quiz</button>
-      <button class="navtab" data-tab="favoritos">⭐ Favoritos <span id="favCount">0</span></button>
-    </div>
-  </nav>
 
   <main>
     <section id="guia" class="tabpage active">
@@ -211,8 +209,8 @@
     <p class="footer-note">Los ejemplos son didácticos. Verifica procesos actuales en CUC/CCD y políticas vigentes.</p>
   </footer>
 
-  <script src="app.js?v=10"></script>
-  <script src="guide.js?v=10"></script>
-  <script src="minimal.js?v=10"></script>
+  <script src="app.js?v=11"></script>
+  <script src="guide.js?v=11"></script>
+  <script src="minimal.js?v=11"></script>
 </body>
 </html>
