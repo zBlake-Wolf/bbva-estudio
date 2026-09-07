@@ -5,17 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#072146" />
   <title>Banca desde cero · Guía interactiva</title>
-  <meta name="description" content="Guía interactiva para estudiar conceptos bancarios, atención telefónica y venta cruzada." />
+  <meta name="description" content="Guía interactiva para estudiar banca desde cero, conceptos, temas, atención telefónica y venta cruzada." />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="guide.css" />
 </head>
 <body>
   <header class="hero">
     <div class="hero__inner">
       <div class="eyebrow">GUÍA PERSONAL DE ESTUDIO · BANCA REMOTA</div>
-      <h1>Banca desde cero <span>sin revolverte xd</span></h1>
-      <p>Conceptos cortos, ejemplos rápidos, diferencias importantes y casos parecidos a llamadas reales.</p>
+      <h1>Banca desde cero <span>tema por tema, sin revolverte xd</span></h1>
+      <p>Primero aprende cómo funciona un banco desde cero. Después avanza por TDD, TDC, estado de cuenta, autenticación, fraude, SPEI, cheques y los temas de tu certificación.</p>
       <div class="hero__actions">
-        <button class="primary" data-go="aprender">Empezar a estudiar</button>
+        <button class="primary" data-go="guia">Empezar guía desde cero</button>
         <button class="secondary" id="randomBtn">🎲 Concepto al azar</button>
       </div>
       <div class="notice">
@@ -26,7 +27,8 @@
 
   <nav class="topnav" aria-label="Secciones">
     <div class="topnav__inner">
-      <button class="navtab active" data-tab="aprender">📚 Aprender</button>
+      <button class="navtab active" data-tab="guia">🧭 Guía desde cero</button>
+      <button class="navtab" data-tab="aprender">📚 Conceptos</button>
       <button class="navtab" data-tab="identificadores">🔢 Identificadores</button>
       <button class="navtab" data-tab="casos">🎧 Casos de llamada</button>
       <button class="navtab" data-tab="quiz">🧠 Mini quiz</button>
@@ -35,12 +37,46 @@
   </nav>
 
   <main>
-    <section id="aprender" class="tabpage active">
+    <section id="guia" class="tabpage active">
       <div class="section-head">
         <div>
-          <p class="kicker">TU DICCIONARIO</p>
+          <p class="kicker">RUTA RECOMENDADA</p>
+          <h2>Aprende banca desde cero, por temas</h2>
+          <p>Aquí no ves conceptos sueltos: sigues una ruta. Empiezas por qué es un banco y avanzas hasta autenticación, TDC, transferencias, cheques, aclaraciones y temas de certificación.</p>
+        </div>
+      </div>
+
+      <div class="guide-mode-note">
+        <strong>Así está separado ahora:</strong> esta pestaña es la <b>guía por temas</b>. La pestaña <b>Conceptos</b> queda como diccionario rápido para buscar una palabra concreta. En cada tema abre solo lo que quieras repasar y pasa al siguiente con un clic.
+        <div class="guide-jump">
+          <button id="guideStart">▶ Empezar desde tema 1</button>
+          <button id="guideResume">↪ Continuar donde me quedé</button>
+          <button data-go="aprender">⌕ Ir al diccionario de conceptos</button>
+        </div>
+      </div>
+
+      <div id="guideOverview" class="guide-overview" aria-label="Mapa rápido de temas"></div>
+
+      <div class="guide-shell">
+        <aside class="guide-sidebar">
+          <div class="guide-progressbox">
+            <strong><span>Tu ruta</span><span id="guideProgressText">1 / 20</span></strong>
+            <div class="guide-progress"><i id="guideProgressBar" style="width:5%"></i></div>
+          </div>
+          <div id="guideTopicNav" class="guide-topic-nav"></div>
+        </aside>
+        <div class="guide-main">
+          <article id="guideLesson" class="guide-lesson"></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="aprender" class="tabpage">
+      <div class="section-head">
+        <div>
+          <p class="kicker">DICCIONARIO RÁPIDO</p>
           <h2>Conceptos por categoría</h2>
-          <p>Da clic en una tarjeta para abrirla. No intentes memorizar todo a la vez: entiende primero la idea.</p>
+          <p>¿Solo quieres saber qué significa una palabra? Búscala aquí. Da clic en una tarjeta para ver definición, ejemplo, confusión común y cómo pensarlo como asesor.</p>
         </div>
       </div>
 
@@ -169,11 +205,12 @@
   <footer>
     <div>
       <strong>Banca desde cero</strong>
-      <p>Guía personal basada principalmente en el manual de Banca Remota · diciembre 2022.</p>
+      <p>Guía personal basada principalmente en el manual de Banca Remota · diciembre 2022 y separada por temas para estudiar desde cero.</p>
     </div>
     <p class="footer-note">Los ejemplos son didácticos. Verifica procesos actuales en CUC/CCD y políticas vigentes.</p>
   </footer>
 
   <script src="app.js"></script>
+  <script src="guide.js"></script>
 </body>
 </html>
