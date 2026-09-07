@@ -1,0 +1,94 @@
+/* Modo minimalista: prioriza una sola idea por pantalla y reduce ruido visual */
+:root{--focus:#174a73;--focusText:#172434;--focusMuted:#738091;--focusLine:#e7ebef;--focusBg:#fafbfc}
+body{background:var(--focusBg)!important;color:var(--focusText)!important}
+
+/* Cabecera reducida a una línea */
+.hero{background:#fff!important;color:var(--focusText)!important;padding:14px 22px!important;border-bottom:1px solid var(--focusLine)!important}
+.hero__inner{max-width:860px!important}
+.hero .eyebrow,.hero p,.hero__actions,.hero .notice{display:none!important}
+.hero h1{font-size:1.05rem!important;line-height:1.2!important;margin:0!important;font-weight:780!important;letter-spacing:-.01em!important}
+.hero h1 span{display:none!important}
+
+/* Solo tres áreas principales */
+.topnav{position:sticky!important;top:0!important;background:rgba(255,255,255,.96)!important;border-bottom:1px solid var(--focusLine)!important;box-shadow:none!important}
+.topnav__inner{max-width:860px!important;padding:7px 14px!important;gap:4px!important}
+.navtab{font-size:.86rem!important;font-weight:650!important;padding:8px 11px!important;color:#718091!important;border-radius:9px!important}
+.navtab.active{background:#f0f4f7!important;color:var(--focus)!important}
+.navtab[data-tab="identificadores"],.navtab[data-tab="quiz"],.navtab[data-tab="favoritos"]{display:none!important}
+
+main{max-width:860px!important;padding:22px 18px 60px!important}
+#guia>.section-head,.guide-mode-note,.guide-overview{display:none!important}
+
+/* La lista de 25 temas deja de ocupar media pantalla. Se reemplaza por selector compacto */
+.guide-shell{display:block!important}
+.guide-sidebar{display:none!important}
+.guide-main{max-width:720px!important;margin:0 auto!important}
+.minimal-topic-select{margin:2px 0 22px!important}
+.minimal-topic-select label{display:block;font-size:.72rem;font-weight:750;color:#8792a0;margin:0 0 6px;text-transform:uppercase;letter-spacing:.06em}
+.minimal-topic-select select{width:100%;appearance:auto;background:#fff;border:1px solid var(--focusLine);border-radius:10px;padding:10px 12px;color:#425063;font:inherit;font-size:.9rem;outline:none}
+.minimal-topic-select select:focus{border-color:#9bb6cb;box-shadow:0 0 0 3px rgba(23,74,115,.07)}
+
+/* Lección como una hoja, no dashboard */
+.guide-lesson{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important}
+.lesson-top{background:transparent!important;border:0!important;padding:6px 0 24px!important}
+.lesson-eyebrow{font-size:.7rem!important;letter-spacing:.05em!important;color:#8a96a3!important;text-transform:none!important;font-weight:650!important}
+.lesson-top h2{font-size:clamp(1.75rem,4vw,2.35rem)!important;line-height:1.08!important;letter-spacing:-.035em!important;margin:8px 0 10px!important;color:#172434!important}
+.lesson-intro{font-size:1rem!important;line-height:1.65!important;color:#657283!important;max-width:650px!important}
+.lesson-source{display:none!important}
+
+.lesson-core{padding:0!important}
+.quick-memory{display:block!important;margin:0 0 20px!important}
+.memory-pill{display:none!important}
+.memory-pill:first-child{display:block!important;background:#f3f6f8!important;color:#405063!important;border:0!important;border-radius:10px!important;padding:10px 12px!important;font-size:.84rem!important;line-height:1.45!important}
+.memory-pill:first-child:before{content:'En corto · ';font-weight:750;color:var(--focus)}
+.memory-pill strong{display:none!important}
+
+/* Acordeones sin cajas de colores */
+.lesson-section{background:transparent!important;border:0!important;border-top:1px solid var(--focusLine)!important;border-radius:0!important;margin:0!important;overflow:visible!important}
+.lesson-section:last-of-type{border-bottom:1px solid var(--focusLine)!important}
+.lesson-section summary{padding:16px 2px!important;font-size:.98rem!important;font-weight:720!important;color:#26374a!important;min-height:auto!important}
+.lesson-section summary:after{content:'+'!important;width:auto!important;height:auto!important;background:transparent!important;border-radius:0!important;color:#98a2ad!important;font-size:1.15rem!important;font-weight:400!important}
+.lesson-section[open] summary:after{content:'−'!important}
+.lesson-content{border:0!important;padding:0 2px 20px!important;color:#4d5c6d!important;font-size:.94rem!important;line-height:1.68!important}
+.lesson-content p{margin:.2rem 0 .75rem!important}
+.lesson-content ul,.lesson-content ol{padding-left:20px!important}
+
+.lesson-example,.lesson-client,.lesson-advisor,.lesson-warning{background:transparent!important;border:0!important;border-left:2px solid #d9e0e6!important;border-radius:0!important;padding:2px 0 2px 12px!important;margin:15px 0!important;color:#596777!important;font-size:.9rem!important;line-height:1.55!important}
+.lesson-box-title{display:block!important;color:#8a95a2!important;font-size:.67rem!important;letter-spacing:.06em!important;margin-bottom:4px!important}
+.lesson-advisor{border-left-color:#aec6d9!important}
+.lesson-warning{border-left-color:#d8c8a4!important}
+.related-concepts{display:none!important}
+
+/* Navegación siguiente/anterior limpia */
+.guide-nextbar{background:transparent!important;border:0!important;padding:26px 0 8px!important;gap:12px!important}
+.guide-nextbar button{border:1px solid var(--focusLine)!important;background:#fff!important;color:#4c5c6e!important;border-radius:10px!important;padding:10px 13px!important;font-size:.86rem!important;font-weight:680!important;box-shadow:none!important}
+.guide-nextbar .guide-next{background:#173f62!important;color:#fff!important;border-color:#173f62!important}
+.guide-step-label{font-size:.72rem!important;color:#98a2ad!important}
+
+/* Conceptos y casos también se vuelven lectura, no mosaico */
+#aprender .section-head,#casos .section-head{margin:0 0 18px!important}
+.section-head h2{font-size:1.65rem!important;letter-spacing:-.025em!important}
+.section-head p{font-size:.92rem!important;line-height:1.55!important}
+.kicker{display:none!important}
+.study-toolbar{margin-bottom:10px!important}
+.searchbox{border-radius:10px!important;box-shadow:none!important;border-color:var(--focusLine)!important}
+.chips{gap:6px!important;padding:8px 0 14px!important}
+.chip{font-size:.76rem!important;padding:6px 9px!important;border-radius:8px!important;background:#fff!important}
+.chip.active{background:#eef3f6!important;color:var(--focus)!important;border-color:#dce5eb!important}
+.concept-grid,.case-grid{display:block!important}
+.concept-card,.case-card{box-shadow:none!important;border:0!important;border-top:1px solid var(--focusLine)!important;border-radius:0!important;background:transparent!important;margin:0!important;padding:0!important;transform:none!important}
+.concept-head{padding:15px 2px!important}
+.concept-card h3,.case-card h3{font-size:.98rem!important}
+.badge{display:none!important}
+.short{font-size:.86rem!important;color:#718091!important}
+.concept-body{background:transparent!important;border:0!important;padding:0 2px 18px!important}
+.expand,.fav{background:transparent!important;width:28px!important;height:28px!important;color:#9aa4ae!important}
+.case-card{padding:16px 2px!important}
+.client-quote{background:transparent!important;padding:5px 0!important;font-weight:650!important;color:#445466!important}
+.advisor-rule{background:#f4f6f8!important;border:0!important;border-radius:10px!important;color:#566474!important;font-size:.85rem!important;padding:10px 12px!important}
+
+footer{display:none!important}
+
+@media(max-width:700px){
+ .hero{padding:12px 16px!important}.topnav__inner{padding-left:10px!important}main{padding:18px 15px 48px!important}.lesson-top h2{font-size:1.8rem!important}.guide-step-label{display:none!important}.navtab{font-size:.82rem!important;padding:8px 9px!important}
+}
