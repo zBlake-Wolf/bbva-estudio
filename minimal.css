@@ -1,251 +1,405 @@
-/* Modo minimalista + paleta amigable: azul, amarillo, verde y blanco */
+/* Oficina tranquila — lectura cómoda, fondo azul suave, vidrio blanco y pilares amarillos */
 :root{
-  --focus:#2057a6;
-  --focus-dark:#163f73;
-  --focus-soft:#eaf3ff;
-  --focusText:#183047;
-  --focusMuted:#6b7d8f;
-  --focusLine:#dfe8f1;
-  --focusBg:#f6fbff;
-  --sun:#f4c84f;
-  --sun-soft:#fff7d9;
-  --green:#2d9d72;
-  --green-soft:#eaf8f1;
-  --white:#ffffff;
-  --shadow:0 12px 28px rgba(32,87,166,.09);
-}
-body{
-  background:
-    radial-gradient(circle at 8% 8%,rgba(244,200,79,.10),transparent 24%),
-    radial-gradient(circle at 92% 14%,rgba(45,157,114,.08),transparent 22%),
-    linear-gradient(180deg,#f7fbff 0%,#fbfefc 100%)!important;
-  color:var(--focusText)!important;
+  --office-blue:#1a73e8;
+  --office-blue-dark:#174ea6;
+  --office-blue-soft:#eaf2ff;
+  --office-bg:#eef5ff;
+  --office-paper:rgba(255,255,255,.78);
+  --office-paper-strong:rgba(255,255,255,.92);
+  --office-line:rgba(89,120,153,.17);
+  --office-text:#26384a;
+  --office-muted:#6f7f91;
+  --office-yellow:#fbbc04;
+  --office-yellow-soft:#fff7d6;
+  --office-green:#34a853;
+  --office-green-soft:#edf8f0;
+  --office-shadow:0 14px 40px rgba(48,80,116,.07);
 }
 
-/* Cabecera compacta, pero con personalidad */
+html{background:var(--office-bg)}
+body{
+  background:
+    radial-gradient(circle at 9% 7%,rgba(251,188,4,.10),transparent 23rem),
+    radial-gradient(circle at 92% 13%,rgba(52,168,83,.07),transparent 22rem),
+    linear-gradient(180deg,#eaf3ff 0,#f6f9fd 36rem,#f8fafc 100%)!important;
+  color:var(--office-text)!important;
+  min-height:100vh;
+}
+
+/* Cabecera: parece una página de trabajo, no un dashboard */
 .hero{
-  background:linear-gradient(135deg,#1d4f91 0%,#2f6fc2 100%)!important;
-  color:#fff!important;
-  padding:16px 22px!important;
-  border-bottom:0!important;
+  background:rgba(255,255,255,.86)!important;
+  color:var(--office-text)!important;
+  padding:18px 22px!important;
+  border-bottom:1px solid var(--office-line)!important;
+  backdrop-filter:blur(18px);
   position:relative;
-  overflow:hidden;
 }
 .hero:before{
   content:'';
   position:absolute;
-  width:150px;height:150px;border-radius:50%;
-  background:rgba(244,200,79,.20);
-  right:-55px;top:-82px;
+  left:0;top:0;bottom:0;width:7px;
+  background:var(--office-yellow);
 }
-.hero:after{
-  content:'';
-  position:absolute;
-  width:105px;height:105px;border-radius:50%;
-  background:rgba(74,198,146,.15);
-  right:70px;bottom:-82px;
-}
-.hero__inner{max-width:900px!important;position:relative;z-index:1}
+.hero:after{display:none!important}
+.hero__inner{max-width:1080px!important;position:relative}
 .hero .eyebrow,.hero p,.hero__actions,.hero .notice{display:none!important}
-.hero h1{font-size:1.05rem!important;line-height:1.2!important;margin:0!important;font-weight:800!important;letter-spacing:-.01em!important;color:#fff!important}
-.hero h1:after{content:'  ·  aprende sin saturarte';font-size:.82rem;font-weight:600;color:#dbeaff}
+.hero h1{
+  margin:0!important;
+  font-size:1.08rem!important;
+  line-height:1.25!important;
+  font-weight:780!important;
+  letter-spacing:-.012em!important;
+  color:var(--office-blue-dark)!important;
+  display:flex;align-items:center;gap:10px;
+}
+.hero h1:before{
+  content:'B';
+  display:grid;place-items:center;
+  width:30px;height:30px;border-radius:9px;
+  background:var(--office-blue);color:white;
+  font-size:.86rem;font-weight:850;
+}
+.hero h1:after{
+  content:'guía personal de estudio';
+  color:#8290a0;
+  font-size:.78rem;
+  font-weight:600;
+  letter-spacing:0;
+}
 .hero h1 span{display:none!important}
 
-/* Solo tres áreas principales */
+/* Navegación: blanca y muy ligera, activo con pequeño pilar amarillo */
 .topnav{
-  position:sticky!important;top:0!important;
-  background:rgba(255,255,255,.94)!important;
-  backdrop-filter:blur(14px)!important;
-  border-bottom:1px solid var(--focusLine)!important;
-  box-shadow:0 4px 18px rgba(26,69,118,.04)!important;
+  position:sticky!important;top:0!important;z-index:30!important;
+  background:rgba(248,251,255,.86)!important;
+  backdrop-filter:blur(18px)!important;
+  border-bottom:1px solid var(--office-line)!important;
+  box-shadow:none!important;
 }
-.topnav__inner{max-width:900px!important;padding:9px 14px!important;gap:7px!important}
+.topnav__inner{max-width:1080px!important;padding:8px 18px!important;gap:8px!important}
 .navtab{
-  font-size:.86rem!important;font-weight:700!important;padding:8px 12px!important;
-  color:#6a7b8d!important;border-radius:999px!important;
+  position:relative;
+  border:0!important;
+  background:transparent!important;
+  color:#718196!important;
+  border-radius:10px!important;
+  font-size:.86rem!important;
+  font-weight:680!important;
+  padding:9px 12px!important;
   transition:.18s ease!important;
 }
-.navtab:hover{background:var(--focus-soft)!important;color:var(--focus-dark)!important}
+.navtab:hover{background:rgba(255,255,255,.72)!important;color:var(--office-blue-dark)!important}
 .navtab.active{
-  background:linear-gradient(180deg,#fff8df 0%,#ffeaa0 100%)!important;
-  color:#664f00!important;
-  box-shadow:0 4px 12px rgba(244,200,79,.16)!important;
+  background:rgba(255,255,255,.88)!important;
+  color:var(--office-blue-dark)!important;
+  box-shadow:0 4px 14px rgba(53,79,108,.04)!important;
+}
+.navtab.active:after{
+  content:'';position:absolute;left:12px;right:12px;bottom:2px;height:3px;border-radius:99px;
+  background:var(--office-yellow);
 }
 .navtab[data-tab="identificadores"],.navtab[data-tab="quiz"],.navtab[data-tab="favoritos"]{display:none!important}
 
-main{max-width:900px!important;padding:24px 18px 64px!important}
+main{max-width:1080px!important;padding:34px 22px 76px!important}
 #guia>.section-head,.guide-mode-note,.guide-overview{display:none!important}
 
-/* Selector compacto de temas */
+/* Ruta compacta: información distribuida en una franja pequeña */
 .guide-shell{display:block!important}
 .guide-sidebar{display:none!important}
-.guide-main{max-width:740px!important;margin:0 auto!important}
-.minimal-topic-select{margin:2px 0 18px!important}
-.minimal-topic-select label{
-  display:block;font-size:.72rem;font-weight:800;color:#71849a;margin:0 0 7px;
-  text-transform:uppercase;letter-spacing:.06em
+.guide-main{max-width:880px!important;margin:0 auto!important}
+.minimal-topic-select{
+  margin:0 0 18px!important;
+  padding:16px 18px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  gap:10px 18px!important;
+  align-items:center!important;
+  background:rgba(255,255,255,.62)!important;
+  border:1px solid var(--office-line)!important;
+  border-left:6px solid var(--office-yellow)!important;
+  border-radius:18px!important;
+  backdrop-filter:blur(14px)!important;
 }
+.topic-select-head{display:flex;align-items:center;justify-content:space-between;gap:12px;grid-column:1/-1}
+.topic-select-title{font-size:.78rem;font-weight:800;color:var(--office-blue-dark);letter-spacing:.01em}
+.topic-count{font-size:.74rem;font-weight:700;color:#8594a6;background:rgba(255,255,255,.72);padding:5px 8px;border-radius:999px}
+.minimal-topic-select label{display:none!important}
 .minimal-topic-select select{
-  width:100%;appearance:auto;background:#fff;border:1px solid #cfe0f0;border-radius:14px;
-  padding:11px 13px;color:#36506a;font:inherit;font-size:.9rem;outline:none;
-  box-shadow:0 5px 16px rgba(32,87,166,.05)
+  width:100%;min-width:0;
+  appearance:auto;
+  background:rgba(255,255,255,.92)!important;
+  border:1px solid rgba(73,111,149,.18)!important;
+  border-radius:12px!important;
+  padding:11px 12px!important;
+  color:#365069!important;
+  font:inherit!important;font-size:.9rem!important;
+  outline:none!important;box-shadow:none!important;
 }
-.minimal-topic-select select:focus{border-color:#8bb4de;box-shadow:0 0 0 3px rgba(32,87,166,.09)}
+.minimal-topic-select select:focus{border-color:#9bbbe4!important;box-shadow:0 0 0 3px rgba(26,115,232,.07)!important}
+.topic-hint{font-size:.76rem;color:#8290a0;white-space:nowrap}
 
-/* Lección como tarjeta de lectura amable */
+/* Tarjeta principal transparente, con pilar amarillo */
 .guide-lesson{
-  background:#fff!important;
-  border:1px solid var(--focusLine)!important;
+  position:relative!important;
+  background:var(--office-paper)!important;
+  border:1px solid var(--office-line)!important;
+  border-left:7px solid var(--office-yellow)!important;
   border-radius:22px!important;
-  box-shadow:var(--shadow)!important;
+  box-shadow:var(--office-shadow)!important;
   overflow:hidden!important;
+  backdrop-filter:blur(16px)!important;
 }
 .lesson-top{
-  background:linear-gradient(180deg,#f9fcff 0%,#ffffff 100%)!important;
-  border:0!important;border-bottom:1px solid #e9f0f6!important;
-  padding:24px 26px 22px!important;
+  background:transparent!important;
+  border:0!important;
+  border-bottom:1px solid var(--office-line)!important;
+  padding:28px 34px 24px!important;
 }
 .lesson-eyebrow{
-  display:inline-flex!important;gap:6px;align-items:center;
-  font-size:.7rem!important;letter-spacing:.04em!important;color:var(--focus)!important;
-  text-transform:none!important;font-weight:800!important;
-  background:var(--focus-soft)!important;padding:6px 9px!important;border-radius:999px!important;
+  display:inline-flex!important;align-items:center!important;gap:6px!important;
+  font-size:.7rem!important;letter-spacing:.03em!important;text-transform:none!important;
+  font-weight:750!important;color:var(--office-blue-dark)!important;
+  background:var(--office-blue-soft)!important;
+  padding:6px 10px!important;border-radius:999px!important;
 }
 .lesson-top h2{
-  font-size:clamp(1.75rem,4vw,2.35rem)!important;line-height:1.08!important;
-  letter-spacing:-.035em!important;margin:12px 0 10px!important;color:var(--focus-dark)!important
+  margin:14px 0 10px!important;
+  max-width:720px!important;
+  color:#243a50!important;
+  font-size:clamp(1.85rem,4vw,2.55rem)!important;
+  line-height:1.08!important;letter-spacing:-.038em!important;font-weight:780!important;
 }
-.lesson-intro{font-size:1rem!important;line-height:1.65!important;color:#64778b!important;max-width:650px!important}
+.lesson-intro{
+  max-width:700px!important;
+  margin:0!important;
+  color:#687a8d!important;
+  font-size:1rem!important;
+  line-height:1.72!important;
+}
 .lesson-source{display:none!important}
-.lesson-core{padding:18px 26px 4px!important}
+.lesson-core{padding:20px 34px 12px!important}
 
-/* Solo una idea clave, con amarillo suave */
-.quick-memory{display:block!important;margin:0 0 14px!important}
+/* Una sola idea rápida. No cuatro cajas. */
+.quick-memory{display:block!important;margin:0 0 18px!important}
 .memory-pill{display:none!important}
 .memory-pill:first-child{
-  display:block!important;background:var(--sun-soft)!important;color:#5f5431!important;
-  border:1px solid #f2dfa1!important;border-radius:14px!important;padding:11px 13px!important;
-  font-size:.84rem!important;line-height:1.45!important
+  display:block!important;
+  background:rgba(255,247,214,.75)!important;
+  border:0!important;
+  border-left:4px solid var(--office-yellow)!important;
+  border-radius:0 11px 11px 0!important;
+  padding:10px 13px!important;
+  color:#665c3a!important;
+  font-size:.84rem!important;line-height:1.5!important;
 }
-.memory-pill:first-child:before{content:'✨ En corto · ';font-weight:850;color:#806300}
+.memory-pill:first-child:before{content:'En corto  ';font-weight:850;color:#7a6200}
 .memory-pill strong{display:none!important}
 
-/* Acordeones limpios, con interacción azul suave */
+/* Acordeón: mucho aire, texto ancho y notas distribuidas en dos columnas */
 .lesson-section{
-  background:#fff!important;border:0!important;border-top:1px solid #e8eef4!important;
-  border-radius:0!important;margin:0!important;overflow:visible!important
+  background:transparent!important;
+  border:0!important;
+  border-top:1px solid var(--office-line)!important;
+  border-radius:0!important;
+  margin:0!important;overflow:visible!important;
 }
-.lesson-section:last-of-type{border-bottom:1px solid #e8eef4!important}
+.lesson-section:last-of-type{border-bottom:1px solid var(--office-line)!important}
 .lesson-section summary{
-  padding:16px 2px!important;font-size:.98rem!important;font-weight:760!important;
-  color:#29445f!important;min-height:auto!important
+  padding:18px 2px!important;
+  color:#334b63!important;
+  font-size:1rem!important;
+  font-weight:730!important;
+  min-height:auto!important;
 }
-.lesson-section summary:hover{color:var(--focus)!important}
+.lesson-section summary:hover{color:var(--office-blue-dark)!important}
 .lesson-section summary:after{
-  content:'+'!important;width:28px!important;height:28px!important;background:var(--focus-soft)!important;
-  border-radius:9px!important;color:var(--focus)!important;font-size:1.05rem!important;
-  font-weight:650!important;display:grid!important;place-items:center!important
+  content:'+'!important;
+  display:grid!important;place-items:center!important;
+  width:28px!important;height:28px!important;
+  border-radius:50%!important;
+  background:rgba(255,255,255,.82)!important;
+  border:1px solid var(--office-line)!important;
+  color:#7890a6!important;font-size:1rem!important;font-weight:500!important;
 }
-.lesson-section[open] summary:after{content:'−'!important;background:#dfeeff!important}
-.lesson-content{border:0!important;padding:0 2px 20px!important;color:#4d6073!important;font-size:.94rem!important;line-height:1.68!important}
-.lesson-content p{margin:.2rem 0 .75rem!important}
-.lesson-content ul,.lesson-content ol{padding-left:20px!important}
+.lesson-section[open] summary:after{content:'−'!important;color:var(--office-blue)!important;background:var(--office-blue-soft)!important}
+.lesson-content{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:10px 12px!important;
+  max-width:none!important;
+  border:0!important;
+  padding:0 0 22px!important;
+  color:#52677c!important;
+  font-size:.94rem!important;
+  line-height:1.7!important;
+}
+.lesson-content>p,.lesson-content>ul,.lesson-content>ol{grid-column:1/-1!important;margin:.15rem 0 .8rem!important}
+.lesson-content ul,.lesson-content ol{padding-left:21px!important}
+.lesson-content li{margin:5px 0!important}
 
-/* Color solo para orientar: ejemplo, cliente, asesor y ojo */
 .lesson-example,.lesson-client,.lesson-advisor,.lesson-warning{
-  border-radius:14px!important;padding:11px 13px!important;margin:14px 0!important;
-  font-size:.9rem!important;line-height:1.55!important
+  margin:0!important;
+  min-width:0!important;
+  border:1px solid var(--office-line)!important;
+  border-radius:14px!important;
+  padding:12px 13px 13px!important;
+  font-size:.88rem!important;line-height:1.55!important;
+  background:rgba(255,255,255,.55)!important;
+  color:#536679!important;
 }
-.lesson-example{background:var(--sun-soft)!important;border:1px solid #f1df9f!important;color:#5f5431!important}
-.lesson-client{background:var(--focus-soft)!important;border:1px solid #cfe1f6!important;color:#405a74!important}
-.lesson-advisor{background:var(--green-soft)!important;border:1px solid #c8ead9!important;color:#315e4b!important}
-.lesson-warning{background:#fff3e8!important;border:1px solid #f1d5b9!important;color:#765234!important}
-.lesson-box-title{display:block!important;font-size:.67rem!important;letter-spacing:.06em!important;margin-bottom:4px!important;font-weight:850!important}
-.lesson-example .lesson-box-title{color:#876800!important}
-.lesson-client .lesson-box-title{color:var(--focus)!important}
-.lesson-advisor .lesson-box-title{color:#247b57!important}
-.lesson-warning .lesson-box-title{color:#a2662c!important}
+.lesson-example{border-left:4px solid var(--office-yellow)!important;background:rgba(255,248,222,.62)!important}
+.lesson-client{border-left:4px solid #7aa7e8!important;background:rgba(239,246,255,.65)!important}
+.lesson-advisor{border-left:4px solid #68b97e!important;background:rgba(239,250,242,.68)!important}
+.lesson-warning{border-left:4px solid #d7a35b!important;background:rgba(255,247,235,.70)!important}
+.lesson-box-title{display:block!important;margin-bottom:5px!important;font-size:.66rem!important;text-transform:uppercase!important;letter-spacing:.065em!important;font-weight:850!important;color:#7f8e9d!important}
+.lesson-example .lesson-box-title{color:#806500!important}
+.lesson-client .lesson-box-title{color:#356ebc!important}
+.lesson-advisor .lesson-box-title{color:#2b7d43!important}
+.lesson-warning .lesson-box-title{color:#9a6429!important}
 .related-concepts{display:none!important}
 
-/* Navegación siguiente/anterior */
+/* Pie de navegación: liviano */
 .guide-nextbar{
-  background:#fbfdff!important;border:0!important;border-top:1px solid #e8eef4!important;
-  padding:16px 26px!important;gap:12px!important
+  background:rgba(255,255,255,.38)!important;
+  border:0!important;border-top:1px solid var(--office-line)!important;
+  padding:17px 34px!important;gap:12px!important;
 }
 .guide-nextbar button{
-  border:1px solid #dbe6ef!important;background:#fff!important;color:#536b80!important;
-  border-radius:12px!important;padding:10px 14px!important;font-size:.86rem!important;font-weight:750!important;
-  box-shadow:none!important
+  border:1px solid var(--office-line)!important;
+  background:rgba(255,255,255,.78)!important;
+  color:#607489!important;
+  border-radius:11px!important;
+  padding:10px 14px!important;
+  font-size:.85rem!important;font-weight:730!important;
+  box-shadow:none!important;
 }
-.guide-nextbar button:hover{background:#f4f8fb!important}
+.guide-nextbar button:hover{background:white!important}
 .guide-nextbar .guide-next{
-  background:linear-gradient(180deg,#2d9d72 0%,#25865f 100%)!important;
-  color:#fff!important;border-color:#25865f!important;
-  box-shadow:0 6px 15px rgba(45,157,114,.16)!important
+  background:var(--office-blue)!important;
+  color:white!important;border-color:var(--office-blue)!important;
 }
 .guide-step-label{font-size:.72rem!important;color:#91a0ae!important}
 
-/* Conceptos y casos: lista limpia con pequeños acentos de color */
-#aprender .section-head,#casos .section-head{margin:0 0 18px!important}
-.section-head h2{font-size:1.7rem!important;letter-spacing:-.025em!important;color:var(--focus-dark)!important}
-.section-head p{font-size:.92rem!important;line-height:1.55!important;color:#6b7d8f!important}
+/* Conceptos: dos columnas, cada uno parece una hoja pequeña y no una tarjeta pesada */
+#aprender .section-head,#casos .section-head{
+  margin:0 0 18px!important;
+  padding:20px 22px!important;
+  background:rgba(255,255,255,.58)!important;
+  border:1px solid var(--office-line)!important;
+  border-left:6px solid var(--office-yellow)!important;
+  border-radius:18px!important;
+  backdrop-filter:blur(14px)!important;
+}
+.section-head h2{margin:.15rem 0 6px!important;color:#2e475f!important;font-size:1.72rem!important;letter-spacing:-.026em!important}
+.section-head p{margin:0!important;color:#718195!important;font-size:.91rem!important;line-height:1.58!important}
 .kicker{display:none!important}
-.study-toolbar{margin-bottom:10px!important}
+
+.study-toolbar{gap:9px!important;margin:0 0 8px!important}
 .searchbox{
-  border-radius:14px!important;box-shadow:0 6px 18px rgba(32,87,166,.05)!important;
-  border-color:#d5e3ef!important;background:#fff!important
+  background:rgba(255,255,255,.74)!important;
+  border:1px solid var(--office-line)!important;
+  border-radius:14px!important;
+  box-shadow:none!important;
+  backdrop-filter:blur(12px)!important;
 }
-.searchbox span{color:var(--focus)!important}
-.chips{gap:6px!important;padding:9px 0 14px!important}
+.searchbox span{color:#7e93aa!important}
+.ghost{background:rgba(255,255,255,.72)!important;color:#65798e!important;border:1px solid var(--office-line)!important}
+.chips{display:flex!important;gap:7px!important;overflow:auto!important;padding:10px 0 14px!important}
 .chip{
-  font-size:.76rem!important;padding:7px 10px!important;border-radius:999px!important;
-  background:#fff!important;border-color:#dfe8f1!important;color:#66798c!important
+  flex:0 0 auto!important;
+  background:rgba(255,255,255,.66)!important;
+  border:1px solid var(--office-line)!important;
+  color:#6e8093!important;
+  border-radius:999px!important;
+  font-size:.75rem!important;font-weight:680!important;
+  padding:7px 10px!important;
 }
-.chip:nth-child(3n+2){background:#fffaf0!important}
-.chip:nth-child(3n+3){background:#f2fbf6!important}
-.chip.active{
-  background:var(--focus-soft)!important;color:var(--focus-dark)!important;
-  border-color:#bad4ef!important;box-shadow:0 4px 10px rgba(32,87,166,.06)!important
+.chip.active{background:var(--office-blue-soft)!important;color:var(--office-blue-dark)!important;border-color:#c9dcf6!important}
+.result-summary{color:#8795a4!important;font-size:.8rem!important;margin:2px 0 10px!important}
+
+.concept-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:12px!important;
 }
-.concept-grid,.case-grid{display:block!important}
-.concept-card,.case-card{
-  box-shadow:none!important;border:0!important;border-top:1px solid var(--focusLine)!important;
-  border-radius:0!important;background:transparent!important;margin:0!important;padding:0!important;
-  transform:none!important
+.concept-card{
+  background:rgba(255,255,255,.64)!important;
+  border:1px solid var(--office-line)!important;
+  border-top:1px solid var(--office-line)!important;
+  border-left:5px solid var(--office-yellow)!important;
+  border-radius:16px!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+  transform:none!important;
+  padding:0!important;
 }
-.concept-card:nth-child(3n+1){border-left:3px solid #b9d7f3!important;padding-left:12px!important}
-.concept-card:nth-child(3n+2){border-left:3px solid #f0d979!important;padding-left:12px!important}
-.concept-card:nth-child(3n+3){border-left:3px solid #a9ddc4!important;padding-left:12px!important}
-.concept-head{padding:15px 2px!important}
-.concept-card h3,.case-card h3{font-size:.98rem!important;color:#29445f!important}
+.concept-card:nth-child(3n+2){border-left-color:#8cb5ee!important}
+.concept-card:nth-child(3n+3){border-left-color:#78be89!important}
+.concept-head{padding:15px 15px 14px!important}
+.concept-card h3{font-size:.98rem!important;color:#344d65!important;line-height:1.3!important}
 .badge{display:none!important}
-.short{font-size:.86rem!important;color:#718295!important}
-.concept-body{background:transparent!important;border:0!important;padding:0 2px 18px!important}
-.expand,.fav{background:#f4f8fb!important;width:30px!important;height:30px!important;color:#7c91a4!important;border-radius:9px!important}
-.fav.on{background:var(--sun-soft)!important;color:#846500!important}
-.case-card{padding:16px 2px!important}
+.short{font-size:.85rem!important;color:#738498!important;line-height:1.48!important}
+.concept-body{background:rgba(255,255,255,.34)!important;border-top:1px solid var(--office-line)!important;padding:14px 15px 16px!important}
+.detail-block b{font-size:.65rem!important;color:#698099!important}
+.detail-block p{font-size:.85rem!important;line-height:1.55!important}
+.expand,.fav{background:rgba(255,255,255,.65)!important;border:1px solid var(--office-line)!important;width:29px!important;height:29px!important;border-radius:9px!important;color:#8192a3!important}
+.fav.on{background:var(--office-yellow-soft)!important;color:#806500!important}
+
+/* Casos: dos columnas, cliente a la izquierda visualmente, proceso al abrir */
+.case-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+.case-card{
+  background:rgba(255,255,255,.64)!important;
+  border:1px solid var(--office-line)!important;
+  border-left:5px solid #87abe0!important;
+  border-radius:16px!important;
+  box-shadow:none!important;
+  padding:16px!important;
+}
+.case-card:nth-child(even){border-left-color:var(--office-yellow)!important}
+.case-card h3{font-size:.98rem!important;color:#344d65!important}
+.case-tag{background:var(--office-blue-soft)!important;color:#5c789a!important}
 .client-quote{
-  background:var(--sun-soft)!important;border:1px solid #f0dfa2!important;
-  border-radius:13px!important;padding:11px 12px!important;font-weight:680!important;color:#514b39!important
+  background:rgba(255,248,222,.58)!important;
+  border:0!important;
+  border-left:3px solid var(--office-yellow)!important;
+  border-radius:0 10px 10px 0!important;
+  padding:10px 12px!important;
+  color:#5d5a49!important;font-weight:650!important;line-height:1.5!important;
 }
-.case-card summary{color:var(--focus)!important}
+.case-card summary{color:var(--office-blue-dark)!important}
 .advisor-rule{
-  background:var(--green-soft)!important;border:1px solid #c8ead9!important;border-left:4px solid var(--green)!important;
-  border-radius:13px!important;color:#426354!important;font-size:.85rem!important;padding:11px 13px!important
+  background:rgba(237,248,240,.72)!important;
+  border:1px solid var(--office-line)!important;
+  border-left:5px solid var(--office-green)!important;
+  border-radius:14px!important;
+  color:#516d5a!important;
+  font-size:.85rem!important;padding:12px 14px!important;
 }
-.result-summary{color:#7b8c9b!important}
 
 footer{display:none!important}
 
-@media(max-width:700px){
-  .hero{padding:13px 16px!important}
+@media(max-width:800px){
+  main{padding:24px 15px 54px!important}
+  .hero{padding:15px 18px!important}
   .hero h1:after{display:none}
-  .topnav__inner{padding-left:10px!important}
-  main{padding:18px 14px 48px!important}
-  .lesson-top{padding:21px 18px 19px!important}
-  .lesson-core{padding:15px 18px 2px!important}
-  .lesson-top h2{font-size:1.8rem!important}
-  .guide-nextbar{padding:14px 18px!important}
+  .topnav__inner{padding-left:12px!important}
+  .minimal-topic-select{grid-template-columns:1fr!important;padding:14px!important}
+  .topic-select-head{grid-column:1!important}
+  .topic-hint{white-space:normal}
+  .lesson-top{padding:24px 22px 20px!important}
+  .lesson-core{padding:17px 22px 8px!important}
+  .guide-nextbar{padding:15px 22px!important}
+  .lesson-content{grid-template-columns:1fr!important}
+  .lesson-content>p,.lesson-content>ul,.lesson-content>ol,.lesson-example,.lesson-client,.lesson-advisor,.lesson-warning{grid-column:1!important}
+  .concept-grid,.case-grid{grid-template-columns:1fr!important}
   .guide-step-label{display:none!important}
-  .navtab{font-size:.82rem!important;padding:8px 10px!important}
+}
+
+@media(max-width:520px){
+  .hero h1{font-size:1rem!important}
+  .navtab{font-size:.81rem!important;padding:8px 9px!important}
+  .lesson-top h2{font-size:1.78rem!important}
+  #aprender .section-head,#casos .section-head{padding:17px 16px!important}
+  .guide-lesson{border-left-width:5px!important}
 }
