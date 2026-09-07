@@ -1,94 +1,251 @@
-/* Modo minimalista: prioriza una sola idea por pantalla y reduce ruido visual */
-:root{--focus:#174a73;--focusText:#172434;--focusMuted:#738091;--focusLine:#e7ebef;--focusBg:#fafbfc}
-body{background:var(--focusBg)!important;color:var(--focusText)!important}
+/* Modo minimalista + paleta amigable: azul, amarillo, verde y blanco */
+:root{
+  --focus:#2057a6;
+  --focus-dark:#163f73;
+  --focus-soft:#eaf3ff;
+  --focusText:#183047;
+  --focusMuted:#6b7d8f;
+  --focusLine:#dfe8f1;
+  --focusBg:#f6fbff;
+  --sun:#f4c84f;
+  --sun-soft:#fff7d9;
+  --green:#2d9d72;
+  --green-soft:#eaf8f1;
+  --white:#ffffff;
+  --shadow:0 12px 28px rgba(32,87,166,.09);
+}
+body{
+  background:
+    radial-gradient(circle at 8% 8%,rgba(244,200,79,.10),transparent 24%),
+    radial-gradient(circle at 92% 14%,rgba(45,157,114,.08),transparent 22%),
+    linear-gradient(180deg,#f7fbff 0%,#fbfefc 100%)!important;
+  color:var(--focusText)!important;
+}
 
-/* Cabecera reducida a una línea */
-.hero{background:#fff!important;color:var(--focusText)!important;padding:14px 22px!important;border-bottom:1px solid var(--focusLine)!important}
-.hero__inner{max-width:860px!important}
+/* Cabecera compacta, pero con personalidad */
+.hero{
+  background:linear-gradient(135deg,#1d4f91 0%,#2f6fc2 100%)!important;
+  color:#fff!important;
+  padding:16px 22px!important;
+  border-bottom:0!important;
+  position:relative;
+  overflow:hidden;
+}
+.hero:before{
+  content:'';
+  position:absolute;
+  width:150px;height:150px;border-radius:50%;
+  background:rgba(244,200,79,.20);
+  right:-55px;top:-82px;
+}
+.hero:after{
+  content:'';
+  position:absolute;
+  width:105px;height:105px;border-radius:50%;
+  background:rgba(74,198,146,.15);
+  right:70px;bottom:-82px;
+}
+.hero__inner{max-width:900px!important;position:relative;z-index:1}
 .hero .eyebrow,.hero p,.hero__actions,.hero .notice{display:none!important}
-.hero h1{font-size:1.05rem!important;line-height:1.2!important;margin:0!important;font-weight:780!important;letter-spacing:-.01em!important}
+.hero h1{font-size:1.05rem!important;line-height:1.2!important;margin:0!important;font-weight:800!important;letter-spacing:-.01em!important;color:#fff!important}
+.hero h1:after{content:'  ·  aprende sin saturarte';font-size:.82rem;font-weight:600;color:#dbeaff}
 .hero h1 span{display:none!important}
 
 /* Solo tres áreas principales */
-.topnav{position:sticky!important;top:0!important;background:rgba(255,255,255,.96)!important;border-bottom:1px solid var(--focusLine)!important;box-shadow:none!important}
-.topnav__inner{max-width:860px!important;padding:7px 14px!important;gap:4px!important}
-.navtab{font-size:.86rem!important;font-weight:650!important;padding:8px 11px!important;color:#718091!important;border-radius:9px!important}
-.navtab.active{background:#f0f4f7!important;color:var(--focus)!important}
+.topnav{
+  position:sticky!important;top:0!important;
+  background:rgba(255,255,255,.94)!important;
+  backdrop-filter:blur(14px)!important;
+  border-bottom:1px solid var(--focusLine)!important;
+  box-shadow:0 4px 18px rgba(26,69,118,.04)!important;
+}
+.topnav__inner{max-width:900px!important;padding:9px 14px!important;gap:7px!important}
+.navtab{
+  font-size:.86rem!important;font-weight:700!important;padding:8px 12px!important;
+  color:#6a7b8d!important;border-radius:999px!important;
+  transition:.18s ease!important;
+}
+.navtab:hover{background:var(--focus-soft)!important;color:var(--focus-dark)!important}
+.navtab.active{
+  background:linear-gradient(180deg,#fff8df 0%,#ffeaa0 100%)!important;
+  color:#664f00!important;
+  box-shadow:0 4px 12px rgba(244,200,79,.16)!important;
+}
 .navtab[data-tab="identificadores"],.navtab[data-tab="quiz"],.navtab[data-tab="favoritos"]{display:none!important}
 
-main{max-width:860px!important;padding:22px 18px 60px!important}
+main{max-width:900px!important;padding:24px 18px 64px!important}
 #guia>.section-head,.guide-mode-note,.guide-overview{display:none!important}
 
-/* La lista de 25 temas deja de ocupar media pantalla. Se reemplaza por selector compacto */
+/* Selector compacto de temas */
 .guide-shell{display:block!important}
 .guide-sidebar{display:none!important}
-.guide-main{max-width:720px!important;margin:0 auto!important}
-.minimal-topic-select{margin:2px 0 22px!important}
-.minimal-topic-select label{display:block;font-size:.72rem;font-weight:750;color:#8792a0;margin:0 0 6px;text-transform:uppercase;letter-spacing:.06em}
-.minimal-topic-select select{width:100%;appearance:auto;background:#fff;border:1px solid var(--focusLine);border-radius:10px;padding:10px 12px;color:#425063;font:inherit;font-size:.9rem;outline:none}
-.minimal-topic-select select:focus{border-color:#9bb6cb;box-shadow:0 0 0 3px rgba(23,74,115,.07)}
+.guide-main{max-width:740px!important;margin:0 auto!important}
+.minimal-topic-select{margin:2px 0 18px!important}
+.minimal-topic-select label{
+  display:block;font-size:.72rem;font-weight:800;color:#71849a;margin:0 0 7px;
+  text-transform:uppercase;letter-spacing:.06em
+}
+.minimal-topic-select select{
+  width:100%;appearance:auto;background:#fff;border:1px solid #cfe0f0;border-radius:14px;
+  padding:11px 13px;color:#36506a;font:inherit;font-size:.9rem;outline:none;
+  box-shadow:0 5px 16px rgba(32,87,166,.05)
+}
+.minimal-topic-select select:focus{border-color:#8bb4de;box-shadow:0 0 0 3px rgba(32,87,166,.09)}
 
-/* Lección como una hoja, no dashboard */
-.guide-lesson{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important}
-.lesson-top{background:transparent!important;border:0!important;padding:6px 0 24px!important}
-.lesson-eyebrow{font-size:.7rem!important;letter-spacing:.05em!important;color:#8a96a3!important;text-transform:none!important;font-weight:650!important}
-.lesson-top h2{font-size:clamp(1.75rem,4vw,2.35rem)!important;line-height:1.08!important;letter-spacing:-.035em!important;margin:8px 0 10px!important;color:#172434!important}
-.lesson-intro{font-size:1rem!important;line-height:1.65!important;color:#657283!important;max-width:650px!important}
+/* Lección como tarjeta de lectura amable */
+.guide-lesson{
+  background:#fff!important;
+  border:1px solid var(--focusLine)!important;
+  border-radius:22px!important;
+  box-shadow:var(--shadow)!important;
+  overflow:hidden!important;
+}
+.lesson-top{
+  background:linear-gradient(180deg,#f9fcff 0%,#ffffff 100%)!important;
+  border:0!important;border-bottom:1px solid #e9f0f6!important;
+  padding:24px 26px 22px!important;
+}
+.lesson-eyebrow{
+  display:inline-flex!important;gap:6px;align-items:center;
+  font-size:.7rem!important;letter-spacing:.04em!important;color:var(--focus)!important;
+  text-transform:none!important;font-weight:800!important;
+  background:var(--focus-soft)!important;padding:6px 9px!important;border-radius:999px!important;
+}
+.lesson-top h2{
+  font-size:clamp(1.75rem,4vw,2.35rem)!important;line-height:1.08!important;
+  letter-spacing:-.035em!important;margin:12px 0 10px!important;color:var(--focus-dark)!important
+}
+.lesson-intro{font-size:1rem!important;line-height:1.65!important;color:#64778b!important;max-width:650px!important}
 .lesson-source{display:none!important}
+.lesson-core{padding:18px 26px 4px!important}
 
-.lesson-core{padding:0!important}
-.quick-memory{display:block!important;margin:0 0 20px!important}
+/* Solo una idea clave, con amarillo suave */
+.quick-memory{display:block!important;margin:0 0 14px!important}
 .memory-pill{display:none!important}
-.memory-pill:first-child{display:block!important;background:#f3f6f8!important;color:#405063!important;border:0!important;border-radius:10px!important;padding:10px 12px!important;font-size:.84rem!important;line-height:1.45!important}
-.memory-pill:first-child:before{content:'En corto · ';font-weight:750;color:var(--focus)}
+.memory-pill:first-child{
+  display:block!important;background:var(--sun-soft)!important;color:#5f5431!important;
+  border:1px solid #f2dfa1!important;border-radius:14px!important;padding:11px 13px!important;
+  font-size:.84rem!important;line-height:1.45!important
+}
+.memory-pill:first-child:before{content:'✨ En corto · ';font-weight:850;color:#806300}
 .memory-pill strong{display:none!important}
 
-/* Acordeones sin cajas de colores */
-.lesson-section{background:transparent!important;border:0!important;border-top:1px solid var(--focusLine)!important;border-radius:0!important;margin:0!important;overflow:visible!important}
-.lesson-section:last-of-type{border-bottom:1px solid var(--focusLine)!important}
-.lesson-section summary{padding:16px 2px!important;font-size:.98rem!important;font-weight:720!important;color:#26374a!important;min-height:auto!important}
-.lesson-section summary:after{content:'+'!important;width:auto!important;height:auto!important;background:transparent!important;border-radius:0!important;color:#98a2ad!important;font-size:1.15rem!important;font-weight:400!important}
-.lesson-section[open] summary:after{content:'−'!important}
-.lesson-content{border:0!important;padding:0 2px 20px!important;color:#4d5c6d!important;font-size:.94rem!important;line-height:1.68!important}
+/* Acordeones limpios, con interacción azul suave */
+.lesson-section{
+  background:#fff!important;border:0!important;border-top:1px solid #e8eef4!important;
+  border-radius:0!important;margin:0!important;overflow:visible!important
+}
+.lesson-section:last-of-type{border-bottom:1px solid #e8eef4!important}
+.lesson-section summary{
+  padding:16px 2px!important;font-size:.98rem!important;font-weight:760!important;
+  color:#29445f!important;min-height:auto!important
+}
+.lesson-section summary:hover{color:var(--focus)!important}
+.lesson-section summary:after{
+  content:'+'!important;width:28px!important;height:28px!important;background:var(--focus-soft)!important;
+  border-radius:9px!important;color:var(--focus)!important;font-size:1.05rem!important;
+  font-weight:650!important;display:grid!important;place-items:center!important
+}
+.lesson-section[open] summary:after{content:'−'!important;background:#dfeeff!important}
+.lesson-content{border:0!important;padding:0 2px 20px!important;color:#4d6073!important;font-size:.94rem!important;line-height:1.68!important}
 .lesson-content p{margin:.2rem 0 .75rem!important}
 .lesson-content ul,.lesson-content ol{padding-left:20px!important}
 
-.lesson-example,.lesson-client,.lesson-advisor,.lesson-warning{background:transparent!important;border:0!important;border-left:2px solid #d9e0e6!important;border-radius:0!important;padding:2px 0 2px 12px!important;margin:15px 0!important;color:#596777!important;font-size:.9rem!important;line-height:1.55!important}
-.lesson-box-title{display:block!important;color:#8a95a2!important;font-size:.67rem!important;letter-spacing:.06em!important;margin-bottom:4px!important}
-.lesson-advisor{border-left-color:#aec6d9!important}
-.lesson-warning{border-left-color:#d8c8a4!important}
+/* Color solo para orientar: ejemplo, cliente, asesor y ojo */
+.lesson-example,.lesson-client,.lesson-advisor,.lesson-warning{
+  border-radius:14px!important;padding:11px 13px!important;margin:14px 0!important;
+  font-size:.9rem!important;line-height:1.55!important
+}
+.lesson-example{background:var(--sun-soft)!important;border:1px solid #f1df9f!important;color:#5f5431!important}
+.lesson-client{background:var(--focus-soft)!important;border:1px solid #cfe1f6!important;color:#405a74!important}
+.lesson-advisor{background:var(--green-soft)!important;border:1px solid #c8ead9!important;color:#315e4b!important}
+.lesson-warning{background:#fff3e8!important;border:1px solid #f1d5b9!important;color:#765234!important}
+.lesson-box-title{display:block!important;font-size:.67rem!important;letter-spacing:.06em!important;margin-bottom:4px!important;font-weight:850!important}
+.lesson-example .lesson-box-title{color:#876800!important}
+.lesson-client .lesson-box-title{color:var(--focus)!important}
+.lesson-advisor .lesson-box-title{color:#247b57!important}
+.lesson-warning .lesson-box-title{color:#a2662c!important}
 .related-concepts{display:none!important}
 
-/* Navegación siguiente/anterior limpia */
-.guide-nextbar{background:transparent!important;border:0!important;padding:26px 0 8px!important;gap:12px!important}
-.guide-nextbar button{border:1px solid var(--focusLine)!important;background:#fff!important;color:#4c5c6e!important;border-radius:10px!important;padding:10px 13px!important;font-size:.86rem!important;font-weight:680!important;box-shadow:none!important}
-.guide-nextbar .guide-next{background:#173f62!important;color:#fff!important;border-color:#173f62!important}
-.guide-step-label{font-size:.72rem!important;color:#98a2ad!important}
+/* Navegación siguiente/anterior */
+.guide-nextbar{
+  background:#fbfdff!important;border:0!important;border-top:1px solid #e8eef4!important;
+  padding:16px 26px!important;gap:12px!important
+}
+.guide-nextbar button{
+  border:1px solid #dbe6ef!important;background:#fff!important;color:#536b80!important;
+  border-radius:12px!important;padding:10px 14px!important;font-size:.86rem!important;font-weight:750!important;
+  box-shadow:none!important
+}
+.guide-nextbar button:hover{background:#f4f8fb!important}
+.guide-nextbar .guide-next{
+  background:linear-gradient(180deg,#2d9d72 0%,#25865f 100%)!important;
+  color:#fff!important;border-color:#25865f!important;
+  box-shadow:0 6px 15px rgba(45,157,114,.16)!important
+}
+.guide-step-label{font-size:.72rem!important;color:#91a0ae!important}
 
-/* Conceptos y casos también se vuelven lectura, no mosaico */
+/* Conceptos y casos: lista limpia con pequeños acentos de color */
 #aprender .section-head,#casos .section-head{margin:0 0 18px!important}
-.section-head h2{font-size:1.65rem!important;letter-spacing:-.025em!important}
-.section-head p{font-size:.92rem!important;line-height:1.55!important}
+.section-head h2{font-size:1.7rem!important;letter-spacing:-.025em!important;color:var(--focus-dark)!important}
+.section-head p{font-size:.92rem!important;line-height:1.55!important;color:#6b7d8f!important}
 .kicker{display:none!important}
 .study-toolbar{margin-bottom:10px!important}
-.searchbox{border-radius:10px!important;box-shadow:none!important;border-color:var(--focusLine)!important}
-.chips{gap:6px!important;padding:8px 0 14px!important}
-.chip{font-size:.76rem!important;padding:6px 9px!important;border-radius:8px!important;background:#fff!important}
-.chip.active{background:#eef3f6!important;color:var(--focus)!important;border-color:#dce5eb!important}
+.searchbox{
+  border-radius:14px!important;box-shadow:0 6px 18px rgba(32,87,166,.05)!important;
+  border-color:#d5e3ef!important;background:#fff!important
+}
+.searchbox span{color:var(--focus)!important}
+.chips{gap:6px!important;padding:9px 0 14px!important}
+.chip{
+  font-size:.76rem!important;padding:7px 10px!important;border-radius:999px!important;
+  background:#fff!important;border-color:#dfe8f1!important;color:#66798c!important
+}
+.chip:nth-child(3n+2){background:#fffaf0!important}
+.chip:nth-child(3n+3){background:#f2fbf6!important}
+.chip.active{
+  background:var(--focus-soft)!important;color:var(--focus-dark)!important;
+  border-color:#bad4ef!important;box-shadow:0 4px 10px rgba(32,87,166,.06)!important
+}
 .concept-grid,.case-grid{display:block!important}
-.concept-card,.case-card{box-shadow:none!important;border:0!important;border-top:1px solid var(--focusLine)!important;border-radius:0!important;background:transparent!important;margin:0!important;padding:0!important;transform:none!important}
+.concept-card,.case-card{
+  box-shadow:none!important;border:0!important;border-top:1px solid var(--focusLine)!important;
+  border-radius:0!important;background:transparent!important;margin:0!important;padding:0!important;
+  transform:none!important
+}
+.concept-card:nth-child(3n+1){border-left:3px solid #b9d7f3!important;padding-left:12px!important}
+.concept-card:nth-child(3n+2){border-left:3px solid #f0d979!important;padding-left:12px!important}
+.concept-card:nth-child(3n+3){border-left:3px solid #a9ddc4!important;padding-left:12px!important}
 .concept-head{padding:15px 2px!important}
-.concept-card h3,.case-card h3{font-size:.98rem!important}
+.concept-card h3,.case-card h3{font-size:.98rem!important;color:#29445f!important}
 .badge{display:none!important}
-.short{font-size:.86rem!important;color:#718091!important}
+.short{font-size:.86rem!important;color:#718295!important}
 .concept-body{background:transparent!important;border:0!important;padding:0 2px 18px!important}
-.expand,.fav{background:transparent!important;width:28px!important;height:28px!important;color:#9aa4ae!important}
+.expand,.fav{background:#f4f8fb!important;width:30px!important;height:30px!important;color:#7c91a4!important;border-radius:9px!important}
+.fav.on{background:var(--sun-soft)!important;color:#846500!important}
 .case-card{padding:16px 2px!important}
-.client-quote{background:transparent!important;padding:5px 0!important;font-weight:650!important;color:#445466!important}
-.advisor-rule{background:#f4f6f8!important;border:0!important;border-radius:10px!important;color:#566474!important;font-size:.85rem!important;padding:10px 12px!important}
+.client-quote{
+  background:var(--sun-soft)!important;border:1px solid #f0dfa2!important;
+  border-radius:13px!important;padding:11px 12px!important;font-weight:680!important;color:#514b39!important
+}
+.case-card summary{color:var(--focus)!important}
+.advisor-rule{
+  background:var(--green-soft)!important;border:1px solid #c8ead9!important;border-left:4px solid var(--green)!important;
+  border-radius:13px!important;color:#426354!important;font-size:.85rem!important;padding:11px 13px!important
+}
+.result-summary{color:#7b8c9b!important}
 
 footer{display:none!important}
 
 @media(max-width:700px){
- .hero{padding:12px 16px!important}.topnav__inner{padding-left:10px!important}main{padding:18px 15px 48px!important}.lesson-top h2{font-size:1.8rem!important}.guide-step-label{display:none!important}.navtab{font-size:.82rem!important;padding:8px 9px!important}
+  .hero{padding:13px 16px!important}
+  .hero h1:after{display:none}
+  .topnav__inner{padding-left:10px!important}
+  main{padding:18px 14px 48px!important}
+  .lesson-top{padding:21px 18px 19px!important}
+  .lesson-core{padding:15px 18px 2px!important}
+  .lesson-top h2{font-size:1.8rem!important}
+  .guide-nextbar{padding:14px 18px!important}
+  .guide-step-label{display:none!important}
+  .navtab{font-size:.82rem!important;padding:8px 10px!important}
 }
