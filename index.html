@@ -3,208 +3,216 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#ffffff" />
-  <title>Guía de atención · Plantilla</title>
-  <meta name="description" content="Plantilla moderna y responsive para organizar temas, conceptos, ejemplos y guiones de llamada." />
-  <link rel="stylesheet" href="styles.css?v=11" />
+  <meta name="theme-color" content="#081826" />
+  <title>Banca desde cero · Guía interactiva</title>
+  <meta name="description" content="Guía interactiva para estudiar banca desde cero, conceptos, temas, atención telefónica y venta cruzada." />
+  <link rel="stylesheet" href="styles.css?v=10" />
+  <link rel="stylesheet" href="guide.css?v=10" />
+  <link rel="stylesheet" href="minimal.css?v=10" />
 </head>
 <body>
-  <header class="navbar">
-    <div class="navbar__inner">
-      <a class="brand" href="#inicio" aria-label="Ir al inicio">
-        <div class="brand-mark">G</div>
-        <div class="brand-copy">
-          <strong>Guía de atención</strong>
-          <span>Plantilla personal de estudio</span>
-        </div>
-      </a>
-
-      <nav class="nav-links" aria-label="Navegación principal">
-        <a class="nav-link active" href="#inicio">Inicio</a>
-        <a class="nav-link" href="#temas">Temas</a>
-        <a class="nav-link" href="#buscar">Buscar</a>
-      </nav>
-
-      <button id="mobileMenuButton" class="mobile-menu" aria-label="Abrir menú de temas" aria-expanded="false">☰</button>
+  <header class="hero">
+    <div class="hero__inner">
+      <div class="eyebrow">GUÍA PERSONAL DE ESTUDIO · BANCA REMOTA</div>
+      <h1>Banca desde cero <span>tema por tema, sin revolverte xd</span></h1>
+      <p>Primero aprende cómo funciona un banco desde cero. Después avanza por TDD, TDC, estado de cuenta, autenticación, fraude, SPEI, cheques y los temas de tu certificación.</p>
+      <div class="hero__actions">
+        <button class="primary" data-go="guia">Empezar guía desde cero</button>
+        <button class="secondary" id="randomBtn">🎲 Concepto al azar</button>
+      </div>
+      <div class="notice">
+        <strong>Importante:</strong> material personal de estudio. No es un sitio oficial de BBVA. El manual base es de diciembre de 2022; para autenticación, límites, horarios, comisiones, escalamiento y pasos operativos usa siempre el CUC vigente.
+      </div>
     </div>
   </header>
 
-  <main id="inicio" class="page-shell">
-    <section class="hero" aria-labelledby="pageTitle">
-      <div class="hero-main">
-        <div class="hero-kicker">Plantilla editable · Atención y venta cruzada</div>
-        <h1 id="pageTitle">Tu guía de trabajo, <span>ordenada y fácil de leer.</span></h1>
-        <p>Organiza aquí tus temas principales, conceptos clave, ejemplos prácticos y guiones de llamada. La estructura ya está lista; solo reemplaza los placeholders cuando quieras agregar tu información real.</p>
+  <nav class="topnav" aria-label="Secciones">
+    <div class="topnav__inner">
+      <button class="navtab active" data-tab="guia">🧭 Guía desde cero</button>
+      <button class="navtab" data-tab="aprender">📚 Conceptos</button>
+      <button class="navtab" data-tab="identificadores">🔢 Identificadores</button>
+      <button class="navtab" data-tab="casos">🎧 Casos de llamada</button>
+      <button class="navtab" data-tab="quiz">🧠 Mini quiz</button>
+      <button class="navtab" data-tab="favoritos">⭐ Favoritos <span id="favCount">0</span></button>
+    </div>
+  </nav>
 
-        <div id="buscar" class="search-wrap">
-          <label class="searchbox" aria-label="Buscar en la guía">
-            <span class="search-icon">⌕</span>
-            <input id="searchInput" type="search" placeholder="Busca un tema, concepto o palabra clave..." autocomplete="off" />
-          </label>
-          <button id="clearSearch" class="clear-btn" type="button">Limpiar</button>
+  <main>
+    <section id="guia" class="tabpage active">
+      <div class="section-head">
+        <div>
+          <p class="kicker">RUTA RECOMENDADA</p>
+          <h2>Aprende banca desde cero, por temas</h2>
+          <p>Aquí no ves conceptos sueltos: sigues una ruta. Empiezas por qué es un banco y avanzas hasta autenticación, TDC, transferencias, cheques, aclaraciones y temas de certificación.</p>
         </div>
       </div>
 
-      <aside class="hero-note" aria-label="Estado de la plantilla">
-        <div>
-          <div class="hero-note__title"><span class="status-dot"></span> Plantilla lista</div>
-          <p>Todo el contenido está vacío o marcado con placeholders para que lo completes después.</p>
+      <div class="guide-mode-note">
+        <strong>Así está separado ahora:</strong> esta pestaña es la <b>guía por temas</b>. La pestaña <b>Conceptos</b> queda como diccionario rápido para buscar una palabra concreta. En cada tema abre solo lo que quieras repasar y pasa al siguiente con un clic.
+        <div class="guide-jump">
+          <button id="guideStart">▶ Empezar desde tema 1</button>
+          <button id="guideResume">↪ Continuar donde me quedé</button>
+          <button data-go="aprender">⌕ Ir al diccionario de conceptos</button>
         </div>
-        <div class="color-row" aria-hidden="true">
-          <span class="color-pill blue"></span>
-          <span class="color-pill red"></span>
-          <span class="color-pill yellow"></span>
-          <span class="color-pill green"></span>
+      </div>
+
+      <div id="guideOverview" class="guide-overview" aria-label="Mapa rápido de temas"></div>
+
+      <div class="guide-shell">
+        <aside class="guide-sidebar">
+          <div class="guide-progressbox">
+            <strong><span>Tu ruta</span><span id="guideProgressText">1 / 20</span></strong>
+            <div class="guide-progress"><i id="guideProgressBar" style="width:5%"></i></div>
+          </div>
+          <div id="guideTopicNav" class="guide-topic-nav"></div>
+        </aside>
+        <div class="guide-main">
+          <article id="guideLesson" class="guide-lesson"></article>
         </div>
-      </aside>
+      </div>
     </section>
 
-    <section id="temas" class="workspace">
-      <aside id="sidePanel" class="sidebar" aria-label="Temas principales">
-        <div class="sidebar-title">Temas principales</div>
-        <nav class="side-nav">
-          <a class="side-link active" href="#tarjetas"><span class="side-dot"></span>Tarjetas de crédito</a>
-          <a class="side-link" href="#cuentas"><span class="side-dot"></span>Cuentas</a>
-          <a class="side-link" href="#seguros"><span class="side-dot"></span>Seguros</a>
-          <a class="side-link" href="#creditos"><span class="side-dot"></span>Créditos personales</a>
-          <a class="side-link" href="#tema5"><span class="side-dot"></span>[Tema 5]</a>
-          <a class="side-link" href="#tema6"><span class="side-dot"></span>[Tema 6]</a>
-        </nav>
-        <div class="sidebar-tip">Tip: usa esta barra para saltar rápido entre temas. En celular se abre desde el botón ☰.</div>
-      </aside>
-
-      <div class="content">
-        <div class="content-toolbar">
-          <h2>Contenido</h2>
-          <div id="resultText">Explora los temas o usa la búsqueda para encontrar algo rápido.</div>
-        </div>
-
-        <div class="topic-list">
-          <details id="tarjetas" class="topic-card" data-keywords="tarjetas credito tdc venta cruzada llamada" open>
-            <summary class="topic-head">
-              <span class="topic-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"></rect><path d="M3 10h18"></path><path d="M7 15h4"></path></svg>
-              </span>
-              <span class="topic-title"><span>Tema principal 01</span><h3>Tarjetas de crédito</h3></span>
-              <span class="topic-toggle">+</span>
-            </summary>
-            <div class="topic-body">
-              <div class="topic-grid">
-                <section class="info-card">
-                  <div class="info-label"><i></i>Conceptos clave</div>
-                  <div class="placeholder-stack">
-                    <div class="placeholder">[Concepto]</div>
-                    <div class="placeholder">[Definición corta]</div>
-                    <div class="placeholder">[Concepto]</div>
-                  </div>
-                </section>
-                <section class="info-card">
-                  <div class="info-label"><i></i>Ejemplos prácticos</div>
-                  <div class="placeholder-stack">
-                    <div class="placeholder">[Ejemplo práctico]</div>
-                    <div class="placeholder">[Situación del cliente]</div>
-                  </div>
-                </section>
-                <section class="info-card">
-                  <div class="info-label"><i></i>Guiones de llamada</div>
-                  <div class="placeholder-stack">
-                    <div class="placeholder script-placeholder">[Guion de llamada / frase sugerida para atención o venta cruzada]</div>
-                  </div>
-                </section>
-              </div>
-              <div class="topic-footer"><span class="mini-chip">[Dato importante]</span><span class="mini-chip">[Objeción común]</span><span class="mini-chip">[Recordatorio]</span></div>
-            </div>
-          </details>
-
-          <details id="cuentas" class="topic-card" data-keywords="cuentas debito cuenta bancaria atención cliente">
-            <summary class="topic-head">
-              <span class="topic-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M4 9h16"></path><path d="M5 9l7-4 7 4"></path><path d="M6 9v8"></path><path d="M10 9v8"></path><path d="M14 9v8"></path><path d="M18 9v8"></path><path d="M4 19h16"></path></svg>
-              </span>
-              <span class="topic-title"><span>Tema principal 02</span><h3>Cuentas</h3></span>
-              <span class="topic-toggle">+</span>
-            </summary>
-            <div class="topic-body">
-              <div class="topic-grid">
-                <section class="info-card"><div class="info-label"><i></i>Conceptos clave</div><div class="placeholder-stack"><div class="placeholder">[Concepto]</div><div class="placeholder">[Definición corta]</div><div class="placeholder">[Concepto]</div></div></section>
-                <section class="info-card"><div class="info-label"><i></i>Ejemplos prácticos</div><div class="placeholder-stack"><div class="placeholder">[Ejemplo práctico]</div><div class="placeholder">[Situación del cliente]</div></div></section>
-                <section class="info-card"><div class="info-label"><i></i>Guiones de llamada</div><div class="placeholder-stack"><div class="placeholder script-placeholder">[Guion de llamada / frase sugerida para atención o venta cruzada]</div></div></section>
-              </div>
-              <div class="topic-footer"><span class="mini-chip">[Dato importante]</span><span class="mini-chip">[Objeción común]</span><span class="mini-chip">[Recordatorio]</span></div>
-            </div>
-          </details>
-
-          <details id="seguros" class="topic-card" data-keywords="seguros protección póliza venta cruzada">
-            <summary class="topic-head">
-              <span class="topic-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-2.9 8-7 10-4.1-2-7-5.5-7-10V6l7-3z"></path><path d="M9.5 12l1.7 1.7 3.6-4"></path></svg>
-              </span>
-              <span class="topic-title"><span>Tema principal 03</span><h3>Seguros</h3></span>
-              <span class="topic-toggle">+</span>
-            </summary>
-            <div class="topic-body">
-              <div class="topic-grid">
-                <section class="info-card"><div class="info-label"><i></i>Conceptos clave</div><div class="placeholder-stack"><div class="placeholder">[Concepto]</div><div class="placeholder">[Definición corta]</div><div class="placeholder">[Concepto]</div></div></section>
-                <section class="info-card"><div class="info-label"><i></i>Ejemplos prácticos</div><div class="placeholder-stack"><div class="placeholder">[Ejemplo práctico]</div><div class="placeholder">[Situación del cliente]</div></div></section>
-                <section class="info-card"><div class="info-label"><i></i>Guiones de llamada</div><div class="placeholder-stack"><div class="placeholder script-placeholder">[Guion de llamada / frase sugerida para atención o venta cruzada]</div></div></section>
-              </div>
-              <div class="topic-footer"><span class="mini-chip">[Dato importante]</span><span class="mini-chip">[Objeción común]</span><span class="mini-chip">[Recordatorio]</span></div>
-            </div>
-          </details>
-
-          <details id="creditos" class="topic-card" data-keywords="creditos personales préstamo financiamiento venta cruzada">
-            <summary class="topic-head">
-              <span class="topic-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M14.5 9.5c-.5-.7-1.3-1-2.4-1-1.3 0-2.2.6-2.2 1.5 0 2.5 4.9 1.1 4.9 3.7 0 1-.9 1.8-2.5 1.8-1.2 0-2.2-.4-2.8-1.2"></path><path d="M12 7v10"></path></svg>
-              </span>
-              <span class="topic-title"><span>Tema principal 04</span><h3>Créditos personales</h3></span>
-              <span class="topic-toggle">+</span>
-            </summary>
-            <div class="topic-body">
-              <div class="topic-grid">
-                <section class="info-card"><div class="info-label"><i></i>Conceptos clave</div><div class="placeholder-stack"><div class="placeholder">[Concepto]</div><div class="placeholder">[Definición corta]</div><div class="placeholder">[Concepto]</div></div></section>
-                <section class="info-card"><div class="info-label"><i></i>Ejemplos prácticos</div><div class="placeholder-stack"><div class="placeholder">[Ejemplo práctico]</div><div class="placeholder">[Situación del cliente]</div></div></section>
-                <section class="info-card"><div class="info-label"><i></i>Guiones de llamada</div><div class="placeholder-stack"><div class="placeholder script-placeholder">[Guion de llamada / frase sugerida para atención o venta cruzada]</div></div></section>
-              </div>
-              <div class="topic-footer"><span class="mini-chip">[Dato importante]</span><span class="mini-chip">[Objeción común]</span><span class="mini-chip">[Recordatorio]</span></div>
-            </div>
-          </details>
-
-          <details id="tema5" class="topic-card" data-keywords="tema 5 concepto ejemplo guion">
-            <summary class="topic-head">
-              <span class="topic-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"></rect><path d="M8 9h8M8 13h8M8 17h5"></path></svg></span>
-              <span class="topic-title"><span>Tema principal 05</span><h3>[Tema 5]</h3></span>
-              <span class="topic-toggle">+</span>
-            </summary>
-            <div class="topic-body">
-              <div class="topic-grid">
-                <section class="info-card"><div class="info-label"><i></i>Conceptos clave</div><div class="placeholder-stack"><div class="placeholder">[Concepto]</div><div class="placeholder">[Definición corta]</div></div></section>
-                <section class="info-card"><div class="info-label"><i></i>Ejemplos prácticos</div><div class="placeholder-stack"><div class="placeholder">[Ejemplo práctico]</div></div></section>
-                <section class="info-card"><div class="info-label"><i></i>Guiones de llamada</div><div class="placeholder-stack"><div class="placeholder script-placeholder">[Guion de llamada / frase sugerida]</div></div></section>
-              </div>
-            </div>
-          </details>
-
-          <details id="tema6" class="topic-card" data-keywords="tema 6 concepto ejemplo guion">
-            <summary class="topic-head">
-              <span class="topic-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M8 12h8M12 8v8"></path></svg></span>
-              <span class="topic-title"><span>Tema principal 06</span><h3>[Tema 6]</h3></span>
-              <span class="topic-toggle">+</span>
-            </summary>
-            <div class="topic-body">
-              <div class="topic-grid">
-                <section class="info-card"><div class="info-label"><i></i>Conceptos clave</div><div class="placeholder-stack"><div class="placeholder">[Concepto]</div><div class="placeholder">[Definición corta]</div></div></section>
-                <section class="info-card"><div class="info-label"><i></i>Ejemplos prácticos</div><div class="placeholder-stack"><div class="placeholder">[Ejemplo práctico]</div></div></section>
-                <section class="info-card"><div class="info-label"><i></i>Guiones de llamada</div><div class="placeholder-stack"><div class="placeholder script-placeholder">[Guion de llamada / frase sugerida]</div></div></section>
-              </div>
-            </div>
-          </details>
+    <section id="aprender" class="tabpage">
+      <div class="section-head">
+        <div>
+          <p class="kicker">DICCIONARIO RÁPIDO</p>
+          <h2>Conceptos por categoría</h2>
+          <p>¿Solo quieres saber qué significa una palabra? Búscala aquí. Da clic en una tarjeta para ver definición, ejemplo, confusión común y cómo pensarlo como asesor.</p>
         </div>
       </div>
+
+      <div class="study-toolbar">
+        <label class="searchbox">
+          <span>⌕</span>
+          <input id="searchInput" type="search" placeholder="Busca: CLABE, tasa, cheque, SPEI, anualidad..." autocomplete="off" />
+        </label>
+        <button class="ghost" id="clearSearch">Limpiar</button>
+      </div>
+
+      <div id="categoryChips" class="chips" aria-label="Categorías"></div>
+      <div id="resultSummary" class="result-summary"></div>
+      <div id="conceptGrid" class="concept-grid"></div>
+    </section>
+
+    <section id="identificadores" class="tabpage">
+      <div class="section-head">
+        <div>
+          <p class="kicker">LO QUE MÁS SE CONFUNDE</p>
+          <h2>Cliente ≠ contrato ≠ cuenta ≠ tarjeta ≠ CLABE</h2>
+          <p>Este mapa es para que visualices qué identifica cada número.</p>
+        </div>
+      </div>
+
+      <div class="id-map">
+        <article class="id-card person">
+          <div class="id-icon">👤</div>
+          <h3>Número de cliente</h3>
+          <p>Identifica a la <strong>persona</strong> dentro del banco.</p>
+          <div class="mini-example">Una persona puede tener varias cuentas, TDC o créditos bajo el mismo cliente.</div>
+        </article>
+        <div class="id-arrow">↓</div>
+        <article class="id-card contract">
+          <div class="id-icon">📄</div>
+          <h3>Número de contrato</h3>
+          <p>Identifica la <strong>relación contractual/producto</strong> que el cliente tiene con el banco.</p>
+          <div class="mini-example">No es la CLABE ni el número impreso en la tarjeta.</div>
+        </article>
+        <div class="id-arrow">↓</div>
+        <div class="id-row">
+          <article class="id-card account">
+            <div class="id-icon">🏦</div>
+            <h3>Número de cuenta</h3>
+            <p>Identifica la <strong>cuenta bancaria</strong>.</p>
+            <div class="mini-example">En el manual 2022, la estructura mostrada de la CLABE incorpora 10 dígitos del número de cuenta.</div>
+          </article>
+          <article class="id-card clabe">
+            <div class="id-icon">🔁</div>
+            <h3>CLABE / “Cuenta CLABE”</h3>
+            <p><strong>18 dígitos.</strong> Se usa para identificar la cuenta en transferencias interbancarias.</p>
+            <div class="mini-example">“Cuenta CLABE” en el manual es el encabezado del tema; no son dos tipos de CLABE.</div>
+          </article>
+          <article class="id-card cardnum">
+            <div class="id-icon">💳</div>
+            <h3>Número de tarjeta</h3>
+            <p>Identifica el <strong>plástico/tarjeta</strong>, no la cuenta completa.</p>
+            <div class="mini-example">Puede cambiar al reponer el plástico, dependiendo del proceso.</div>
+          </article>
+        </div>
+      </div>
+
+      <div class="compare-panel">
+        <h3>Y estas tampoco son CLABE</h3>
+        <div class="compare-grid">
+          <div><b>BIN</b><span>Primeros dígitos/rango de la tarjeta. Ayuda a identificar producto/emisor.</span></div>
+          <div><b>CVV</b><span>Código de seguridad de la tarjeta.</span></div>
+          <div><b>NIP</b><span>Clave personal usada para autorizar ciertas operaciones.</span></div>
+          <div><b>Token</b><span>Clave de uso único para autorizar operaciones digitales.</span></div>
+          <div><b>MAU</b><span>Manual/flujo de autenticación. Es seguridad, no un dato bancario para transferir.</span></div>
+          <div><b>Clave de rastreo</b><span>Identificador de una operación SPEI para darle seguimiento.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="casos" class="tabpage">
+      <div class="section-head">
+        <div>
+          <p class="kicker">PENSAMIENTO DE ASESOR</p>
+          <h2>¿Qué me podría pedir un cliente?</h2>
+          <p>Abre cada caso. La idea es practicar cómo <strong>clasificar</strong> antes de operar.</p>
+        </div>
+      </div>
+      <div class="advisor-rule">
+        <strong>Orden mental:</strong> producto → qué pasó → sondeo → autenticación vigente → revisar sistema → buscar proceso en CUC → explicar → resolver/canalizar → venta cruzada si corresponde.
+      </div>
+      <div id="caseGrid" class="case-grid"></div>
+    </section>
+
+    <section id="quiz" class="tabpage">
+      <div class="section-head">
+        <div>
+          <p class="kicker">REPASO RÁPIDO</p>
+          <h2>Mini quiz</h2>
+          <p>Preguntas cortas para comprobar si ya entendiste la lógica.</p>
+        </div>
+      </div>
+      <div class="quizbox">
+        <div class="quiz-progress"><span id="quizProgress">1 / 10</span><span id="quizScore">0 correctas</span></div>
+        <div class="progressbar"><i id="quizBar"></i></div>
+        <div id="quizQuestion" class="quiz-question"></div>
+        <div id="quizOptions" class="quiz-options"></div>
+        <div id="quizExplain" class="quiz-explain"></div>
+        <button id="quizNext" class="primary hidden">Siguiente</button>
+        <button id="quizRestart" class="secondary hidden">Volver a empezar</button>
+      </div>
+    </section>
+
+    <section id="favoritos" class="tabpage">
+      <div class="section-head">
+        <div>
+          <p class="kicker">TU REPASO</p>
+          <h2>Conceptos guardados</h2>
+          <p>Marca ⭐ en cualquier concepto y aparecerá aquí. Se guarda en tu navegador.</p>
+        </div>
+      </div>
+      <div id="favGrid" class="concept-grid"></div>
     </section>
   </main>
 
-  <footer>Plantilla visual sin contenido real. Reemplaza los placeholders cuando quieras agregar tu información.</footer>
-  <script src="app.js?v=11"></script>
+  <dialog id="randomDialog" class="random-dialog">
+    <button class="dialog-close" id="closeRandom" aria-label="Cerrar">×</button>
+    <div id="randomContent"></div>
+  </dialog>
+
+  <footer>
+    <div>
+      <strong>Banca desde cero</strong>
+      <p>Guía personal basada principalmente en el manual de Banca Remota · diciembre 2022 y separada por temas para estudiar desde cero.</p>
+    </div>
+    <p class="footer-note">Los ejemplos son didácticos. Verifica procesos actuales en CUC/CCD y políticas vigentes.</p>
+  </footer>
+
+  <script src="app.js?v=10"></script>
+  <script src="guide.js?v=10"></script>
+  <script src="minimal.js?v=10"></script>
 </body>
 </html>
