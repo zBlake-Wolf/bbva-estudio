@@ -1,0 +1,38 @@
+/* v18 · Ajustes finales de profundidad/parallax para la escena geométrica */
+.depth-shape.layer-1{
+  transform:translate3d(var(--shift-x,0px),var(--shift-y,0px),80px) rotate(var(--r)) scale(1.05)!important;
+}
+.depth-shape.layer-2{
+  transform:translate3d(var(--shift-x,0px),var(--shift-y,0px),-70px) rotate(var(--r)) scale(.88)!important;
+}
+.depth-shape.layer-3{
+  transform:translate3d(var(--shift-x,0px),var(--shift-y,0px),-180px) rotate(var(--r)) scale(.72)!important;
+}
+.depth-shape.layer-4{
+  transform:translate3d(var(--shift-x,0px),var(--shift-y,0px),-320px) rotate(var(--r)) scale(.56)!important;
+}
+
+/* Rombo sin romper la transformación 3D de su capa */
+.depth-shape.diamond{
+  border-radius:10%;
+  clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+}
+
+/* Algunas formas cercanas reciben una sombra un poco más marcada para reforzar el volumen */
+.depth-shape.layer-1:not(.ring):not(.arc):not(.triangle){
+  box-shadow:0 18px 34px rgba(17,24,39,.045);
+}
+.depth-shape.layer-2:not(.ring):not(.arc):not(.triangle){
+  box-shadow:0 12px 26px rgba(17,24,39,.025);
+}
+
+/* Mantiene el área central legible, pero deja ver más formas en laterales */
+.depth-scene::after{
+  background:radial-gradient(ellipse at center,rgba(255,255,255,.62) 0%,rgba(255,255,255,.38) 38%,rgba(255,255,255,.08) 74%,rgba(255,255,255,0) 100%)!important;
+}
+
+@media(max-width:900px){
+  .depth-scene::after{
+    background:radial-gradient(ellipse at center,rgba(255,255,255,.72),rgba(255,255,255,.30) 66%,rgba(255,255,255,.05))!important;
+  }
+}
