@@ -6,170 +6,76 @@
   <meta name="theme-color" content="#ffffff" />
   <title>Banca desde cero · Guía interactiva</title>
   <meta name="description" content="Guía interactiva para estudiar banca desde cero, certificación, productos BBVA, atención telefónica y venta cruzada." />
-  <link rel="stylesheet" href="styles.css?v=20" />
-  <link rel="stylesheet" href="guide.css?v=20" />
-  <link rel="stylesheet" href="minimal.css?v=20" />
-  <link rel="stylesheet" href="course-v2.css?v=20" />
-  <link rel="stylesheet" href="visual-map.css?v=20" />
-  <link rel="stylesheet" href="visual-map-v14.css?v=20" />
-  <link rel="stylesheet" href="visual-stair-v15.css?v=20" />
-  <link rel="stylesheet" href="visual-stair-v16.css?v=20" />
-  <link rel="stylesheet" href="depth-bg-v17.css?v=20" />
-  <link rel="stylesheet" href="depth-bg-v18.css?v=20" />
+  <link rel="stylesheet" href="styles.css?v=21" />
+  <link rel="stylesheet" href="guide.css?v=21" />
+  <link rel="stylesheet" href="minimal.css?v=21" />
+  <link rel="stylesheet" href="course-v2.css?v=21" />
+  <link rel="stylesheet" href="visual-map.css?v=21" />
+  <link rel="stylesheet" href="visual-map-v14.css?v=21" />
+  <link rel="stylesheet" href="visual-stair-v15.css?v=21" />
+  <link rel="stylesheet" href="visual-stair-v16.css?v=21" />
+  <link rel="stylesheet" href="depth-bg-v17.css?v=21" />
+  <link rel="stylesheet" href="depth-bg-v18.css?v=21" />
+  <link rel="stylesheet" href="visual-focus-v21.css?v=21" />
 </head>
 <body>
   <header class="site-header">
     <div class="site-header__inner">
       <button class="brand-button" data-go="guia" aria-label="Ir a la guía">
         <span class="brand-mark">B</span>
-        <span class="brand-copy">
-          <strong>Banca desde cero</strong>
-          <small>Guía personal de estudio</small>
-        </span>
+        <span class="brand-copy"><strong>Banca desde cero</strong><small>Guía personal de estudio</small></span>
       </button>
-
-      <nav class="topnav" aria-label="Secciones">
-        <div class="topnav__inner">
-          <button class="navtab active" data-tab="guia">Guía</button>
-          <button class="navtab" data-tab="aprender">Conceptos</button>
-          <button class="navtab" data-tab="identificadores">Identificadores</button>
-          <button class="navtab" data-tab="casos">Casos</button>
-          <button class="navtab" data-tab="quiz">Quiz</button>
-          <button class="navtab" data-tab="favoritos">Favoritos <span id="favCount">0</span></button>
-          <button class="navtab nav-random" id="randomBtn" type="button">Azar</button>
-        </div>
-      </nav>
+      <nav class="topnav" aria-label="Secciones"><div class="topnav__inner">
+        <button class="navtab active" data-tab="guia">Guía</button><button class="navtab" data-tab="aprender">Conceptos</button><button class="navtab" data-tab="identificadores">Identificadores</button><button class="navtab" data-tab="casos">Casos</button><button class="navtab" data-tab="quiz">Quiz</button><button class="navtab" data-tab="favoritos">Favoritos <span id="favCount">0</span></button><button class="navtab nav-random" id="randomBtn" type="button">Azar</button>
+      </div></nav>
     </div>
   </header>
 
   <main>
     <section id="guia" class="tabpage active">
-      <div class="section-head">
-        <div>
-          <p class="kicker">RUTA RECOMENDADA</p>
-          <h2>De cero a certificación, por temas</h2>
-          <p>Empieza por banco, cuenta y movimientos; después avanza por autenticación, débito, fraudes, cheques, estado de cuenta, nómina, créditos, TDC, seguros, transferencias y atención de llamada.</p>
-        </div>
+      <div class="section-head"><div><p class="kicker">RUTA RECOMENDADA</p><h2>De cero a certificación, por temas</h2><p>Empieza por banco, cuenta y movimientos; después avanza por autenticación, débito, fraudes, cheques, estado de cuenta, nómina, créditos, TDC, seguros, transferencias y atención de llamada.</p></div></div>
+      <div class="guide-mode-note"><strong>Modo fácil:</strong> abre un concepto y quédate primero con <b>“En fácil”</b> y <b>“Para acordarte”</b>. Solo abre la explicación completa si necesitas más detalle. Los datos operativos que cambian se confirman siempre en CUC vigente.
+        <div class="guide-jump"><button id="guideStart">Empezar desde tema 1</button><button id="guideResume">Continuar donde me quedé</button><button data-go="aprender">Ir al diccionario de conceptos</button></div>
       </div>
-
-      <div class="guide-mode-note">
-        <strong>Ruta actualizada:</strong> cada tema se estudia por conceptos breves con <b>qué es</b>, <b>para qué sirve</b>, <b>cuándo aparece</b>, <b>cómo funciona</b>, ejemplo y pensamiento de asesor. Los datos operativos que cambian se confirman siempre en CUC vigente.
-        <div class="guide-jump">
-          <button id="guideStart">Empezar desde tema 1</button>
-          <button id="guideResume">Continuar donde me quedé</button>
-          <button data-go="aprender">Ir al diccionario de conceptos</button>
-        </div>
-      </div>
-
       <div id="guideOverview" class="guide-overview" aria-label="Mapa rápido de temas"></div>
-
-      <div class="guide-shell">
-        <aside class="guide-sidebar">
-          <div class="guide-progressbox">
-            <strong><span>Tu ruta</span><span id="guideProgressText">1 / 21</span></strong>
-            <div class="guide-progress"><i id="guideProgressBar" style="width:4.76%"></i></div>
-          </div>
-          <div id="guideTopicNav" class="guide-topic-nav"></div>
-        </aside>
-        <div class="guide-main">
-          <article id="guideLesson" class="guide-lesson"></article>
-        </div>
-      </div>
+      <div class="guide-shell"><aside class="guide-sidebar"><div class="guide-progressbox"><strong><span>Tu ruta</span><span id="guideProgressText">1 / 21</span></strong><div class="guide-progress"><i id="guideProgressBar" style="width:4.76%"></i></div></div><div id="guideTopicNav" class="guide-topic-nav"></div></aside><div class="guide-main"><article id="guideLesson" class="guide-lesson"></article></div></div>
     </section>
 
     <section id="aprender" class="tabpage">
-      <div class="section-head">
-        <div>
-          <p class="kicker">DICCIONARIO RÁPIDO</p>
-          <h2>Conceptos por categoría</h2>
-          <p>¿Solo quieres saber qué significa una palabra? Búscala aquí. Da clic en una tarjeta para ver definición, ejemplo, confusión común y cómo pensarlo como asesor.</p>
-        </div>
-      </div>
-
-      <div class="study-toolbar">
-        <label class="searchbox">
-          <span>⌕</span>
-          <input id="searchInput" type="search" placeholder="Busca: CLABE, tasa, cheque, seguro, EFI, SPEI..." autocomplete="off" />
-        </label>
-        <button class="ghost" id="clearSearch">Limpiar</button>
-      </div>
-
-      <div id="categoryChips" class="chips" aria-label="Categorías"></div>
-      <div id="resultSummary" class="result-summary"></div>
-      <div id="conceptGrid" class="concept-grid"></div>
+      <div class="section-head"><div><p class="kicker">DICCIONARIO RÁPIDO</p><h2>Conceptos por categoría</h2><p>¿Solo quieres saber qué significa una palabra? Búscala aquí. Da clic en una tarjeta para ver definición, ejemplo, confusión común y cómo pensarlo como asesor.</p></div></div>
+      <div class="study-toolbar"><label class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="Busca: CLABE, tasa, cheque, seguro, EFI, SPEI..." autocomplete="off" /></label><button class="ghost" id="clearSearch">Limpiar</button></div>
+      <div id="categoryChips" class="chips" aria-label="Categorías"></div><div id="resultSummary" class="result-summary"></div><div id="conceptGrid" class="concept-grid"></div>
     </section>
 
     <section id="identificadores" class="tabpage">
-      <div class="section-head">
-        <div>
-          <p class="kicker">LO QUE MÁS SE CONFUNDE</p>
-          <h2>Cliente ≠ contrato ≠ cuenta ≠ tarjeta ≠ CLABE</h2>
-          <p>Este mapa es para que visualices qué identifica cada número.</p>
-        </div>
-      </div>
-
+      <div class="section-head"><div><p class="kicker">LO QUE MÁS SE CONFUNDE</p><h2>Cliente ≠ contrato ≠ cuenta ≠ tarjeta ≠ CLABE</h2><p>Este mapa es para que visualices qué identifica cada número.</p></div></div>
       <div class="id-map">
-        <article class="id-card person"><div class="id-icon">👤</div><h3>Número de cliente</h3><p>Identifica a la <strong>persona</strong> dentro del banco.</p><div class="mini-example">Una persona puede tener varias cuentas, TDC o créditos bajo el mismo cliente.</div></article>
-        <div class="id-arrow">↓</div>
-        <article class="id-card contract"><div class="id-icon">📄</div><h3>Número de contrato</h3><p>Identifica la <strong>relación contractual/producto</strong> que el cliente tiene con el banco.</p><div class="mini-example">No es la CLABE ni el número impreso en la tarjeta.</div></article>
-        <div class="id-arrow">↓</div>
-        <div class="id-row">
-          <article class="id-card account"><div class="id-icon">🏦</div><h3>Número de cuenta</h3><p>Identifica la <strong>cuenta bancaria</strong>.</p><div class="mini-example">En el manual 2022, la estructura mostrada de la CLABE incorpora 10 dígitos del número de cuenta.</div></article>
-          <article class="id-card clabe"><div class="id-icon">🔁</div><h3>CLABE / “Cuenta CLABE”</h3><p><strong>18 dígitos.</strong> Se usa para identificar la cuenta en transferencias interbancarias.</p><div class="mini-example">“Cuenta CLABE” en el manual es el encabezado del tema; no son dos tipos de CLABE.</div></article>
-          <article class="id-card cardnum"><div class="id-icon">💳</div><h3>Número de tarjeta</h3><p>Identifica el <strong>plástico/tarjeta</strong>, no la cuenta completa.</p><div class="mini-example">Puede cambiar al reponer el plástico, dependiendo del proceso.</div></article>
-        </div>
+        <article class="id-card person"><div class="id-icon">👤</div><h3>Número de cliente</h3><p>Identifica a la <strong>persona</strong> dentro del banco.</p><div class="mini-example">Una persona puede tener varias cuentas, TDC o créditos bajo el mismo cliente.</div></article><div class="id-arrow">↓</div>
+        <article class="id-card contract"><div class="id-icon">📄</div><h3>Número de contrato</h3><p>Identifica la <strong>relación contractual/producto</strong> que el cliente tiene con el banco.</p><div class="mini-example">No es la CLABE ni el número impreso en la tarjeta.</div></article><div class="id-arrow">↓</div>
+        <div class="id-row"><article class="id-card account"><div class="id-icon">🏦</div><h3>Número de cuenta</h3><p>Identifica la <strong>cuenta bancaria</strong>.</p><div class="mini-example">En el manual 2022, la estructura mostrada de la CLABE incorpora 10 dígitos del número de cuenta.</div></article><article class="id-card clabe"><div class="id-icon">🔁</div><h3>CLABE / “Cuenta CLABE”</h3><p><strong>18 dígitos.</strong> Se usa para identificar la cuenta en transferencias interbancarias.</p><div class="mini-example">“Cuenta CLABE” en el manual es el encabezado del tema; no son dos tipos de CLABE.</div></article><article class="id-card cardnum"><div class="id-icon">💳</div><h3>Número de tarjeta</h3><p>Identifica el <strong>plástico/tarjeta</strong>, no la cuenta completa.</p><div class="mini-example">Puede cambiar al reponer el plástico, dependiendo del proceso.</div></article></div>
       </div>
-
-      <div class="compare-panel">
-        <h3>Y estas tampoco son CLABE</h3>
-        <div class="compare-grid">
-          <div><b>BIN</b><span>Primeros dígitos/rango de la tarjeta. Ayuda a identificar producto/emisor.</span></div>
-          <div><b>CVV</b><span>Código de seguridad de la tarjeta.</span></div>
-          <div><b>NIP</b><span>Clave personal usada para autorizar ciertas operaciones.</span></div>
-          <div><b>Token</b><span>Clave de uso único para autorizar operaciones digitales.</span></div>
-          <div><b>MAU</b><span>Marco/flujo de autenticación. Es seguridad, no un dato para transferir.</span></div>
-          <div><b>Clave de rastreo</b><span>Identificador de una operación SPEI para darle seguimiento.</span></div>
-        </div>
-      </div>
+      <div class="compare-panel"><h3>Y estas tampoco son CLABE</h3><div class="compare-grid"><div><b>BIN</b><span>Primeros dígitos/rango de la tarjeta. Ayuda a identificar producto/emisor.</span></div><div><b>CVV</b><span>Código de seguridad de la tarjeta.</span></div><div><b>NIP</b><span>Clave personal usada para autorizar ciertas operaciones.</span></div><div><b>Token</b><span>Clave de uso único para autorizar operaciones digitales.</span></div><div><b>MAU</b><span>Marco/flujo de autenticación. Es seguridad, no un dato para transferir.</span></div><div><b>Clave de rastreo</b><span>Identificador de una operación SPEI para darle seguimiento.</span></div></div></div>
     </section>
 
-    <section id="casos" class="tabpage">
-      <div class="section-head"><div><p class="kicker">PENSAMIENTO DE ASESOR</p><h2>¿Qué me podría pedir un cliente?</h2><p>Abre cada caso. La idea es practicar cómo <strong>clasificar</strong> antes de operar.</p></div></div>
-      <div class="advisor-rule"><strong>Orden mental:</strong> producto → qué pasó → sondeo → autenticación vigente → revisar sistema → buscar proceso en CUC → explicar → resolver/canalizar → venta cruzada si corresponde.</div>
-      <div id="caseGrid" class="case-grid"></div>
-    </section>
+    <section id="casos" class="tabpage"><div class="section-head"><div><p class="kicker">PENSAMIENTO DE ASESOR</p><h2>¿Qué me podría pedir un cliente?</h2><p>Abre cada caso. La idea es practicar cómo <strong>clasificar</strong> antes de operar.</p></div></div><div class="advisor-rule"><strong>Orden mental:</strong> producto → qué pasó → sondeo → autenticación vigente → revisar sistema → buscar proceso en CUC → explicar → resolver/canalizar → venta cruzada si corresponde.</div><div id="caseGrid" class="case-grid"></div></section>
 
-    <section id="quiz" class="tabpage">
-      <div class="section-head"><div><p class="kicker">REPASO RÁPIDO</p><h2>Mini quiz</h2><p>Preguntas cortas para comprobar si ya entendiste la lógica.</p></div></div>
-      <div class="quizbox">
-        <div class="quiz-progress"><span id="quizProgress">1 / 10</span><span id="quizScore">0 correctas</span></div>
-        <div class="progressbar"><i id="quizBar"></i></div>
-        <div id="quizQuestion" class="quiz-question"></div><div id="quizOptions" class="quiz-options"></div><div id="quizExplain" class="quiz-explain"></div>
-        <button id="quizNext" class="primary hidden">Siguiente</button><button id="quizRestart" class="secondary hidden">Volver a empezar</button>
-      </div>
-    </section>
+    <section id="quiz" class="tabpage"><div class="section-head"><div><p class="kicker">REPASO RÁPIDO</p><h2>Mini quiz</h2><p>Preguntas cortas para comprobar si ya entendiste la lógica.</p></div></div><div class="quizbox"><div class="quiz-progress"><span id="quizProgress">1 / 10</span><span id="quizScore">0 correctas</span></div><div class="progressbar"><i id="quizBar"></i></div><div id="quizQuestion" class="quiz-question"></div><div id="quizOptions" class="quiz-options"></div><div id="quizExplain" class="quiz-explain"></div><button id="quizNext" class="primary hidden">Siguiente</button><button id="quizRestart" class="secondary hidden">Volver a empezar</button></div></section>
 
-    <section id="favoritos" class="tabpage">
-      <div class="section-head"><div><p class="kicker">TU REPASO</p><h2>Conceptos guardados</h2><p>Marca ⭐ en cualquier concepto y aparecerá aquí. Se guarda en tu navegador.</p></div></div>
-      <div id="favGrid" class="concept-grid"></div>
-    </section>
+    <section id="favoritos" class="tabpage"><div class="section-head"><div><p class="kicker">TU REPASO</p><h2>Conceptos guardados</h2><p>Marca ⭐ en cualquier concepto y aparecerá aquí. Se guarda en tu navegador.</p></div></div><div id="favGrid" class="concept-grid"></div></section>
   </main>
 
   <dialog id="randomDialog" class="random-dialog"><button class="dialog-close" id="closeRandom" aria-label="Cerrar">×</button><div id="randomContent"></div></dialog>
+  <footer><div><strong>Banca desde cero</strong><p>Guía personal construida con tu Manual de Banca Remota 2022 y referencias públicas actuales de BBVA/Banxico para estudiar conceptos, productos y certificación.</p></div><p class="footer-note">Los ejemplos son didácticos. Para autenticación, importes, tasas, horarios, restricciones, requisitos y pasos operativos, manda siempre el CUC vigente.</p></footer>
 
-  <footer>
-    <div><strong>Banca desde cero</strong><p>Guía personal construida con tu Manual de Banca Remota 2022 y referencias públicas actuales de BBVA/Banxico para estudiar conceptos, productos y certificación.</p></div>
-    <p class="footer-note">Los ejemplos son didácticos. Para autenticación, importes, tasas, horarios, restricciones, requisitos y pasos operativos, manda siempre el CUC vigente.</p>
-  </footer>
-
-  <script src="app.js?v=20"></script>
-  <script src="concepts-v19.js?v=20"></script>
-  <script src="guide.js?v=20"></script>
-  <script src="course-v2.js?v=20"></script>
-  <script src="course-v3.js?v=20"></script>
-  <script src="course-v3-extra.js?v=20"></script>
-  <script src="minimal.js?v=20"></script>
-  <script src="visual-map.js?v=20"></script>
-  <script src="depth-bg-v17.js?v=20"></script>
+  <script src="app.js?v=21"></script>
+  <script src="concepts-v19.js?v=21"></script>
+  <script src="guide.js?v=21"></script>
+  <script src="course-v2.js?v=21"></script>
+  <script src="course-v3.js?v=21"></script>
+  <script src="course-v3-extra.js?v=21"></script>
+  <script src="mnemonics-v21.js?v=21"></script>
+  <script src="minimal.js?v=21"></script>
+  <script src="visual-map.js?v=21"></script>
+  <script src="depth-bg-v17.js?v=21"></script>
 </body>
 </html>
