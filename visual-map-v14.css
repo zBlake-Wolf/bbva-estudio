@@ -1,0 +1,140 @@
+/* v14 · Colores más fuertes + pilares geométricos en esquinas */
+:root{
+  --vm-blue:#2563eb;
+  --vm-yellow:#ffcc29;
+  --vm-green:#18a957;
+  --vm-red:#e44738;
+  --vm-orange:#ff7a1a;
+  --vm-purple:#7c3aed;
+  --vm-cyan:#12b5ea;
+  --vm-pink:#e83e8c;
+  --vm-ink:#172033;
+}
+
+html,body{background:#fff!important}
+body{
+  background:
+    radial-gradient(circle at 9% 14%,rgba(37,99,235,.055),transparent 18rem),
+    radial-gradient(circle at 91% 12%,rgba(255,204,41,.07),transparent 17rem),
+    radial-gradient(circle at 86% 84%,rgba(124,58,237,.045),transparent 19rem),
+    #fff!important;
+}
+
+/* Pilares decorativos: fuertes, pero pegados a las esquinas para no estorbar la lectura */
+body:before,
+body:after{
+  display:block!important;
+  content:""!important;
+  position:fixed!important;
+  z-index:0!important;
+  pointer-events:none!important;
+  border-radius:8px!important;
+  opacity:.96!important;
+  filter:none!important;
+}
+body:before{
+  width:18px!important;
+  height:168px!important;
+  left:8px!important;
+  top:104px!important;
+  background:var(--vm-blue)!important;
+  box-shadow:
+    25px 34px 0 var(--vm-yellow),
+    50px -18px 0 var(--vm-red),
+    75px 55px 0 var(--vm-green)!important;
+  transform:rotate(-7deg)!important;
+}
+body:after{
+  width:18px!important;
+  height:180px!important;
+  right:10px!important;
+  bottom:30px!important;
+  background:var(--vm-purple)!important;
+  box-shadow:
+    -26px -36px 0 var(--vm-orange),
+    -52px 18px 0 var(--vm-cyan),
+    -78px -56px 0 var(--vm-pink)!important;
+  transform:rotate(7deg)!important;
+}
+.site-header,main,footer{position:relative;z-index:2}
+
+/* Navbar todavía limpio, con una sola señal de color */
+.site-header{
+  background:rgba(255,255,255,.92)!important;
+  border-bottom:0!important;
+  box-shadow:0 1px 0 rgba(23,32,51,.055)!important;
+}
+.brand-mark{background:var(--vm-blue)!important;box-shadow:0 8px 18px rgba(37,99,235,.2)!important}
+.navtab.active:after{background:var(--vm-yellow)!important}
+
+/* Hero: más contraste visual y pequeños elementos geométricos fuertes */
+.visual-course__hero{isolation:isolate}
+.visual-course__hero:before{
+  width:132px!important;height:38px!important;right:25%!important;top:20px!important;
+  background:var(--vm-yellow)!important;border-radius:8px!important;transform:rotate(-8deg)!important;
+  box-shadow:42px 54px 0 rgba(37,99,235,.98)!important;
+}
+.visual-course__hero:after{
+  width:68px!important;height:68px!important;right:10%!important;top:0!important;
+  background:var(--vm-red)!important;transform:rotate(13deg)!important;
+}
+.visual-course__eyebrow{color:#6f7786!important}
+.visual-course__hero h1{color:#111827!important}
+.visual-course__hero p{color:#5f6b7b!important}
+
+/* Tarjetas/figuras: colores directos, vivos y con profundidad ligera */
+.geo-topic{
+  box-shadow:0 14px 28px rgba(23,32,51,.13)!important;
+  border:1px solid rgba(255,255,255,.3)!important;
+}
+.geo-topic:hover{
+  transform:translateY(-6px) rotate(.25deg)!important;
+  box-shadow:0 20px 38px rgba(23,32,51,.17)!important;
+  filter:saturate(1.12) contrast(1.02)!important;
+}
+.geo-topic:nth-child(8n+1){background:var(--vm-blue)!important;color:#fff!important}
+.geo-topic:nth-child(8n+2){background:var(--vm-yellow)!important;color:#27231a!important}
+.geo-topic:nth-child(8n+3){background:var(--vm-green)!important;color:#fff!important}
+.geo-topic:nth-child(8n+4){background:var(--vm-red)!important;color:#fff!important}
+.geo-topic:nth-child(8n+5){background:var(--vm-orange)!important;color:#241a12!important}
+.geo-topic:nth-child(8n+6){background:var(--vm-purple)!important;color:#fff!important}
+.geo-topic:nth-child(8n+7){background:var(--vm-cyan)!important;color:#0c2430!important}
+.geo-topic:nth-child(8n+8){background:var(--vm-pink)!important;color:#fff!important}
+.geo-topic:after{border-color:rgba(255,255,255,.58)!important;border-width:3px!important}
+.geo-topic strong{font-weight:900!important}
+.geo-topic .geo-n,.geo-topic small{opacity:.8!important}
+
+/* Detalle: mantiene fondo limpio, pero con acentos mucho más visibles */
+.visual-detail{border-color:#e5e7eb!important;box-shadow:0 24px 64px rgba(23,32,51,.11)!important}
+.visual-detail__bar{
+  height:10px!important;
+  background:linear-gradient(90deg,var(--vm-blue) 0 16.6%,var(--vm-yellow) 16.6% 33.2%,var(--vm-red) 33.2% 49.8%,var(--vm-green) 49.8% 66.4%,var(--vm-orange) 66.4% 83%,var(--vm-purple) 83% 100%)!important;
+}
+.visual-detail__memory{border-left-color:var(--vm-yellow)!important;background:#fff6c9!important}
+.visual-subtopic.open{border-color:rgba(37,99,235,.36)!important;box-shadow:0 12px 30px rgba(37,99,235,.075)!important}
+.visual-subtopic.open button span:last-child{background:#eaf1ff!important;color:var(--vm-blue)!important}
+.visual-mini.example{background:#fff7cf!important;border-left-color:var(--vm-yellow)!important}
+.visual-mini.client{background:#eaf1ff!important;border-left-color:var(--vm-blue)!important}
+.visual-mini.advisor{background:#e8f8ef!important;border-left-color:var(--vm-green)!important}
+.visual-mini.warning{background:#ffebe8!important;border-left-color:var(--vm-red)!important}
+.visual-next{background:var(--vm-blue)!important}
+
+/* El resto del sitio también recibe pequeñas señales de la paleta */
+.chip.active,.visual-filter.active{background:var(--vm-blue)!important;border-color:var(--vm-blue)!important;color:#fff!important}
+.concept-card:nth-child(6n+1){border-top:4px solid var(--vm-blue)!important}
+.concept-card:nth-child(6n+2){border-top:4px solid var(--vm-yellow)!important}
+.concept-card:nth-child(6n+3){border-top:4px solid var(--vm-green)!important}
+.concept-card:nth-child(6n+4){border-top:4px solid var(--vm-red)!important}
+.concept-card:nth-child(6n+5){border-top:4px solid var(--vm-orange)!important}
+.concept-card:nth-child(6n+6){border-top:4px solid var(--vm-purple)!important}
+
+@media(max-width:1100px){
+  body:before,body:after{opacity:.52!important;transform:scale(.82) rotate(-7deg)!important}
+  body:after{transform:scale(.82) rotate(7deg)!important}
+}
+@media(max-width:760px){
+  body:before,body:after{opacity:.28!important}
+  body:before{left:-7px!important;top:86px!important}
+  body:after{right:-8px!important;bottom:12px!important}
+  .visual-course__hero:before,.visual-course__hero:after{opacity:.62!important}
+}
