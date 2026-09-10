@@ -1,0 +1,136 @@
+/* v21 · Conceptos fuertes del mismo color + lectura en dos pasos */
+.v15-theme-title{
+  background:var(--theme)!important;
+  color:#fff!important;
+  box-shadow:0 18px 42px color-mix(in srgb,var(--theme) 34%,transparent)!important;
+}
+
+/* La figura del concepto usa el MISMO color fuerte del tema */
+.v15-concept{
+  background:var(--theme)!important;
+  border:2px solid color-mix(in srgb,var(--theme) 88%,#111827)!important;
+  box-shadow:0 18px 40px color-mix(in srgb,var(--theme) 24%,transparent)!important;
+}
+.v15-concept:hover{
+  background:color-mix(in srgb,var(--theme) 92%,#101828)!important;
+  box-shadow:0 24px 52px color-mix(in srgb,var(--theme) 31%,transparent)!important;
+}
+.v15-concept.open{
+  background:var(--theme)!important;
+  border-color:color-mix(in srgb,var(--theme) 78%,#101828)!important;
+  box-shadow:0 28px 64px color-mix(in srgb,var(--theme) 32%,transparent)!important;
+}
+.v15-concept:after{border-color:rgba(255,255,255,.28)!important}
+.v15-concept.left:before,.v15-concept.right:before{background:color-mix(in srgb,var(--theme) 72%,transparent)!important}
+.v15-concept__button{color:#fff!important;text-shadow:0 1px 1px rgba(0,0,0,.08)}
+.v15-concept__button strong{color:#fff!important;font-weight:950!important}
+.v15-concept__meta{color:rgba(255,255,255,.80)!important}
+.v15-concept__plus{background:rgba(255,255,255,.94)!important;color:color-mix(in srgb,var(--theme) 86%,#101828)!important}
+.v15-concept.open .v15-concept__plus{background:#fff!important;color:var(--theme)!important}
+
+/* Al abrir, el contenido queda como una hoja clara DENTRO de la figura fuerte */
+.v15-concept__body-inner{
+  margin:0 7px 7px;
+  border-radius:0 0 calc(var(--shape-radius,28px) - 4px) calc(var(--shape-radius,28px) - 4px);
+  background:color-mix(in srgb,var(--theme) 9%,white);
+}
+.v15-concept__content{padding:18px 20px 20px!important;color:#263244!important}
+
+/* Primero solo dos ideas grandes para no saturar */
+.v21-first{display:grid;gap:12px}
+.v21-easy,.v21-memory{
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  padding:18px 19px;
+  border:1px solid color-mix(in srgb,var(--theme) 21%,white);
+}
+.v21-easy{
+  background:#fff;
+  box-shadow:0 10px 24px rgba(16,24,40,.06);
+}
+.v21-memory{
+  background:color-mix(in srgb,var(--theme) 19%,white);
+}
+.v21-easy:before,.v21-memory:before{
+  content:"";
+  position:absolute;
+  left:0;top:0;bottom:0;width:7px;
+  background:var(--theme);
+}
+.v21-easy span,.v21-memory span{
+  display:block;
+  margin-bottom:7px;
+  color:color-mix(in srgb,var(--theme) 80%,#344054);
+  font-size:.64rem;
+  font-weight:950;
+  letter-spacing:.11em;
+}
+.v21-easy strong{
+  display:block;
+  color:#111827!important;
+  font-size:clamp(1rem,2vw,1.22rem);
+  line-height:1.35;
+  letter-spacing:-.018em;
+}
+.v21-memory p{
+  margin:0;
+  color:#263244;
+  font-size:.94rem;
+  line-height:1.55;
+  font-weight:720;
+}
+
+/* La explicación formal queda disponible, pero no te cae encima de golpe */
+.v21-details{
+  margin-top:12px;
+  border:1px solid color-mix(in srgb,var(--theme) 20%,#e7eaf0);
+  border-radius:18px;
+  background:rgba(255,255,255,.76);
+  overflow:hidden;
+}
+.v21-details summary{
+  cursor:pointer;
+  list-style:none;
+  padding:14px 16px;
+  color:color-mix(in srgb,var(--theme) 72%,#263244);
+  font-size:.78rem;
+  font-weight:900;
+  user-select:none;
+}
+.v21-details summary::-webkit-details-marker{display:none}
+.v21-details summary:after{content:'+';float:right;font-size:1rem}
+.v21-details[open] summary:after{content:'−'}
+.v21-full{padding:0 16px 16px;color:#465467;line-height:1.68}
+.v21-full>p{margin:9px 0}
+.v21-full>p strong{color:#1d2939!important}
+.v21-full .v15-parent-note{background:color-mix(in srgb,var(--theme) 12%,white)!important;color:color-mix(in srgb,var(--theme) 72%,#344054)!important}
+.v21-full .v15-mini{background:#fff!important;border-color:color-mix(in srgb,var(--theme) 13%,#eaecf0)!important;color:#475467!important}
+.v21-full .v15-mini b{color:color-mix(in srgb,var(--theme) 70%,#475467)!important}
+
+/* Las mini-cajas ya no meten otros colores; todo pertenece visualmente al tema */
+.v21-full .v15-mini.example,.v21-full .v15-mini.client,.v21-full .v15-mini.advisor,.v21-full .v15-mini.warning{
+  border-left:5px solid var(--theme)!important;
+}
+
+/* En temas claros (amarillo/cyan/lima) mantenemos contraste en el encabezado */
+.v15-stage[data-theme-index="3"] .v15-concept__button,
+.v15-stage[data-theme-index="8"] .v15-concept__button{
+  color:#201a00!important;text-shadow:none!important;
+}
+.v15-stage[data-theme-index="3"] .v15-concept__button strong,
+.v15-stage[data-theme-index="8"] .v15-concept__button strong{color:#201a00!important}
+.v15-stage[data-theme-index="3"] .v15-concept__meta,
+.v15-stage[data-theme-index="8"] .v15-concept__meta{color:rgba(32,26,0,.68)!important}
+.v15-stage[data-theme-index="3"] .v15-theme-title{color:#221b00!important}
+
+@media(max-width:680px){
+  .v15-concept{min-height:96px!important}
+  .v15-concept__body-inner{margin:0 5px 5px}
+  .v15-concept__content{padding:14px!important}
+  .v21-easy,.v21-memory{padding:15px 15px 15px 17px;border-radius:16px}
+  .v21-easy strong{font-size:1rem}
+  .v21-memory p{font-size:.88rem}
+  .v21-details summary{padding:12px 14px}
+  .v21-full{padding:0 14px 14px}
+}
