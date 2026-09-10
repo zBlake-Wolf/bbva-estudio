@@ -6,36 +6,32 @@
   <meta name="theme-color" content="#ffffff" />
   <title>Banca desde cero · Guía interactiva</title>
   <meta name="description" content="Guía interactiva para estudiar banca desde cero, certificación, productos BBVA, atención telefónica y venta cruzada." />
-  <link rel="stylesheet" href="styles.css?v=22" />
-  <link rel="stylesheet" href="guide.css?v=22" />
-  <link rel="stylesheet" href="minimal.css?v=22" />
-  <link rel="stylesheet" href="course-v2.css?v=22" />
-  <link rel="stylesheet" href="visual-map.css?v=22" />
-  <link rel="stylesheet" href="visual-map-v14.css?v=22" />
-  <link rel="stylesheet" href="visual-stair-v15.css?v=22" />
-  <link rel="stylesheet" href="visual-stair-v16.css?v=22" />
-  <link rel="stylesheet" href="depth-bg-v17.css?v=22" />
-  <link rel="stylesheet" href="depth-bg-v18.css?v=22" />
-  <link rel="stylesheet" href="visual-focus-v21.css?v=22" />
-  <link rel="stylesheet" href="visual-detail-v22.css?v=22" />
+  <link rel="stylesheet" href="styles.css?v=23" />
+  <link rel="stylesheet" href="guide.css?v=23" />
+  <link rel="stylesheet" href="minimal.css?v=23" />
+  <link rel="stylesheet" href="course-v2.css?v=23" />
+  <link rel="stylesheet" href="visual-map.css?v=23" />
+  <link rel="stylesheet" href="visual-map-v14.css?v=23" />
+  <link rel="stylesheet" href="visual-stair-v15.css?v=23" />
+  <link rel="stylesheet" href="visual-stair-v16.css?v=23" />
+  <link rel="stylesheet" href="depth-bg-v17.css?v=23" />
+  <link rel="stylesheet" href="depth-bg-v18.css?v=23" />
+  <link rel="stylesheet" href="visual-focus-v21.css?v=23" />
+  <link rel="stylesheet" href="visual-detail-v22.css?v=23" />
+  <link rel="stylesheet" href="real-data-v23.css?v=23" />
 </head>
 <body>
   <header class="site-header">
     <div class="site-header__inner">
-      <button class="brand-button" data-go="guia" aria-label="Ir a la guía">
-        <span class="brand-mark">B</span>
-        <span class="brand-copy"><strong>Banca desde cero</strong><small>Guía personal de estudio</small></span>
-      </button>
-      <nav class="topnav" aria-label="Secciones"><div class="topnav__inner">
-        <button class="navtab active" data-tab="guia">Guía</button><button class="navtab" data-tab="aprender">Conceptos</button><button class="navtab" data-tab="identificadores">Identificadores</button><button class="navtab" data-tab="casos">Casos</button><button class="navtab" data-tab="quiz">Quiz</button><button class="navtab" data-tab="favoritos">Favoritos <span id="favCount">0</span></button><button class="navtab nav-random" id="randomBtn" type="button">Azar</button>
-      </div></nav>
+      <button class="brand-button" data-go="guia" aria-label="Ir a la guía"><span class="brand-mark">B</span><span class="brand-copy"><strong>Banca desde cero</strong><small>Guía personal de estudio</small></span></button>
+      <nav class="topnav" aria-label="Secciones"><div class="topnav__inner"><button class="navtab active" data-tab="guia">Guía</button><button class="navtab" data-tab="aprender">Conceptos</button><button class="navtab" data-tab="identificadores">Identificadores</button><button class="navtab" data-tab="casos">Casos</button><button class="navtab" data-tab="quiz">Quiz</button><button class="navtab" data-tab="favoritos">Favoritos <span id="favCount">0</span></button><button class="navtab nav-random" id="randomBtn" type="button">Azar</button></div></nav>
     </div>
   </header>
 
   <main>
     <section id="guia" class="tabpage active">
       <div class="section-head"><div><p class="kicker">RUTA RECOMENDADA</p><h2>De cero a certificación, por temas</h2><p>Empieza por banco, cuenta e identificadores; después avanza por autenticación, débito, fraudes, cheques, estado de cuenta, nómina, créditos, TDC, seguros y transferencias.</p></div></div>
-      <div class="guide-mode-note"><strong>Modo fácil + BBVA:</strong> abre un concepto y mira primero <b>“En fácil”</b>. Después tendrás un <b>ejemplo BBVA ficticio</b> con números y formatos cuando aplique, una comparación para recordarlo y una lista de <b>qué sí memorizar</b>. Ningún número de ejemplo pertenece a un cliente real.
+      <div class="guide-mode-note"><strong>Dato real vs ejemplo:</strong> ahora la guía distingue <b>datos públicos reales de BBVA México</b> (por ejemplo SWIFT, código 012 y clave SPEI/CEP) de <b>datos que pertenecen a cada cliente</b>. Para estos últimos verás el formato real y un ejemplo ficticio/enmascarado, nunca una cuenta o credencial real.
         <div class="guide-jump"><button id="guideStart">Empezar desde tema 1</button><button id="guideResume">Continuar donde me quedé</button><button data-go="aprender">Ir al diccionario de conceptos</button></div>
       </div>
       <div id="guideOverview" class="guide-overview" aria-label="Mapa rápido de temas"></div>
@@ -43,29 +39,29 @@
     </section>
 
     <section id="aprender" class="tabpage">
-      <div class="section-head"><div><p class="kicker">DICCIONARIO RÁPIDO</p><h2>Conceptos por categoría</h2><p>¿Solo quieres saber qué significa una palabra? Búscala aquí. La Guía contiene la versión más extensa con formatos y ejemplos BBVA ficticios.</p></div></div>
-      <div class="study-toolbar"><label class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="Busca: CLABE, tasa, cheque, seguro, EFI, SPEI..." autocomplete="off" /></label><button class="ghost" id="clearSearch">Limpiar</button></div>
+      <div class="section-head"><div><p class="kicker">DICCIONARIO RÁPIDO</p><h2>Conceptos por categoría</h2><p>Busca una palabra. La Guía contiene la versión más extensa con formatos, ejemplos y datos públicos reales de BBVA cuando existe un valor fijo verificable.</p></div></div>
+      <div class="study-toolbar"><label class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="Busca: CLABE, SWIFT, tasa, cheque, seguro, EFI, SPEI..." autocomplete="off" /></label><button class="ghost" id="clearSearch">Limpiar</button></div>
       <div id="categoryChips" class="chips" aria-label="Categorías"></div><div id="resultSummary" class="result-summary"></div><div id="conceptGrid" class="concept-grid"></div>
     </section>
 
     <section id="identificadores" class="tabpage">
-      <div class="section-head"><div><p class="kicker">LO QUE MÁS SE CONFUNDE</p><h2>Cliente ≠ contrato ≠ cuenta ≠ tarjeta ≠ CLABE</h2><p>Aquí sí puedes ver cómo se verían los números. Todos son <strong>ficticios</strong> y solo sirven para visualizar el formato.</p></div></div>
+      <div class="section-head"><div><p class="kicker">LO QUE MÁS SE CONFUNDE</p><h2>Cliente ≠ contrato ≠ cuenta ≠ tarjeta ≠ CLABE</h2><p><strong>Regla:</strong> un código que identifica al banco puede mostrarse real; un dato que identifica a un cliente se muestra ficticio o enmascarado.</p></div></div>
       <div class="id-map">
-        <article class="id-card person"><div class="id-icon">👤</div><h3>Número de cliente</h3><p>Identifica a la <strong>persona</strong>. En la capacitación pública BBVA 2026 se enseña como un dato de <strong>8 dígitos</strong>.</p><div class="mini-example"><b>Ejemplo ficticio:</b><br><code>58320417</code><br>Puede tener varias cuentas, tarjetas o créditos bajo el mismo cliente.</div></article><div class="id-arrow">↓</div>
-        <article class="id-card contract"><div class="id-icon">📄</div><h3>Número de contrato</h3><p>Identifica la <strong>relación contractual/producto</strong>. La capacitación BBVA 2026 lo presenta con <strong>20 dígitos</strong>.</p><div class="mini-example"><b>Ejemplo ficticio:</b><br><code>00123456789012345678</code></div></article><div class="id-arrow">↓</div>
+        <article class="id-card person"><div class="id-icon">👤</div><h3>Número de cliente</h3><p>Identifica a la <strong>persona</strong>. En la capacitación BBVA revisada se enseña como un dato de <strong>8 dígitos</strong>.</p><div class="mini-example"><b>Formato real de estudio · ejemplo ficticio:</b><br><code>58320417</code></div></article><div class="id-arrow">↓</div>
+        <article class="id-card contract"><div class="id-icon">📄</div><h3>Número de contrato</h3><p>Identifica la <strong>relación contractual/producto</strong>. La capacitación BBVA revisada lo presenta con <strong>20 dígitos</strong>.</p><div class="mini-example"><b>Ejemplo ficticio:</b><br><code>00123456789012345678</code></div></article><div class="id-arrow">↓</div>
         <div class="id-row">
-          <article class="id-card account"><div class="id-icon">🏦</div><h3>Número de cuenta</h3><p>Identifica la <strong>cuenta bancaria</strong>. En el esquema BBVA enseñado se usan los últimos <strong>10 dígitos</strong> del contrato.</p><div class="mini-example"><b>Ejemplo ficticio:</b><br><code>9012345678</code><br>Últimos 10 de <code>00123456789012345678</code>.</div></article>
-          <article class="id-card clabe"><div class="id-icon">🔁</div><h3>CLABE</h3><p><strong>18 dígitos.</strong> Se usa para identificar la cuenta en transferencias interbancarias.</p><div class="mini-example"><b>Ejemplo BBVA ficticio:</b><br><code>012 180 0 9012345678 9</code><br>Banco 3 + plaza 3 + 0 fijo + cuenta 10 + verificador 1.</div></article>
-          <article class="id-card cardnum"><div class="id-icon">💳</div><h3>Número de tarjeta</h3><p>Una tarjeta típica BBVA utiliza <strong>16 dígitos</strong>. Identifica la tarjeta/plástico, no la cuenta completa.</p><div class="mini-example"><b>Ejemplo solo visual:</b><br><code>4000 1234 5678 9010</code><br>No corresponde a un BIN real utilizable.</div></article>
+          <article class="id-card account"><div class="id-icon">🏦</div><h3>Número de cuenta</h3><p>En el esquema de capacitación revisado se trabaja como <strong>10 dígitos</strong>.</p><div class="mini-example"><b>Ejemplo ficticio:</b><br><code>9012345678</code></div></article>
+          <article class="id-card clabe"><div class="id-icon">🔁</div><h3>CLABE BBVA</h3><p><strong>18 dígitos.</strong> El código bancario público real de BBVA México es <strong>012</strong>.</p><div class="mini-example"><b>Parte real + resto enmascarado:</b><br><code>012 XXX X XXXXXXXXXX X</code><br><strong>012</strong> = BBVA México.</div></article>
+          <article class="id-card cardnum"><div class="id-icon">💳</div><h3>Número de tarjeta</h3><p>Identifica una tarjeta concreta. No usamos tarjetas reales de clientes.</p><div class="mini-example"><b>Ejemplo solo visual:</b><br><code>4000 1234 5678 9010</code><br>No se presenta como BIN real.</div></article>
         </div>
       </div>
-      <div class="compare-panel"><h3>Datos de seguridad: así se ven</h3><div class="compare-grid">
-        <div><b>BIN / IIN</b><span>Está al inicio del número de tarjeta. La capacitación 2026 lo explica como los primeros 4–6 dígitos; los rangos reales se consultan vigentes.</span></div>
-        <div><b>CVV</b><span>3 dígitos. Ejemplo ficticio: <code>527</code>. BBVA usa CVV dinámico para compras digitales en productos actuales.</span></div>
-        <div><b>NIP</b><span>4 dígitos. Ejemplo ficticio: <code>4821</code>. Se usa en cajeros y otras operaciones autorizadas.</span></div>
-        <div><b>Token</b><span>Genera claves temporales para autorizar operaciones digitales; no debes compartirlas.</span></div>
-        <div><b>MAU</b><span>Manual/marco de autenticación; no es un número del cliente ni un dato para transferir.</span></div>
-        <div><b>Clave de rastreo</b><span>Sirve para seguir una operación SPEI. No es CLABE, cuenta ni NIP.</span></div>
+      <div class="compare-panel"><h3>Datos públicos reales que sí conviene memorizar</h3><div class="compare-grid">
+        <div><b>BBVA México · código bancario</b><span><code>012</code> · aparece como prefijo bancario de CLABE.</span></div>
+        <div><b>BBVA México · SWIFT/BIC</b><span><code>BCMRMXMMPYM</code> · código publicado por BBVA para transferencias internacionales.</span></div>
+        <div><b>Banxico · clave SPEI/CEP</b><span><code>40012</code> · Banxico lista a BBVA MEXICO con esta clave de institución.</span></div>
+        <div><b>CLABE</b><span><code>18 dígitos</code> · identifica la cuenta mexicana; la CLABE completa cambia por cliente.</span></div>
+        <div><b>IBAN</b><span>Las cuentas mexicanas no usan IBAN; para BBVA México se proporciona CLABE cuando corresponda.</span></div>
+        <div><b>ABA</b><span>BBVA México no usa código ABA propio; ABA es un identificador de 9 dígitos de bancos de EE. UU.</span></div>
       </div></div>
     </section>
 
@@ -73,22 +69,23 @@
 
     <section id="quiz" class="tabpage"><div class="section-head"><div><p class="kicker">REPASO RÁPIDO</p><h2>Mini quiz</h2><p>Preguntas cortas para comprobar si ya entendiste la lógica.</p></div></div><div class="quizbox"><div class="quiz-progress"><span id="quizProgress">1 / 10</span><span id="quizScore">0 correctas</span></div><div class="progressbar"><i id="quizBar"></i></div><div id="quizQuestion" class="quiz-question"></div><div id="quizOptions" class="quiz-options"></div><div id="quizExplain" class="quiz-explain"></div><button id="quizNext" class="primary hidden">Siguiente</button><button id="quizRestart" class="secondary hidden">Volver a empezar</button></div></section>
 
-    <section id="favoritos" class="tabpage"><div class="section-head"><div><p class="kicker">TU REPASO</p><h2>Conceptos guardados</h2><p>Marca ⭐ en cualquier concepto y aparecerá aquí. Se guarda en tu navegador.</p></div></div><div id="favGrid" class="concept-grid"></div></section>
+    <section id="favoritos" class="tabpage"><div class="section-head"><div><p class="kicker">TU REPASO</p><h2>Conceptos guardados</h2><p>Marca ⭐ en cualquier concepto y aparecerá aquí.</p></div></div><div id="favGrid" class="concept-grid"></div></section>
   </main>
 
   <dialog id="randomDialog" class="random-dialog"><button class="dialog-close" id="closeRandom" aria-label="Cerrar">×</button><div id="randomContent"></div></dialog>
-  <footer><div><strong>Banca desde cero</strong><p>Guía personal construida con tu Manual de Banca Remota 2022 y referencias públicas actuales de BBVA/Banxico para estudiar conceptos, productos y certificación.</p></div><p class="footer-note">Todos los nombres, cuentas, contratos, tarjetas, CLABE, importes y claves usados como ejemplo son ficticios. Para autenticación, tasas reales, horarios, límites, requisitos y pasos operativos, manda siempre el CUC vigente.</p></footer>
+  <footer><div><strong>Banca desde cero</strong><p>Guía construida con tu Manual de Banca Remota y referencias públicas actuales de BBVA/Banxico.</p></div><p class="footer-note">Los identificadores públicos del banco pueden mostrarse reales. Números de cliente, cuenta, contrato, tarjeta, CLABE completa, credenciales y claves de operaciones individuales se muestran ficticios o enmascarados. Para pasos internos y datos operativos variables, manda CUC vigente.</p></footer>
 
-  <script src="app.js?v=22"></script>
-  <script src="concepts-v19.js?v=22"></script>
-  <script src="guide.js?v=22"></script>
-  <script src="course-v2.js?v=22"></script>
-  <script src="course-v3.js?v=22"></script>
-  <script src="course-v3-extra.js?v=22"></script>
-  <script src="mnemonics-v21.js?v=22"></script>
-  <script src="bbva-detail-v22.js?v=22"></script>
-  <script src="minimal.js?v=22"></script>
-  <script src="visual-map.js?v=22"></script>
-  <script src="depth-bg-v17.js?v=22"></script>
+  <script src="app.js?v=23"></script>
+  <script src="concepts-v19.js?v=23"></script>
+  <script src="guide.js?v=23"></script>
+  <script src="course-v2.js?v=23"></script>
+  <script src="course-v3.js?v=23"></script>
+  <script src="course-v3-extra.js?v=23"></script>
+  <script src="mnemonics-v21.js?v=23"></script>
+  <script src="bbva-detail-v22.js?v=23"></script>
+  <script src="minimal.js?v=23"></script>
+  <script src="visual-map.js?v=23"></script>
+  <script src="real-data-v23.js?v=23"></script>
+  <script src="depth-bg-v17.js?v=23"></script>
 </body>
 </html>
