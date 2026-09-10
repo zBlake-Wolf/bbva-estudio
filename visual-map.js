@@ -1,152 +1,213 @@
-// v13 · Mapa visual por figuras. Reutiliza guideTopics sin alterar el contenido de estudio.
+// v15 · Temas arriba + conceptos en escalera. Reutiliza guideTopics sin tocar el contenido de estudio.
 (function(){
-  function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-  function cleanTitle(v){return String(v??'').replace(/^[^\p{L}\p{N}]+/u,'').trim();}
+  function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));}
   function plain(v){
     const tmp=document.createElement('div');
     tmp.innerHTML=String(v||'');
-    return (tmp.textContent||tmp.innerText||'').trim();
+    return (tmp.textContent||tmp.innerText||'').replace(/\s+/g,' ').trim();
+  }
+  function cleanSectionTitle(v){return String(v??'').replace(/^\s*\d+\.\s*/,'').trim();}
+  function blockNumber(level){
+    const m=String(level||'').match(/Bloque\s+(\d+)/i);
+    return m?Number(m[1]):999;
+  }
+
+  const themeNames={
+    1:'Conceptos básicos',
+    2:'Cuenta y débito',
+    3:'Identificadores',
+    4:'Tarjeta de crédito',
+    5:'Transferencias y servicios',
+    6:'App BBVA',
+    7:'Aclaraciones y seguridad',
+    8:'Otros productos',
+    9:'Certificación',
+    10:'Llamada completa'
+  };
+  const themeDescriptions={
+    1:'Empieza por las piezas más simples: banco, cliente, producto, cuenta, tarjeta y lo que el cliente ve en la app.',
+    2:'Entiende cómo se mueve el dinero en una cuenta y cómo funciona una tarjeta de débito.',
+    3:'Separa los números que más se confunden: cliente, contrato, cuenta, tarjeta, CLABE y BIN.',
+    4:'Aprende TDC desde cero: línea de crédito, corte, pagos, PPNGI, intereses y costos.',
+    5:'Mover dinero y pagar: transferencias, SPEI, CEP, servicios, domiciliación y cargos recurrentes.',
+    6:'Funciones que el cliente usa directamente en la App BBVA y los datos de seguridad asociados.',
+    7:'Cómo leer movimientos, sondear, autenticar y distinguir una restricción de un posible fraude.',
+    8:'Cheques, transferencias internacionales y portabilidad de nómina sin aprender todo de golpe.',
+    9:'Temas de certificación y puntos que deben confirmarse en el CUC vigente.',
+    10:'Junta todo en una sola secuencia mental para atender una llamada real.'
+  };
+  const colors=['#ef3f34','#2468f2','#ff7a18','#ffc928','#17ad5d','#7b3ff2','#10b8df','#e83f91','#84b918','#334d8f'];
+
+  function helperBox(type,label,value){
+    if(!value) return '';
+    return `<div class="v15-mini ${type}"><b>${label}</b>${esc(value)}</div>`;
   }
 
   function boot(){
     const page=document.querySelector('#guia');
     if(!page || typeof guideTopics==='undefined' || !Array.isArray(guideTopics) || !guideTopics.length) return;
-    if(page.querySelector('.visual-course')) return;
+
+    // Si una versión anterior creó su mapa, la quitamos visualmente y montamos la nueva experiencia.
+    page.querySelectorAll('.visual-course-v15').forEach(n=>n.remove());
+
+    const grouped=new Map();
+    guideTopics.forEach((topic,topicIndex)=>{
+      const n=blockNumber(topic.level);
+      if(!grouped.has(n)) grouped.set(n,[]);
+      grouped.get(n).push({topic,topicIndex});
+    });
+
+    const themes=[...grouped.entries()]
+      .sort((a,b)=>a[0]-b[0])
+      .map(([number,items],themeIndex)=>{
+        const concepts=[];
+        items.forEach(({topic,topicIndex})=>{
+          (topic.sections||[]).forEach((section,sectionIndex)=>{
+            const searchText=[
+              themeNames[number]||'',topic.title,topic.level,topic.intro,
+              section.t,section.body,section.example,section.client,section.advisor,section.warning,
+              ...(topic.related||[])
+            ].map(plain).join(' ').toLowerCase();
+            concepts.push({topic,topicIndex,section,sectionIndex,searchText});
+          });
+        });
+        return {
+          number,
+          title:themeNames[number]||`Bloque ${number}`,
+          description:themeDescriptions[number]||plain(items[0]?.topic?.intro||''),
+          color:colors[themeIndex%colors.length],
+          concepts
+        };
+      });
 
     const root=document.createElement('div');
-    root.className='visual-course';
+    root.className='visual-course-v15';
     root.innerHTML=`
-      <section class="visual-course__hero">
-        <div>
-          <div class="visual-course__eyebrow">Ruta visual · empieza desde cero</div>
-          <h1>Aprende banca<br>sin sentir que lees un manual.</h1>
-          <p>Elige una figura. Cada tema abre una explicación corta y después sus subtemas. La ruta mezcla conceptos básicos, App BBVA, tu manual de Banca Remota y temas de atención.</p>
-        </div>
-        <label class="visual-course__search">
+      <section class="v15-top">
+        <label class="v15-search">
           <span>⌕</span>
-          <input id="visualTopicSearch" type="search" placeholder="Busca TDC, app, SPEI, fraude…" autocomplete="off" />
+          <input id="v15Search" type="search" placeholder="Busca banco, cuenta, TDC, SPEI, fraude…" autocomplete="off" />
         </label>
+        <div class="v15-theme-label">Ruta de estudio</div>
+        <div class="v15-theme-tabs" id="v15ThemeTabs" aria-label="Temas principales"></div>
       </section>
-      <div class="visual-course__meta">
-        <span><strong id="visualTopicTotal">${guideTopics.length}</strong> temas · toca cualquiera para abrirlo</span>
-        <span id="visualSearchStatus">Ruta completa</span>
-      </div>
-      <section class="topic-geometry-grid" id="topicGeometryGrid" aria-label="Temas de estudio"></section>
-      <section class="visual-detail-wrap" id="visualDetailWrap" aria-live="polite"></section>`;
-
+      <section class="v15-stage" id="v15Stage" aria-live="polite">
+        <div class="v15-theme-title-wrap">
+          <div class="v15-theme-title" id="v15ThemeTitle"></div>
+          <p class="v15-theme-subtitle" id="v15ThemeSubtitle"></p>
+          <div class="v15-search-status" id="v15SearchStatus"></div>
+        </div>
+        <div class="v15-stair" id="v15Stair"></div>
+      </section>`;
     page.prepend(root);
-    const grid=root.querySelector('#topicGeometryGrid');
-    const detail=root.querySelector('#visualDetailWrap');
-    const input=root.querySelector('#visualTopicSearch');
-    const total=root.querySelector('#visualTopicTotal');
-    const status=root.querySelector('#visualSearchStatus');
-    let current=-1;
 
-    function renderTopics(){
-      grid.innerHTML=guideTopics.map((t,i)=>`
-        <button class="geo-topic" type="button" data-visual-topic="${i}" data-search="${esc((cleanTitle(t.title)+' '+t.level+' '+t.related.join(' ')).toLowerCase())}">
-          <span class="geo-n">${String(i+1).padStart(2,'0')}</span>
-          <span><strong>${esc(cleanTitle(t.title))}</strong><small>${esc(t.level)}</small></span>
+    const tabs=root.querySelector('#v15ThemeTabs');
+    const stage=root.querySelector('#v15Stage');
+    const title=root.querySelector('#v15ThemeTitle');
+    const subtitle=root.querySelector('#v15ThemeSubtitle');
+    const stair=root.querySelector('#v15Stair');
+    const input=root.querySelector('#v15Search');
+    const status=root.querySelector('#v15SearchStatus');
+
+    let currentTheme=0;
+    let query='';
+
+    function renderTabs(){
+      tabs.innerHTML=themes.map((theme,i)=>`
+        <button class="v15-theme-tab ${i===currentTheme?'active':''}" type="button" data-theme-index="${i}" style="--theme:${theme.color}">
+          Tema ${i+1} · ${esc(theme.title)}
         </button>`).join('');
     }
 
-    function helperBox(type,label,value){
-      if(!value) return '';
-      return `<div class="visual-mini ${type}"><b>${label}</b>${esc(value)}</div>`;
-    }
-
-    function renderDetail(index,scroll=true){
-      current=Math.max(0,Math.min(index,guideTopics.length-1));
-      const t=guideTopics[current];
-      const memory=t.memory&&t.memory.length?t.memory[0]:'';
-      detail.innerHTML=`
-        <article class="visual-detail">
-          <div class="visual-detail__bar"></div>
-          <header class="visual-detail__head">
-            <div>
-              <div class="visual-detail__kicker">Tema ${current+1} de ${guideTopics.length} · ${esc(t.level)}</div>
-              <h2>${esc(cleanTitle(t.title))}</h2>
-              <p class="visual-detail__intro">${esc(t.intro)}</p>
-            </div>
-            <button class="visual-close" type="button" aria-label="Cerrar tema">×</button>
-          </header>
-          ${memory?`<div class="visual-detail__memory"><b>Idea clave · </b>${esc(memory)}</div>`:''}
-          <div class="visual-subtopics">
-            ${t.sections.map((s,i)=>`
-              <article class="visual-subtopic ${i===0?'open':''}" data-subtopic>
-                <button type="button" aria-expanded="${i===0?'true':'false'}">
-                  <span>${esc(s.t)}</span><span>${i===0?'−':'+'}</span>
-                </button>
-                <div class="visual-subtopic__body">
-                  ${s.body||''}
+    function cardHTML(item,index){
+      const s=item.section;
+      const t=item.topic;
+      const titleText=cleanSectionTitle(s.t);
+      return `
+        <article class="v15-concept ${index%2===0?'right':'left'}" data-v15-concept>
+          <button class="v15-concept__button" type="button" aria-expanded="false">
+            <span>
+              <span class="v15-concept__meta">${esc(t.title)}</span>
+              <strong>${esc(titleText)}</strong>
+            </span>
+            <span class="v15-concept__plus">+</span>
+          </button>
+          <div class="v15-concept__body">
+            <div class="v15-concept__body-inner">
+              <div class="v15-concept__content">
+                <span class="v15-parent-note">${esc(t.level)}</span>
+                ${s.body||''}
+                <div class="v15-mini-grid">
                   ${helperBox('example','Ejemplo',s.example)}
                   ${helperBox('client','Cliente podría decir',s.client)}
                   ${helperBox('advisor','Como asesor piensa',s.advisor)}
                   ${helperBox('warning','Ojo',s.warning)}
                 </div>
-              </article>`).join('')}
+              </div>
+            </div>
           </div>
-          <footer class="visual-detail__nav">
-            <button class="visual-prev" type="button" ${current===0?'disabled':''}>← Tema anterior</button>
-            <button class="visual-next" type="button">${current===guideTopics.length-1?'Volver al inicio':'Siguiente tema →'}</button>
-          </footer>
         </article>`;
-
-      detail.classList.add('open');
-      localStorage.setItem('bancaGuideIndex',String(current));
-
-      detail.querySelector('.visual-close').onclick=()=>{
-        detail.classList.remove('open');
-        setTimeout(()=>{detail.innerHTML='';},220);
-      };
-      detail.querySelectorAll('[data-subtopic] > button').forEach(btn=>{
-        btn.onclick=()=>{
-          const card=btn.closest('[data-subtopic]');
-          const wasOpen=card.classList.contains('open');
-          detail.querySelectorAll('[data-subtopic]').forEach(other=>{
-            other.classList.remove('open');
-            const b=other.querySelector(':scope > button');
-            if(b){b.setAttribute('aria-expanded','false');b.lastElementChild.textContent='+';}
-          });
-          if(!wasOpen){card.classList.add('open');btn.setAttribute('aria-expanded','true');btn.lastElementChild.textContent='−';}
-        };
-      });
-      detail.querySelector('.visual-prev').onclick=()=>{if(current>0) renderDetail(current-1,true);};
-      detail.querySelector('.visual-next').onclick=()=>renderDetail(current===guideTopics.length-1?0:current+1,true);
-
-      grid.querySelectorAll('.geo-topic').forEach((b,i)=>b.setAttribute('aria-pressed',i===current?'true':'false'));
-      if(scroll) requestAnimationFrame(()=>detail.scrollIntoView({behavior:'smooth',block:'start'}));
     }
 
-    renderTopics();
-    grid.addEventListener('click',e=>{
-      const b=e.target.closest('[data-visual-topic]');
-      if(!b) return;
-      renderDetail(Number(b.dataset.visualTopic),true);
+    function matchingConcepts(theme){
+      if(!query) return theme.concepts;
+      return theme.concepts.filter(c=>c.searchText.includes(query));
+    }
+
+    function renderStage(scroll=false){
+      const theme=themes[currentTheme];
+      const matches=matchingConcepts(theme);
+      stage.dataset.themeIndex=String(currentTheme);
+      stage.style.setProperty('--theme',theme.color);
+      title.innerHTML=`<small>Tema ${currentTheme+1}</small>${esc(theme.title)}`;
+      subtitle.textContent=theme.description;
+      status.textContent=query
+        ? `${matches.length} coincidencia${matches.length===1?'':'s'} en este tema`
+        : `${theme.concepts.length} conceptos · abre una figura para leerla`;
+      stair.innerHTML=matches.length
+        ? matches.map(cardHTML).join('')
+        : `<div class="v15-empty">No encontré ese concepto dentro de este tema.</div>`;
+      renderTabs();
+      if(scroll) requestAnimationFrame(()=>stage.scrollIntoView({behavior:'smooth',block:'start'}));
+    }
+
+    tabs.addEventListener('click',e=>{
+      const btn=e.target.closest('[data-theme-index]');
+      if(!btn) return;
+      currentTheme=Number(btn.dataset.themeIndex);
+      renderStage(true);
     });
 
-    input.addEventListener('input',()=>{
-      const q=input.value.trim().toLowerCase();
-      let visible=0;
-      grid.querySelectorAll('.geo-topic').forEach(b=>{
-        const show=!q||b.dataset.search.includes(q);
-        b.classList.toggle('is-hidden',!show);
-        if(show) visible++;
+    stair.addEventListener('click',e=>{
+      const btn=e.target.closest('.v15-concept__button');
+      if(!btn) return;
+      const card=btn.closest('[data-v15-concept]');
+      const willOpen=!card.classList.contains('open');
+      stair.querySelectorAll('[data-v15-concept]').forEach(other=>{
+        other.classList.remove('open');
+        const ob=other.querySelector('.v15-concept__button');
+        const op=other.querySelector('.v15-concept__plus');
+        if(ob) ob.setAttribute('aria-expanded','false');
+        if(op) op.textContent='+';
       });
-      total.textContent=visible;
-      status.textContent=q?`${visible} coincidencia${visible===1?'':'s'}`:'Ruta completa';
-      if(q && current>=0){
-        const active=grid.querySelector(`[data-visual-topic="${current}"]`);
-        if(active?.classList.contains('is-hidden')) detail.classList.remove('open');
+      if(willOpen){
+        card.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+        card.querySelector('.v15-concept__plus').textContent='−';
+        setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'center'}),120);
       }
     });
 
-    // Abrir el último tema solo si el usuario ya tenía avance; si no, dejamos el mapa limpio.
-    const saved=Number(localStorage.getItem('bancaGuideIndex'));
-    if(Number.isInteger(saved)&&saved>0&&saved<guideTopics.length){
-      const b=grid.querySelector(`[data-visual-topic="${saved}"]`);
-      b?.setAttribute('aria-current','step');
-    }
+    input.addEventListener('input',()=>{
+      query=input.value.trim().toLowerCase();
+      if(query){
+        const firstTheme=themes.findIndex(theme=>theme.concepts.some(c=>c.searchText.includes(query)));
+        if(firstTheme>=0) currentTheme=firstTheme;
+      }
+      renderStage(false);
+    });
+
+    renderStage(false);
   }
 
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
