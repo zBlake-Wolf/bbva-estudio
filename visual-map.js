@@ -1,4 +1,4 @@
-// v19 · Buscador/selector de temas + conceptos en escalera. Reutiliza guideTopics sin tocar el contenido.
+// v21 · Buscador + temas + conceptos en escalera con aprendizaje en 2 capas.
 (function(){
   function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
   function plain(v){
@@ -13,27 +13,11 @@
   }
 
   const themeNames={
-    1:'Conceptos básicos',
-    2:'Identificadores',
-    3:'App BBVA',
-    4:'Autenticación y MAU',
-    5:'Cuentas de débito',
-    6:'Movimientos en tránsito',
-    7:'Restricciones y bloqueos',
-    8:'Fraudes',
-    9:'Cheques',
-    10:'Estado de cuenta',
-    11:'Actualización de datos',
-    12:'Pagos de servicios',
-    13:'Fallecimientos',
-    14:'Nómina y portabilidad',
-    15:'Movilidad de saldos',
-    16:'Crédito de consumo',
-    17:'EFI · Efectivo Inmediato',
-    18:'Tarjeta de crédito y costos',
-    19:'Seguros',
-    20:'Transferencias · SPEI · OPI',
-    21:'Llamada completa y venta cruzada'
+    1:'Conceptos básicos',2:'Identificadores',3:'App BBVA',4:'Autenticación y MAU',5:'Cuentas de débito',
+    6:'Movimientos en tránsito',7:'Restricciones y bloqueos',8:'Fraudes',9:'Cheques',10:'Estado de cuenta',
+    11:'Actualización de datos',12:'Pagos de servicios',13:'Fallecimientos',14:'Nómina y portabilidad',
+    15:'Movilidad de saldos',16:'Crédito de consumo',17:'EFI · Efectivo Inmediato',18:'Tarjeta de crédito y costos',
+    19:'Seguros',20:'Transferencias · SPEI · OPI',21:'Llamada completa y venta cruzada'
   };
   const themeDescriptions={
     1:'Banco, cliente, producto, cuenta, saldo, cargo, abono y disponible: la base antes de tocar procesos.',
@@ -50,17 +34,17 @@
     12:'Pago de servicios, CIE, domiciliación, cargo recurrente, duplicados y pagos no aplicados.',
     13:'Qué ocurre cuando fallece un titular: beneficiarios, sucesión, cuentas, créditos y seguros.',
     14:'Cuenta de nómina, banco origen/destino, portabilidad no recibida y cancelación/cambio.',
-    15:'Saldo a favor, traspasos, transferencias equivocadas y el tema interno “movilidad de saldos” que debe validarse en CUC.',
+    15:'Saldo a favor, traspasos, transferencias equivocadas y “movilidad de saldos” por validar literalmente en CUC.',
     16:'Capital, plazo, pago, saldo insoluto y capacidad de pago para entender préstamos y crédito al consumo.',
-    17:'EFI verificado como Efectivo Inmediato: oferta preaprobada, línea disponible, tasa, plazo y pagos.',
+    17:'EFI: Efectivo Inmediato, oferta que usa línea de TDC y se paga según las condiciones mostradas al cliente.',
     18:'Línea, corte, PPNGI, cascada, revolvente, tasa, interés, anualidad, comisiones, CAT y MSI.',
-    19:'Seguro, póliza, prima, cobertura, suma asegurada, deducible, siniestro, beneficiarios y productos BBVA.',
+    19:'Seguro, póliza, prima, cobertura, suma asegurada, deducible, siniestro, beneficiarios y productos.',
     20:'Transferencias nacionales e internacionales: SPEI, CEP, clave de rastreo, OPI, SWIFT, IBAN y corresponsales.',
-    21:'Secuencia completa de llamada: producto, intención, sondeo, autenticación, CUC, explicación, cierre y venta cruzada pertinente.'
+    21:'Secuencia completa de llamada: producto, intención, sondeo, autenticación, CUC, explicación, cierre y venta cruzada.'
   };
   const colors=[
-    '#ff3026','#155eef','#ff5c16','#ffc400','#08a84f','#7b2cff','#00b7df','#ef2f8f','#73b500','#24458f',
-    '#e84d9b','#00a88f','#c7352d','#5e43d6','#f08a00','#1769aa','#bf2fd1','#e53e3e','#087f5b','#0f76c7','#6b5cff'
+    '#ff2419','#075bea','#ff4f00','#ffbf00','#00a842','#7024f5','#00afd8','#ed197b','#66ad00','#183f91',
+    '#df268a','#00a386','#c92f27','#5636d5','#ef7b00','#0768ad','#b51fd1','#df2d2d','#007d57','#0076c9','#5547ff'
   ];
 
   function helperBox(type,label,value){
@@ -71,7 +55,6 @@
   function boot(){
     const page=document.querySelector('#guia');
     if(!page || typeof guideTopics==='undefined' || !Array.isArray(guideTopics) || !guideTopics.length) return;
-
     page.querySelectorAll('.visual-course-v15').forEach(n=>n.remove());
 
     const grouped=new Map();
@@ -81,111 +64,68 @@
       grouped.get(n).push({topic,topicIndex});
     });
 
-    const themes=[...grouped.entries()]
-      .sort((a,b)=>a[0]-b[0])
-      .map(([number,items],themeIndex)=>{
-        const concepts=[];
-        items.forEach(({topic,topicIndex})=>{
-          (topic.sections||[]).forEach((section,sectionIndex)=>{
-            const searchText=[
-              themeNames[number]||'',topic.title,topic.level,topic.intro,
-              section.t,section.body,section.example,section.client,section.advisor,section.warning,
-              ...(topic.related||[])
-            ].map(plain).join(' ').toLowerCase();
-            concepts.push({topic,topicIndex,section,sectionIndex,searchText});
-          });
+    const themes=[...grouped.entries()].sort((a,b)=>a[0]-b[0]).map(([number,items],themeIndex)=>{
+      const concepts=[];
+      items.forEach(({topic,topicIndex})=>{
+        (topic.sections||[]).forEach((section,sectionIndex)=>{
+          const searchText=[themeNames[number]||'',topic.title,topic.level,topic.intro,section.t,section.body,
+            section.easy,section.analogy,section.example,section.client,section.advisor,section.warning,...(topic.related||[])]
+            .map(plain).join(' ').toLowerCase();
+          concepts.push({topic,topicIndex,section,sectionIndex,searchText});
         });
-        return {
-          number,
-          title:themeNames[number]||`Bloque ${number}`,
-          description:themeDescriptions[number]||plain(items[0]?.topic?.intro||''),
-          color:colors[themeIndex%colors.length],
-          concepts
-        };
       });
+      return {number,title:themeNames[number]||`Bloque ${number}`,description:themeDescriptions[number]||plain(items[0]?.topic?.intro||''),color:colors[themeIndex%colors.length],concepts};
+    });
 
     const root=document.createElement('div');
     root.className='visual-course-v15';
     root.innerHTML=`
       <section class="v15-top">
-        <label class="v15-search" for="v15Search">
-          <span>⌕</span>
-          <input id="v15Search" type="search" placeholder="Busca un tema o concepto…" autocomplete="off" aria-haspopup="listbox" aria-expanded="false" />
-        </label>
-        <div class="v16-theme-menu" id="v16ThemeMenu" role="listbox" aria-label="Temas de estudio">
-          <div class="v16-theme-menu__title">Elige un tema</div>
-          <div class="v16-theme-list" id="v16ThemeList"></div>
-        </div>
+        <label class="v15-search" for="v15Search"><span>⌕</span><input id="v15Search" type="search" placeholder="Busca un tema o concepto…" autocomplete="off" aria-haspopup="listbox" aria-expanded="false" /></label>
+        <div class="v16-theme-menu" id="v16ThemeMenu" role="listbox" aria-label="Temas de estudio"><div class="v16-theme-menu__title">Elige un tema</div><div class="v16-theme-list" id="v16ThemeList"></div></div>
       </section>
       <section class="v15-stage" id="v15Stage" aria-live="polite">
-        <div class="v15-theme-title-wrap">
-          <div class="v15-theme-title" id="v15ThemeTitle"></div>
-          <p class="v15-theme-subtitle" id="v15ThemeSubtitle"></p>
-          <div class="v15-search-status" id="v15SearchStatus"></div>
-        </div>
+        <div class="v15-theme-title-wrap"><div class="v15-theme-title" id="v15ThemeTitle"></div><p class="v15-theme-subtitle" id="v15ThemeSubtitle"></p><div class="v15-search-status" id="v15SearchStatus"></div></div>
         <div class="v15-stair" id="v15Stair"></div>
       </section>`;
     page.prepend(root);
 
-    const stage=root.querySelector('#v15Stage');
-    const title=root.querySelector('#v15ThemeTitle');
-    const subtitle=root.querySelector('#v15ThemeSubtitle');
-    const stair=root.querySelector('#v15Stair');
-    const input=root.querySelector('#v15Search');
-    const status=root.querySelector('#v15SearchStatus');
-    const menu=root.querySelector('#v16ThemeMenu');
-    const themeList=root.querySelector('#v16ThemeList');
-
-    let currentTheme=0;
-    let query='';
+    const stage=root.querySelector('#v15Stage'),title=root.querySelector('#v15ThemeTitle'),subtitle=root.querySelector('#v15ThemeSubtitle'),stair=root.querySelector('#v15Stair'),input=root.querySelector('#v15Search'),status=root.querySelector('#v15SearchStatus'),menu=root.querySelector('#v16ThemeMenu'),themeList=root.querySelector('#v16ThemeList');
+    let currentTheme=0,query='';
 
     function themeMatches(theme){
       if(!query) return theme.concepts.length;
       const q=query.toLowerCase();
-      const direct=(theme.title+' '+theme.description).toLowerCase().includes(q);
-      if(direct) return theme.concepts.length;
+      if((theme.title+' '+theme.description).toLowerCase().includes(q)) return theme.concepts.length;
       return theme.concepts.filter(c=>c.searchText.includes(q)).length;
     }
     function openMenu(){menu.classList.add('open');input.setAttribute('aria-expanded','true');}
     function closeMenu(){menu.classList.remove('open');input.setAttribute('aria-expanded','false');}
-
     function renderMenu(){
       const available=themes.map((theme,i)=>({theme,i,count:themeMatches(theme)})).filter(x=>!query||x.count>0);
       themeList.innerHTML=available.length?available.map(({theme,i,count})=>`
         <button class="v16-theme-option ${i===currentTheme?'active':''}" type="button" role="option" aria-selected="${i===currentTheme?'true':'false'}" data-theme-index="${i}" style="--theme:${theme.color}">
-          <span class="v16-theme-option__dot"></span>
-          <span><strong>Tema ${i+1} · ${esc(theme.title)}</strong><small>${esc(theme.description)}</small></span>
-          <span class="v16-theme-option__count">${query?`${count} coincidencia${count===1?'':'s'}`:`${theme.concepts.length} conceptos`}</span>
+          <span class="v16-theme-option__dot"></span><span><strong>Tema ${i+1} · ${esc(theme.title)}</strong><small>${esc(theme.description)}</small></span><span class="v16-theme-option__count">${query?`${count} coincidencia${count===1?'':'s'}`:`${theme.concepts.length} conceptos`}</span>
         </button>`).join(''):`<div class="v16-menu-empty">No encontré un tema con esa palabra.</div>`;
     }
 
     function cardHTML(item,index){
-      const s=item.section;
-      const t=item.topic;
-      const titleText=cleanSectionTitle(s.t);
+      const s=item.section,t=item.topic,titleText=cleanSectionTitle(s.t);
       return `
         <article class="v15-concept ${index%2===0?'right':'left'}" data-v15-concept>
           <button class="v15-concept__button" type="button" aria-expanded="false">
-            <span>
-              <span class="v15-concept__meta">${esc(t.title)}</span>
-              <strong>${esc(titleText)}</strong>
-            </span>
-            <span class="v15-concept__plus">+</span>
+            <span><span class="v15-concept__meta">${esc(t.title)}</span><strong>${esc(titleText)}</strong></span><span class="v15-concept__plus">+</span>
           </button>
-          <div class="v15-concept__body">
-            <div class="v15-concept__body-inner">
-              <div class="v15-concept__content">
-                <span class="v15-parent-note">${esc(t.level)}</span>
-                ${s.body||''}
-                <div class="v15-mini-grid">
-                  ${helperBox('example','Ejemplo',s.example)}
-                  ${helperBox('client','Cliente podría decir',s.client)}
-                  ${helperBox('advisor','Como asesor piensa',s.advisor)}
-                  ${helperBox('warning','Ojo',s.warning)}
-                </div>
-              </div>
+          <div class="v15-concept__body"><div class="v15-concept__body-inner"><div class="v15-concept__content">
+            <div class="v21-first">
+              <div class="v21-easy"><span>EN FÁCIL</span><strong>${esc(s.easy||plain(s.body))}</strong></div>
+              <div class="v21-memory"><span>PARA ACORDARTE</span><p>${esc(s.analogy||s.example||'Piensa en un ejemplo cotidiano que tenga la misma lógica.')}</p></div>
             </div>
-          </div>
+            <details class="v21-details">
+              <summary>Ver explicación completa</summary>
+              <div class="v21-full"><span class="v15-parent-note">${esc(t.level)}</span>${s.body||''}<div class="v15-mini-grid">${helperBox('example','Ejemplo bancario',s.example)}${helperBox('client','Cliente podría decir',s.client)}${helperBox('advisor','Como asesor piensa',s.advisor)}${helperBox('warning','Ojo',s.warning)}</div></div>
+            </details>
+          </div></div></div>
         </article>`;
     }
 
@@ -194,71 +134,27 @@
       const direct=(theme.title+' '+theme.description).toLowerCase().includes(query);
       return direct?theme.concepts:theme.concepts.filter(c=>c.searchText.includes(query));
     }
-
     function renderStage(scroll=false){
-      const theme=themes[currentTheme];
-      const matches=matchingConcepts(theme);
-      stage.dataset.themeIndex=String(currentTheme);
-      stage.style.setProperty('--theme',theme.color);
-      title.innerHTML=`<small>Tema ${currentTheme+1}</small>${esc(theme.title)}`;
-      subtitle.textContent=theme.description;
-      status.textContent=query
-        ? `${matches.length} coincidencia${matches.length===1?'':'s'} en este tema`
-        : `${theme.concepts.length} conceptos · toca una figura para abrirla`;
-      stair.innerHTML=matches.length
-        ? matches.map(cardHTML).join('')
-        : `<div class="v15-empty">No encontré ese concepto dentro de este tema.</div>`;
-      renderMenu();
-      if(scroll) requestAnimationFrame(()=>stage.scrollIntoView({behavior:'smooth',block:'start'}));
+      const theme=themes[currentTheme],matches=matchingConcepts(theme);
+      stage.dataset.themeIndex=String(currentTheme);stage.style.setProperty('--theme',theme.color);
+      title.innerHTML=`<small>Tema ${currentTheme+1}</small>${esc(theme.title)}`;subtitle.textContent=theme.description;
+      status.textContent=query?`${matches.length} coincidencia${matches.length===1?'':'s'} en este tema`:`${theme.concepts.length} conceptos · abre uno y quédate primero con “En fácil”`;
+      stair.innerHTML=matches.length?matches.map(cardHTML).join(''):`<div class="v15-empty">No encontré ese concepto dentro de este tema.</div>`;
+      renderMenu();if(scroll) requestAnimationFrame(()=>stage.scrollIntoView({behavior:'smooth',block:'start'}));
     }
 
-    themeList.addEventListener('click',e=>{
-      const btn=e.target.closest('[data-theme-index]');
-      if(!btn) return;
-      currentTheme=Number(btn.dataset.themeIndex);
-      query='';
-      input.value='';
-      closeMenu();
-      renderStage(true);
-    });
-
+    themeList.addEventListener('click',e=>{const btn=e.target.closest('[data-theme-index]');if(!btn)return;currentTheme=Number(btn.dataset.themeIndex);query='';input.value='';closeMenu();renderStage(true);});
     stair.addEventListener('click',e=>{
-      const btn=e.target.closest('.v15-concept__button');
-      if(!btn) return;
-      const card=btn.closest('[data-v15-concept]');
-      const willOpen=!card.classList.contains('open');
-      stair.querySelectorAll('[data-v15-concept]').forEach(other=>{
-        other.classList.remove('open');
-        const ob=other.querySelector('.v15-concept__button');
-        const op=other.querySelector('.v15-concept__plus');
-        if(ob) ob.setAttribute('aria-expanded','false');
-        if(op) op.textContent='+';
-      });
-      if(willOpen){
-        card.classList.add('open');
-        btn.setAttribute('aria-expanded','true');
-        card.querySelector('.v15-concept__plus').textContent='−';
-        setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'center'}),120);
-      }
+      if(e.target.closest('.v21-details')) return;
+      const btn=e.target.closest('.v15-concept__button');if(!btn)return;
+      const card=btn.closest('[data-v15-concept]'),willOpen=!card.classList.contains('open');
+      stair.querySelectorAll('[data-v15-concept]').forEach(other=>{other.classList.remove('open');const ob=other.querySelector('.v15-concept__button'),op=other.querySelector('.v15-concept__plus');if(ob)ob.setAttribute('aria-expanded','false');if(op)op.textContent='+';});
+      if(willOpen){card.classList.add('open');btn.setAttribute('aria-expanded','true');card.querySelector('.v15-concept__plus').textContent='−';setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'center'}),120);}
     });
-
-    input.addEventListener('focus',()=>{renderMenu();openMenu();});
-    input.addEventListener('click',()=>{renderMenu();openMenu();});
-    input.addEventListener('input',()=>{
-      query=input.value.trim().toLowerCase();
-      if(query){
-        const firstTheme=themes.findIndex(theme=>themeMatches(theme)>0);
-        if(firstTheme>=0) currentTheme=firstTheme;
-      }
-      renderStage(false);
-      openMenu();
-    });
-    input.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();input.blur();}});
-    document.addEventListener('click',e=>{if(!root.querySelector('.v15-top').contains(e.target)) closeMenu();});
-
+    input.addEventListener('focus',()=>{renderMenu();openMenu();});input.addEventListener('click',()=>{renderMenu();openMenu();});
+    input.addEventListener('input',()=>{query=input.value.trim().toLowerCase();if(query){const firstTheme=themes.findIndex(theme=>themeMatches(theme)>0);if(firstTheme>=0)currentTheme=firstTheme;}renderStage(false);openMenu();});
+    input.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();input.blur();}});document.addEventListener('click',e=>{if(!root.querySelector('.v15-top').contains(e.target))closeMenu();});
     renderStage(false);
   }
-
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
-  else boot();
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot();
 })();
