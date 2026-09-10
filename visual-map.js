@@ -1,4 +1,4 @@
-// v16 · Buscador/selector de temas + conceptos en escalera. Reutiliza guideTopics sin tocar el contenido.
+// v19 · Buscador/selector de temas + conceptos en escalera. Reutiliza guideTopics sin tocar el contenido.
 (function(){
   function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
   function plain(v){
@@ -14,29 +14,54 @@
 
   const themeNames={
     1:'Conceptos básicos',
-    2:'Cuenta y débito',
-    3:'Identificadores',
-    4:'Tarjeta de crédito',
-    5:'Transferencias y servicios',
-    6:'App BBVA',
-    7:'Aclaraciones y seguridad',
-    8:'Otros productos',
-    9:'Certificación',
-    10:'Llamada completa'
+    2:'Identificadores',
+    3:'App BBVA',
+    4:'Autenticación y MAU',
+    5:'Cuentas de débito',
+    6:'Movimientos en tránsito',
+    7:'Restricciones y bloqueos',
+    8:'Fraudes',
+    9:'Cheques',
+    10:'Estado de cuenta',
+    11:'Actualización de datos',
+    12:'Pagos de servicios',
+    13:'Fallecimientos',
+    14:'Nómina y portabilidad',
+    15:'Movilidad de saldos',
+    16:'Crédito de consumo',
+    17:'EFI · Efectivo Inmediato',
+    18:'Tarjeta de crédito y costos',
+    19:'Seguros',
+    20:'Transferencias · SPEI · OPI',
+    21:'Llamada completa y venta cruzada'
   };
   const themeDescriptions={
-    1:'Empieza por las piezas más simples: banco, cliente, producto, cuenta, tarjeta y lo que el cliente ve en la app.',
-    2:'Entiende cómo se mueve el dinero en una cuenta y cómo funciona una tarjeta de débito.',
-    3:'Separa los números que más se confunden: cliente, contrato, cuenta, tarjeta, CLABE y BIN.',
-    4:'Aprende TDC desde cero: línea de crédito, corte, pagos, PPNGI, intereses y costos.',
-    5:'Mover dinero y pagar: transferencias, SPEI, CEP, servicios, domiciliación y cargos recurrentes.',
-    6:'Funciones que el cliente usa directamente en la App BBVA y los datos de seguridad asociados.',
-    7:'Cómo leer movimientos, sondear, autenticar y distinguir una restricción de un posible fraude.',
-    8:'Cheques, transferencias internacionales y portabilidad de nómina sin aprender todo de golpe.',
-    9:'Temas de certificación y puntos que deben confirmarse en el CUC vigente.',
-    10:'Junta todo en una sola secuencia mental para atender una llamada real.'
+    1:'Banco, cliente, producto, cuenta, saldo, cargo, abono y disponible: la base antes de tocar procesos.',
+    2:'Número de cliente, contrato, cuenta, tarjeta, CLABE, BIN, CVV, NIP y Token sin confundirlos.',
+    3:'Qué ve el cliente en la App BBVA: productos, movimientos, estado de cuenta, tarjeta digital, retiros y ofertas.',
+    4:'Qué significa autenticar, para qué sirve el MAU y por qué el nivel depende del proceso.',
+    5:'TDD, cuentas con o sin chequera, niveles de cuenta, UDIS, bloqueos e inactividad.',
+    6:'Saldo retenido, movimiento en tránsito, aplicado, rechazado y cómo investigar un doble cargo aparente.',
+    7:'Diferencia entre restricción, bloqueo, rechazo, límites e inactividad antes de dar una respuesta.',
+    8:'Cargos no reconocidos y modalidades como phishing, smishing, vishing, spoofing y pharming.',
+    9:'Tipos de cheque, endoso, protección, liberación, suspensión, devolución y saldo a buen cobro.',
+    10:'Cómo leer un EDC, periodo, corte, envío/consulta digital y qué revisar con el cliente.',
+    11:'Correo, teléfono, domicilio, alertas y la diferencia entre actualizar un dato y modificar un factor sensible.',
+    12:'Pago de servicios, CIE, domiciliación, cargo recurrente, duplicados y pagos no aplicados.',
+    13:'Qué ocurre cuando fallece un titular: beneficiarios, sucesión, cuentas, créditos y seguros.',
+    14:'Cuenta de nómina, banco origen/destino, portabilidad no recibida y cancelación/cambio.',
+    15:'Saldo a favor, traspasos, transferencias equivocadas y el tema interno “movilidad de saldos” que debe validarse en CUC.',
+    16:'Capital, plazo, pago, saldo insoluto y capacidad de pago para entender préstamos y crédito al consumo.',
+    17:'EFI verificado como Efectivo Inmediato: oferta preaprobada, línea disponible, tasa, plazo y pagos.',
+    18:'Línea, corte, PPNGI, cascada, revolvente, tasa, interés, anualidad, comisiones, CAT y MSI.',
+    19:'Seguro, póliza, prima, cobertura, suma asegurada, deducible, siniestro, beneficiarios y productos BBVA.',
+    20:'Transferencias nacionales e internacionales: SPEI, CEP, clave de rastreo, OPI, SWIFT, IBAN y corresponsales.',
+    21:'Secuencia completa de llamada: producto, intención, sondeo, autenticación, CUC, explicación, cierre y venta cruzada pertinente.'
   };
-  const colors=['#ff3026','#155eef','#ff5c16','#ffc400','#08a84f','#7b2cff','#00b7df','#ef2f8f','#73b500','#24458f'];
+  const colors=[
+    '#ff3026','#155eef','#ff5c16','#ffc400','#08a84f','#7b2cff','#00b7df','#ef2f8f','#73b500','#24458f',
+    '#e84d9b','#00a88f','#c7352d','#5e43d6','#f08a00','#1769aa','#bf2fd1','#e53e3e','#087f5b','#0f76c7','#6b5cff'
+  ];
 
   function helperBox(type,label,value){
     if(!value) return '';
@@ -121,15 +146,8 @@
       if(direct) return theme.concepts.length;
       return theme.concepts.filter(c=>c.searchText.includes(q)).length;
     }
-
-    function openMenu(){
-      menu.classList.add('open');
-      input.setAttribute('aria-expanded','true');
-    }
-    function closeMenu(){
-      menu.classList.remove('open');
-      input.setAttribute('aria-expanded','false');
-    }
+    function openMenu(){menu.classList.add('open');input.setAttribute('aria-expanded','true');}
+    function closeMenu(){menu.classList.remove('open');input.setAttribute('aria-expanded','false');}
 
     function renderMenu(){
       const available=themes.map((theme,i)=>({theme,i,count:themeMatches(theme)})).filter(x=>!query||x.count>0);
@@ -235,12 +253,8 @@
       renderStage(false);
       openMenu();
     });
-    input.addEventListener('keydown',e=>{
-      if(e.key==='Escape'){closeMenu();input.blur();}
-    });
-    document.addEventListener('click',e=>{
-      if(!root.querySelector('.v15-top').contains(e.target)) closeMenu();
-    });
+    input.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();input.blur();}});
+    document.addEventListener('click',e=>{if(!root.querySelector('.v15-top').contains(e.target)) closeMenu();});
 
     renderStage(false);
   }
