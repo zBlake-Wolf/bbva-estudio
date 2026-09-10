@@ -1,0 +1,195 @@
+/* v13 · Mapa visual: fondo blanco, figuras vivas y lectura fluida */
+:root{
+  --vm-ink:#172033;
+  --vm-muted:#687286;
+  --vm-line:#e7e9ef;
+  --vm-white:#ffffff;
+  --vm-blue:#3b82f6;
+  --vm-yellow:#f6c945;
+  --vm-green:#35b66f;
+  --vm-red:#ef5a4f;
+  --vm-orange:#f59b45;
+  --vm-purple:#8b5cf6;
+  --vm-cyan:#38bdf8;
+  --vm-pink:#ec6bb5;
+}
+
+html,body{background:#fff!important}
+body{
+  color:var(--vm-ink)!important;
+  background:
+    radial-gradient(circle at 6% 12%,rgba(59,130,246,.08),transparent 18rem),
+    radial-gradient(circle at 92% 10%,rgba(246,201,69,.12),transparent 16rem),
+    radial-gradient(circle at 88% 82%,rgba(53,182,111,.08),transparent 18rem),
+    #fff!important;
+}
+body:before,body:after{display:none!important}
+
+/* Navbar limpio */
+.site-header{
+  position:sticky!important;top:0!important;z-index:90!important;
+  background:rgba(255,255,255,.88)!important;
+  border-bottom:1px solid rgba(23,32,51,.06)!important;
+  backdrop-filter:blur(16px)!important;-webkit-backdrop-filter:blur(16px)!important;
+}
+.site-header__inner{max-width:1240px!important;min-height:70px!important;padding:12px 24px!important}
+.brand-mark{
+  background:var(--vm-blue)!important;border-radius:12px!important;box-shadow:none!important;
+}
+.brand-copy strong{color:#172033!important}
+.brand-copy small{color:#8a93a4!important}
+.topnav,.topnav__inner{background:transparent!important;border:0!important;box-shadow:none!important}
+.navtab{
+  color:#727b8d!important;background:transparent!important;border:0!important;
+  border-radius:8px!important;font-size:.78rem!important;font-weight:740!important;
+}
+.navtab:hover{background:#f6f7f9!important;color:#172033!important}
+.navtab.active{color:#172033!important;background:transparent!important}
+.navtab.active:after{background:var(--vm-yellow)!important;height:3px!important;border-radius:999px!important}
+
+main{max-width:1240px!important;padding:32px 24px 84px!important}
+#guia>.section-head,#guia>.guide-mode-note,#guia>.guide-overview,#guia>.guide-shell{display:none!important}
+
+/* Home visual */
+.visual-course{display:block;animation:vmFade .3s ease both}
+@keyframes vmFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.visual-course__hero{
+  position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end;
+  padding:28px 0 22px;
+}
+.visual-course__eyebrow{font-size:.72rem;font-weight:850;letter-spacing:.12em;text-transform:uppercase;color:#8a93a4;margin-bottom:10px}
+.visual-course__hero h1{
+  margin:0;max-width:790px;font-size:clamp(2.5rem,6vw,5rem);line-height:.94;letter-spacing:-.065em;font-weight:850;color:#172033;
+}
+.visual-course__hero p{max-width:720px;margin:17px 0 0;color:#687286;font-size:1rem;line-height:1.72}
+.visual-course__search{
+  width:min(320px,34vw);display:flex;align-items:center;gap:9px;padding:11px 13px;
+  border:1px solid #eceef3;border-radius:14px;background:#fff;box-shadow:0 8px 26px rgba(23,32,51,.05)
+}
+.visual-course__search span{font-size:1rem;color:#9098a7}
+.visual-course__search input{width:100%;border:0;outline:0;background:transparent;color:#172033;font-size:.85rem}
+
+/* decoraciones geométricas de fondo */
+.visual-course__hero:before,.visual-course__hero:after{content:"";position:absolute;z-index:-1;pointer-events:none}
+.visual-course__hero:before{width:120px;height:34px;right:26%;top:24px;background:var(--vm-yellow);transform:rotate(-7deg);border-radius:12px}
+.visual-course__hero:after{width:62px;height:62px;right:12%;top:6px;background:var(--vm-red);clip-path:polygon(50% 0,100% 100%,0 100%);transform:rotate(14deg)}
+
+.visual-course__meta{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:6px 0 18px;color:#8a93a4;font-size:.76rem}
+.visual-course__meta strong{color:#3d485b}
+.visual-course__filters{display:flex;gap:8px;flex-wrap:wrap}
+.visual-filter{
+  border:1px solid #eceef3;background:#fff;color:#687286;border-radius:999px;padding:7px 11px;font-size:.72rem;font-weight:760
+}
+.visual-filter.active{background:#172033;color:#fff;border-color:#172033}
+
+/* mapa de figuras */
+.topic-geometry-grid{
+  display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:92px;gap:14px;
+  min-height:540px;margin-bottom:28px;
+}
+.geo-topic{
+  position:relative;overflow:hidden;border:0;text-align:left;color:#111827;
+  padding:18px 18px 16px;display:flex;flex-direction:column;justify-content:space-between;
+  box-shadow:0 12px 30px rgba(23,32,51,.08);transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;
+  isolation:isolate;
+}
+.geo-topic:hover{transform:translateY(-4px) rotate(.15deg);box-shadow:0 18px 36px rgba(23,32,51,.12);filter:saturate(1.04)}
+.geo-topic:active{transform:translateY(-1px) scale(.995)}
+.geo-topic .geo-n{font-size:.68rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;opacity:.62}
+.geo-topic strong{display:block;max-width:90%;font-size:clamp(.95rem,1.6vw,1.28rem);line-height:1.03;letter-spacing:-.025em;font-weight:850}
+.geo-topic small{font-size:.67rem;font-weight:760;opacity:.68;margin-top:6px}
+.geo-topic:after{content:"";position:absolute;right:-16px;bottom:-22px;width:74px;height:74px;border:2px solid rgba(255,255,255,.45);border-radius:50%;z-index:-1}
+.geo-topic:nth-child(8n+1){background:var(--vm-blue);color:white;border-radius:30px 14px 30px 14px}
+.geo-topic:nth-child(8n+2){background:var(--vm-yellow);border-radius:14px 42px 14px 42px}
+.geo-topic:nth-child(8n+3){background:var(--vm-green);color:white;border-radius:50px 18px 18px 18px}
+.geo-topic:nth-child(8n+4){background:var(--vm-red);color:white;clip-path:polygon(7% 0,100% 0,93% 100%,0 100%)}
+.geo-topic:nth-child(8n+5){background:var(--vm-orange);border-radius:18px}
+.geo-topic:nth-child(8n+6){background:var(--vm-purple);color:white;border-radius:18px 52px 18px 18px}
+.geo-topic:nth-child(8n+7){background:var(--vm-cyan);border-radius:50% 18px 18px 18px}
+.geo-topic:nth-child(8n+8){background:var(--vm-pink);color:white;border-radius:18px;clip-path:polygon(0 0,88% 0,100% 30%,100% 100%,12% 100%,0 70%)}
+
+/* patrón bento irregular */
+.geo-topic:nth-child(1){grid-column:span 4;grid-row:span 2}
+.geo-topic:nth-child(2){grid-column:span 3;grid-row:span 2}
+.geo-topic:nth-child(3){grid-column:span 5;grid-row:span 2}
+.geo-topic:nth-child(4){grid-column:span 3;grid-row:span 2}
+.geo-topic:nth-child(5){grid-column:span 4;grid-row:span 2}
+.geo-topic:nth-child(6){grid-column:span 5;grid-row:span 2}
+.geo-topic:nth-child(n+7){grid-column:span 3;grid-row:span 2}
+.geo-topic:nth-child(10n){grid-column:span 6}
+.geo-topic.is-hidden{display:none}
+
+/* detalle del tema */
+.visual-detail-wrap{display:none;margin:8px 0 0;scroll-margin-top:92px}
+.visual-detail-wrap.open{display:block;animation:detailIn .3s cubic-bezier(.2,.8,.2,1) both}
+@keyframes detailIn{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+.visual-detail{
+  position:relative;border:1px solid #e8eaf0;border-radius:28px;background:rgba(255,255,255,.94);
+  box-shadow:0 20px 60px rgba(23,32,51,.09);overflow:hidden;
+}
+.visual-detail__bar{height:8px;background:linear-gradient(90deg,var(--vm-blue) 0 18%,var(--vm-yellow) 18% 36%,var(--vm-red) 36% 54%,var(--vm-green) 54% 72%,var(--vm-orange) 72% 86%,var(--vm-purple) 86% 100%)}
+.visual-detail__head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:26px;padding:30px 32px 22px}
+.visual-detail__kicker{font-size:.7rem;font-weight:850;letter-spacing:.1em;text-transform:uppercase;color:#8a93a4}
+.visual-detail h2{margin:8px 0 10px;font-size:clamp(2rem,4.5vw,3.7rem);line-height:.98;letter-spacing:-.055em;color:#172033}
+.visual-detail__intro{max-width:760px;margin:0;color:#687286;line-height:1.7;font-size:.96rem}
+.visual-close{align-self:start;border:0;background:#f4f5f7;color:#4e596b;width:38px;height:38px;border-radius:12px;font-size:1.15rem}
+.visual-close:hover{background:#eceef2}
+.visual-detail__memory{margin:0 32px 18px;padding:12px 14px;border-left:5px solid var(--vm-yellow);background:#fff8dc;border-radius:12px;color:#5d5844;font-size:.86rem}
+.visual-detail__memory b{color:#493f18}
+
+.visual-subtopics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:0 32px 32px}
+.visual-subtopic{
+  border:1px solid #e9ebf0;border-radius:18px;background:#fff;overflow:hidden;
+  box-shadow:0 7px 22px rgba(23,32,51,.045);transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease;
+}
+.visual-subtopic:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(23,32,51,.07)}
+.visual-subtopic.open{border-color:rgba(59,130,246,.24)}
+.visual-subtopic button{
+  width:100%;border:0;background:transparent;text-align:left;padding:16px 16px 14px;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;color:#263146;font-weight:820;font-size:.9rem;
+}
+.visual-subtopic button span:last-child{width:26px;height:26px;display:grid;place-items:center;border-radius:8px;background:#f4f6f8;color:#7f899a;flex:0 0 auto}
+.visual-subtopic.open button span:last-child{background:#edf4ff;color:var(--vm-blue)}
+.visual-subtopic__body{display:none;padding:0 16px 16px;color:#5f6b7d;font-size:.88rem;line-height:1.7}
+.visual-subtopic.open .visual-subtopic__body{display:block;animation:subIn .2s ease both}
+@keyframes subIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.visual-subtopic__body p:first-child{margin-top:0}
+.visual-mini{
+  margin-top:10px;padding:11px 12px;border-radius:12px;background:#f7f8fa;border-left:4px solid #d9dde5
+}
+.visual-mini.example{background:#fff8db;border-left-color:var(--vm-yellow)}
+.visual-mini.client{background:#eef5ff;border-left-color:var(--vm-blue)}
+.visual-mini.advisor{background:#eef9f2;border-left-color:var(--vm-green)}
+.visual-mini.warning{background:#fff0ee;border-left-color:var(--vm-red)}
+.visual-mini b{display:block;margin-bottom:3px;font-size:.65rem;text-transform:uppercase;letter-spacing:.07em;color:#6c7482}
+.visual-detail__nav{display:flex;justify-content:space-between;gap:12px;padding:0 32px 30px}
+.visual-detail__nav button{border:0;border-radius:12px;padding:10px 14px;font-size:.78rem;font-weight:800}
+.visual-prev{background:#f2f4f7;color:#5b6575}.visual-next{background:#172033;color:#fff}
+
+/* otras pestañas: claras y consistentes */
+#aprender,#identificadores,#casos,#quiz,#favoritos{color:#172033}
+.section-head h2{color:#172033!important}.section-head p{color:#687286!important}
+.study-toolbar,.concept-card,.case-card,.quizbox,.id-card,.compare-panel,.advisor-rule{
+  background:#fff!important;border-color:#e9ebf0!important;box-shadow:0 10px 28px rgba(23,32,51,.055)!important;color:#172033!important
+}
+.concept-card,.case-card,.id-card{border-radius:18px!important}
+.searchbox{background:#fff!important;border-color:#e8eaf0!important}.searchbox input{color:#172033!important}
+
+@media(max-width:900px){
+  .visual-course__hero{grid-template-columns:1fr;gap:18px}.visual-course__search{width:100%;max-width:none}
+  .topic-geometry-grid{grid-template-columns:repeat(6,1fr);grid-auto-rows:82px;min-height:0}
+  .geo-topic,.geo-topic:nth-child(n){grid-column:span 3;grid-row:span 2}
+  .geo-topic:nth-child(5n){grid-column:span 6}
+  .visual-subtopics{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+  .site-header__inner{padding:10px 14px!important;min-height:62px!important}.brand-copy small{display:none}.brand-mark{width:34px;height:34px}
+  .topnav{overflow-x:auto!important}.topnav__inner{min-width:max-content!important}.navtab{padding:8px 8px!important;font-size:.72rem!important}
+  main{padding:22px 14px 64px!important}.visual-course__hero{padding-top:14px}.visual-course__hero h1{font-size:clamp(2.2rem,13vw,3.5rem)}
+  .visual-course__hero:before,.visual-course__hero:after{opacity:.45}
+  .topic-geometry-grid{grid-template-columns:1fr 1fr;grid-auto-rows:auto;gap:10px}
+  .geo-topic,.geo-topic:nth-child(n){grid-column:span 1;grid-row:auto;min-height:132px;padding:15px}
+  .geo-topic:nth-child(4n){grid-column:span 2}
+  .visual-detail{border-radius:20px}.visual-detail__head{padding:24px 18px 18px;grid-template-columns:1fr auto;gap:12px}
+  .visual-detail__memory{margin:0 18px 14px}.visual-subtopics{padding:0 18px 20px;gap:10px}.visual-detail__nav{padding:0 18px 22px}
+}
