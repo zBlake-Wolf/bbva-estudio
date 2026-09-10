@@ -5,20 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#ffffff" />
   <title>Banca desde cero · Guía interactiva</title>
-  <meta name="description" content="Guía interactiva para estudiar banca desde cero, certificación, productos BBVA, atención telefónica y venta cruzada." />
-  <link rel="stylesheet" href="styles.css?v=23" />
-  <link rel="stylesheet" href="guide.css?v=23" />
-  <link rel="stylesheet" href="minimal.css?v=23" />
-  <link rel="stylesheet" href="course-v2.css?v=23" />
-  <link rel="stylesheet" href="visual-map.css?v=23" />
-  <link rel="stylesheet" href="visual-map-v14.css?v=23" />
-  <link rel="stylesheet" href="visual-stair-v15.css?v=23" />
-  <link rel="stylesheet" href="visual-stair-v16.css?v=23" />
-  <link rel="stylesheet" href="depth-bg-v17.css?v=23" />
-  <link rel="stylesheet" href="depth-bg-v18.css?v=23" />
-  <link rel="stylesheet" href="visual-focus-v21.css?v=23" />
-  <link rel="stylesheet" href="visual-detail-v22.css?v=23" />
-  <link rel="stylesheet" href="real-data-v23.css?v=23" />
+  <meta name="description" content="Guía interactiva para estudiar banca desde cero, certificación, productos BBVA, atención telefónica, rutas CUC y diagnóstico de llamadas." />
+  <link rel="stylesheet" href="styles.css?v=24" />
+  <link rel="stylesheet" href="guide.css?v=24" />
+  <link rel="stylesheet" href="minimal.css?v=24" />
+  <link rel="stylesheet" href="course-v2.css?v=24" />
+  <link rel="stylesheet" href="visual-map.css?v=24" />
+  <link rel="stylesheet" href="visual-map-v14.css?v=24" />
+  <link rel="stylesheet" href="visual-stair-v15.css?v=24" />
+  <link rel="stylesheet" href="visual-stair-v16.css?v=24" />
+  <link rel="stylesheet" href="depth-bg-v17.css?v=24" />
+  <link rel="stylesheet" href="depth-bg-v18.css?v=24" />
+  <link rel="stylesheet" href="visual-focus-v21.css?v=24" />
+  <link rel="stylesheet" href="visual-detail-v22.css?v=24" />
+  <link rel="stylesheet" href="real-data-v23.css?v=24" />
+  <link rel="stylesheet" href="operational-v24.css?v=24" />
 </head>
 <body>
   <header class="site-header">
@@ -30,17 +31,17 @@
 
   <main>
     <section id="guia" class="tabpage active">
-      <div class="section-head"><div><p class="kicker">RUTA RECOMENDADA</p><h2>De cero a certificación, por temas</h2><p>Empieza por banco, cuenta e identificadores; después avanza por autenticación, débito, fraudes, cheques, estado de cuenta, nómina, créditos, TDC, seguros y transferencias.</p></div></div>
-      <div class="guide-mode-note"><strong>Dato real vs ejemplo:</strong> ahora la guía distingue <b>datos públicos reales de BBVA México</b> (por ejemplo SWIFT, código 012 y clave SPEI/CEP) de <b>datos que pertenecen a cada cliente</b>. Para estos últimos verás el formato real y un ejemplo ficticio/enmascarado, nunca una cuenta o credencial real.
+      <div class="section-head"><div><p class="kicker">RUTA RECOMENDADA</p><h2>De cero a atención real</h2><p>Ya no solo estudias qué significa cada concepto. En los procesos importantes también practicarás <strong>qué te dice el cliente → dónde buscar → qué revisar en CCD/CUC → cómo interpretar lo que ves → qué decirle</strong>.</p></div></div>
+      <div class="guide-mode-note"><strong>Modo asesor + examen:</strong> el <b>Tema 22 · Rutas CUC y diagnóstico</b> está hecho para practicar llamadas reales. Las rutas internas que aparecen provienen de tu Manual Inbound de diciembre 2022; sirven para aprender la lógica y preparar el examen, pero en piso debes confirmar el nombre/ruta vigente en CUC.
         <div class="guide-jump"><button id="guideStart">Empezar desde tema 1</button><button id="guideResume">Continuar donde me quedé</button><button data-go="aprender">Ir al diccionario de conceptos</button></div>
       </div>
       <div id="guideOverview" class="guide-overview" aria-label="Mapa rápido de temas"></div>
-      <div class="guide-shell"><aside class="guide-sidebar"><div class="guide-progressbox"><strong><span>Tu ruta</span><span id="guideProgressText">1 / 21</span></strong><div class="guide-progress"><i id="guideProgressBar" style="width:4.76%"></i></div></div><div id="guideTopicNav" class="guide-topic-nav"></div></aside><div class="guide-main"><article id="guideLesson" class="guide-lesson"></article></div></div>
+      <div class="guide-shell"><aside class="guide-sidebar"><div class="guide-progressbox"><strong><span>Tu ruta</span><span id="guideProgressText">1 / 22</span></strong><div class="guide-progress"><i id="guideProgressBar" style="width:4.55%"></i></div></div><div id="guideTopicNav" class="guide-topic-nav"></div></aside><div class="guide-main"><article id="guideLesson" class="guide-lesson"></article></div></div>
     </section>
 
     <section id="aprender" class="tabpage">
-      <div class="section-head"><div><p class="kicker">DICCIONARIO RÁPIDO</p><h2>Conceptos por categoría</h2><p>Busca una palabra. La Guía contiene la versión más extensa con formatos, ejemplos y datos públicos reales de BBVA cuando existe un valor fijo verificable.</p></div></div>
-      <div class="study-toolbar"><label class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="Busca: CLABE, SWIFT, tasa, cheque, seguro, EFI, SPEI..." autocomplete="off" /></label><button class="ghost" id="clearSearch">Limpiar</button></div>
+      <div class="section-head"><div><p class="kicker">DICCIONARIO RÁPIDO</p><h2>Conceptos por categoría</h2><p>Busca una palabra. La Guía contiene la versión extensa con ejemplos BBVA, rutas de práctica y diagnóstico cuando el tema lo requiere.</p></div></div>
+      <div class="study-toolbar"><label class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="Busca: TRIAD, bloqueo, PPNGI, cheque, SWIFT, seguro..." autocomplete="off" /></label><button class="ghost" id="clearSearch">Limpiar</button></div>
       <div id="categoryChips" class="chips" aria-label="Categorías"></div><div id="resultSummary" class="result-summary"></div><div id="conceptGrid" class="concept-grid"></div>
     </section>
 
@@ -61,11 +62,11 @@
         <div><b>Banxico · clave SPEI/CEP</b><span><code>40012</code> · Banxico lista a BBVA MEXICO con esta clave de institución.</span></div>
         <div><b>CLABE</b><span><code>18 dígitos</code> · identifica la cuenta mexicana; la CLABE completa cambia por cliente.</span></div>
         <div><b>IBAN</b><span>Las cuentas mexicanas no usan IBAN; para BBVA México se proporciona CLABE cuando corresponda.</span></div>
-        <div><b>ABA</b><span>BBVA México no usa código ABA propio; ABA es un identificador de 9 dígitos de bancos de EE. UU.</span></div>
+        <div><b>ABA</b><span>BBVA México no usa código ABA propio; ABA es un identificador de bancos de EE. UU.</span></div>
       </div></div>
     </section>
 
-    <section id="casos" class="tabpage"><div class="section-head"><div><p class="kicker">PENSAMIENTO DE ASESOR</p><h2>¿Qué me podría pedir un cliente?</h2><p>Abre cada caso. La idea es practicar cómo <strong>clasificar</strong> antes de operar.</p></div></div><div class="advisor-rule"><strong>Orden mental:</strong> producto → qué pasó → sondeo → autenticación vigente → revisar sistema → buscar proceso en CUC → explicar → resolver/canalizar → venta cruzada si corresponde.</div><div id="caseGrid" class="case-grid"></div></section>
+    <section id="casos" class="tabpage"><div class="section-head"><div><p class="kicker">PENSAMIENTO DE ASESOR</p><h2>¿Qué me podría pedir un cliente?</h2><p>Abre cada caso. La idea es practicar cómo <strong>clasificar</strong> antes de operar.</p></div></div><div class="advisor-rule"><strong>Orden mental:</strong> producto → qué pasó → sondeo → autenticación vigente → revisar sistema → código/estatus → CUC/mapa → explicar → resolver/canalizar → cierre.</div><div id="caseGrid" class="case-grid"></div></section>
 
     <section id="quiz" class="tabpage"><div class="section-head"><div><p class="kicker">REPASO RÁPIDO</p><h2>Mini quiz</h2><p>Preguntas cortas para comprobar si ya entendiste la lógica.</p></div></div><div class="quizbox"><div class="quiz-progress"><span id="quizProgress">1 / 10</span><span id="quizScore">0 correctas</span></div><div class="progressbar"><i id="quizBar"></i></div><div id="quizQuestion" class="quiz-question"></div><div id="quizOptions" class="quiz-options"></div><div id="quizExplain" class="quiz-explain"></div><button id="quizNext" class="primary hidden">Siguiente</button><button id="quizRestart" class="secondary hidden">Volver a empezar</button></div></section>
 
@@ -73,19 +74,20 @@
   </main>
 
   <dialog id="randomDialog" class="random-dialog"><button class="dialog-close" id="closeRandom" aria-label="Cerrar">×</button><div id="randomContent"></div></dialog>
-  <footer><div><strong>Banca desde cero</strong><p>Guía construida con tu Manual de Banca Remota y referencias públicas actuales de BBVA/Banxico.</p></div><p class="footer-note">Los identificadores públicos del banco pueden mostrarse reales. Números de cliente, cuenta, contrato, tarjeta, CLABE completa, credenciales y claves de operaciones individuales se muestran ficticios o enmascarados. Para pasos internos y datos operativos variables, manda CUC vigente.</p></footer>
+  <footer><div><strong>Banca desde cero</strong><p>Guía construida con tu Manual de Banca Remota y referencias públicas actuales de BBVA/Banxico.</p></div><p class="footer-note">Las rutas internas mostradas como “Manual 2022” son material de estudio histórico: aprende la lógica y confirma el CUC vigente. No prometas desbloqueos, bonificaciones, montos o plazos si el sistema/proceso actual no los confirma.</p></footer>
 
-  <script src="app.js?v=23"></script>
-  <script src="concepts-v19.js?v=23"></script>
-  <script src="guide.js?v=23"></script>
-  <script src="course-v2.js?v=23"></script>
-  <script src="course-v3.js?v=23"></script>
-  <script src="course-v3-extra.js?v=23"></script>
-  <script src="mnemonics-v21.js?v=23"></script>
-  <script src="bbva-detail-v22.js?v=23"></script>
-  <script src="minimal.js?v=23"></script>
-  <script src="visual-map.js?v=23"></script>
-  <script src="real-data-v23.js?v=23"></script>
-  <script src="depth-bg-v17.js?v=23"></script>
+  <script src="app.js?v=24"></script>
+  <script src="concepts-v19.js?v=24"></script>
+  <script src="guide.js?v=24"></script>
+  <script src="course-v2.js?v=24"></script>
+  <script src="course-v3.js?v=24"></script>
+  <script src="course-v3-extra.js?v=24"></script>
+  <script src="mnemonics-v21.js?v=24"></script>
+  <script src="bbva-detail-v22.js?v=24"></script>
+  <script src="operational-v24.js?v=24"></script>
+  <script src="minimal.js?v=24"></script>
+  <script src="visual-map.js?v=24"></script>
+  <script src="real-data-v23.js?v=24"></script>
+  <script src="depth-bg-v17.js?v=24"></script>
 </body>
 </html>
