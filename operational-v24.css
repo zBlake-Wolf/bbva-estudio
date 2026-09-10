@@ -1,0 +1,14 @@
+/* v24 · Modo asesor / examen dentro de cada concepto */
+.v24-operational{margin-top:18px;padding:16px;border-radius:22px;background:rgba(255,255,255,.9);border:2px solid color-mix(in srgb,var(--theme) 35%,white);box-shadow:0 12px 28px color-mix(in srgb,var(--theme) 10%,transparent)}
+.v24-op-title{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid color-mix(in srgb,var(--theme) 18%,white)}
+.v24-op-title b{color:var(--theme);font-size:.78rem;letter-spacing:.08em}.v24-op-title small{max-width:380px;text-align:right;color:#7b8494;font-size:.66rem;line-height:1.45}
+.v24-call,.v24-route,.v24-opbox,.v24-say,.v24-exam{margin-top:10px;padding:13px 14px;border-radius:16px;background:color-mix(in srgb,var(--theme) 7%,white);border:1px solid color-mix(in srgb,var(--theme) 16%,white)}
+.v24-call{background:var(--theme);color:white;border-color:var(--theme)}
+.v24-call span,.v24-route>span,.v24-opbox>span,.v24-say>span,.v24-exam>span{display:block;margin-bottom:6px;font-size:.62rem;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
+.v24-call span{opacity:.78}.v24-call strong{font-size:1rem;line-height:1.45}.v24-route>span,.v24-opbox>span,.v24-say>span,.v24-exam>span{color:var(--theme)}
+.v24-route p,.v24-say p,.v24-exam p{margin:0;color:#344054;font-size:.82rem;line-height:1.62}.v24-opbox ul{margin:6px 0 0;padding-left:18px}.v24-opbox li{margin:5px 0;color:#344054;font-size:.81rem;line-height:1.52}
+.v24-opbox.signals{background:color-mix(in srgb,var(--theme) 11%,white)}
+.v24-say{border-left:5px solid var(--theme)}.v24-say p{font-weight:750;color:#1f2937}
+.v24-exam{background:#fff8d9;border-color:#f1d66d}.v24-exam>span{color:#8a6500}.v24-exam p{font-weight:760;color:#574300}
+.v15-stage[data-theme-index="21"]{--theme:#ff3030!important}
+@media(max-width:700px){.v24-op-title{display:block}.v24-op-title small{display:block;margin-top:6px;text-align:left}.v24-operational{padding:12px}.v24-call,.v24-route,.v24-opbox,.v24-say,.v24-exam{padding:11px 12px}}
