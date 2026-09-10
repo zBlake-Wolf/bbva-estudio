@@ -1,0 +1,32 @@
+/* v23 · Distingue datos públicos reales BBVA de ejemplos ficticios */
+.v23-real{
+  margin-top:14px;
+  padding:16px;
+  border-radius:20px;
+  background:rgba(255,255,255,.9);
+  border:1px solid rgba(255,255,255,.95);
+  box-shadow:0 12px 28px color-mix(in srgb,var(--theme) 12%,transparent);
+}
+.v23-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:var(--theme);
+  color:#fff;
+  font-size:.62rem;
+  font-weight:950;
+  letter-spacing:.08em;
+}
+.v23-real.real .v23-badge:before{content:'✓';display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:#fff;color:var(--theme);font-size:.7rem}
+.v23-real.format .v23-badge:before{content:'F';display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:#fff;color:var(--theme);font-size:.66rem}
+.v23-real.mixed .v23-badge:before{content:'↔';font-size:.8rem}
+.v23-lead{margin:11px 0 12px!important;color:#263244!important;font-size:.89rem!important;line-height:1.55!important;font-weight:680}
+.v23-rows{display:grid;gap:7px}
+.v23-row{display:grid;grid-template-columns:minmax(130px,.8fr) minmax(0,1.2fr);align-items:center;gap:12px;padding:10px 12px;border-radius:13px;background:color-mix(in srgb,var(--theme) 10%,white)}
+.v23-row span{color:#6c7787;font-size:.7rem;font-weight:800}
+.v23-row strong{color:#121926;font-size:.88rem;font-weight:950;letter-spacing:.01em;overflow-wrap:anywhere}
+.v23-note{margin:11px 0 0!important;padding-top:10px;border-top:1px dashed color-mix(in srgb,var(--theme) 22%,#e5e7eb);color:#697586!important;font-size:.73rem!important;line-height:1.55!important}
+.v23-source{margin-top:8px;color:color-mix(in srgb,var(--theme) 75%,#475467);font-size:.64rem;font-weight:850}
+@media(max-width:640px){.v23-row{grid-template-columns:1fr;gap:3px}.v23-real{padding:14px}.v23-row strong{font-size:.84rem}}
