@@ -1,0 +1,216 @@
+/* Curso v2 — paleta inspirada en la referencia: carbón, azul cielo, rojo ladrillo, amarillo mostaza y crema. */
+:root{
+  --cw-bg:#202126;
+  --cw-bg-2:#262a31;
+  --cw-bg-3:#303640;
+  --cw-paper:#e5d5b8;
+  --cw-paper-soft:#cbbda4;
+  --cw-text:#f2eadc;
+  --cw-muted:#aaa59d;
+  --cw-yellow:#e4bd36;
+  --cw-blue:#6da2e2;
+  --cw-red:#b9503f;
+  --cw-green:#748b68;
+  --cw-line:rgba(235,220,195,.13);
+  --cw-glass:rgba(255,255,255,.045);
+  --cw-glass-2:rgba(255,255,255,.07);
+  --cw-shadow:0 18px 48px rgba(0,0,0,.16);
+}
+
+html{background:var(--cw-bg)!important}
+body{
+  color:var(--cw-text)!important;
+  background:
+    radial-gradient(circle at 7% 0%,rgba(109,162,226,.12),transparent 30rem),
+    radial-gradient(circle at 96% 12%,rgba(185,80,63,.08),transparent 24rem),
+    radial-gradient(circle at 82% 88%,rgba(228,189,54,.055),transparent 24rem),
+    linear-gradient(145deg,#1e2025 0%,#242831 50%,#2a3039 100%)!important;
+  background-attachment:fixed!important;
+}
+body:before{background:rgba(109,162,226,.045)!important}
+body:after{background:rgba(228,189,54,.04)!important}
+
+/* Encabezado sobrio, sin caja pesada */
+.site-header{
+  background:linear-gradient(180deg,rgba(31,33,38,.94),rgba(31,33,38,.78))!important;
+  border-bottom:1px solid rgba(229,213,184,.07)!important;
+  backdrop-filter:blur(18px) saturate(115%)!important;
+}
+.brand-button{color:var(--cw-text)!important}
+.brand-mark{
+  background:var(--cw-yellow)!important;color:#24262b!important;
+  border-radius:8px!important;box-shadow:none!important;
+}
+.brand-copy strong{color:#f0e7d8!important;font-weight:760!important}
+.brand-copy small{color:#898b8d!important}
+.navtab{color:#a6a4a0!important;font-weight:650!important}
+.navtab:hover{background:transparent!important;color:#eee5d6!important}
+.navtab.active{color:#fff3d8!important;background:transparent!important}
+.navtab.active:after{background:var(--cw-yellow)!important;height:2px!important}
+.nav-random{color:#8e918f!important}
+
+main{max-width:1120px!important;padding-top:28px!important}
+.guide-main{max-width:940px!important}
+
+/* Ruta compacta: ahora parece un mapa, no un formulario */
+.minimal-topic-select{margin-bottom:24px!important}
+.topic-progress-head{align-items:center!important;margin-bottom:13px!important}
+.topic-progress-kicker{color:#85898f!important;font-size:.62rem!important}
+.topic-current-title{color:#d7cfbf!important;font-size:.82rem!important;font-weight:650!important}
+.topic-count{
+  background:transparent!important;color:#8f9398!important;border:0!important;
+  padding:0!important;font-size:.67rem!important;
+}
+.topic-compact-select{
+  width:128px!important;background:rgba(255,255,255,.045)!important;color:#c7c2b8!important;
+  border:1px solid rgba(229,213,184,.09)!important;border-radius:9px!important;
+  box-shadow:none!important;padding:7px 24px 7px 9px!important;
+}
+.topic-compact-select option{background:#272a31;color:#eee7db}
+.topic-track:before{background:rgba(229,213,184,.11)!important}
+.topic-track:after{background:linear-gradient(90deg,var(--cw-blue),var(--cw-green),var(--cw-yellow))!important}
+.topic-dot{background:#555b63!important;box-shadow:0 0 0 3px rgba(32,33,38,.96)!important}
+.topic-dot.done{background:var(--cw-green)!important}
+.topic-dot.active{
+  background:var(--cw-yellow)!important;
+  box-shadow:0 0 0 4px rgba(228,189,54,.12),0 0 0 7px rgba(32,33,38,.96)!important;
+}
+.topic-dot.upcoming{background:#515760!important}
+
+/* Título libre, grande pero relajado */
+.lesson-top{padding:22px 4px 27px!important}
+.lesson-eyebrow{color:#9a9c9d!important}
+.lesson-eyebrow:before{background:var(--cw-yellow)!important;box-shadow:0 0 0 4px rgba(228,189,54,.10)!important}
+.lesson-top h2{
+  max-width:790px!important;color:#f0e5d3!important;
+  font-size:clamp(2.15rem,5vw,3.65rem)!important;
+  font-weight:720!important;letter-spacing:-.052em!important;
+}
+.lesson-intro{
+  max-width:720px!important;color:#aaa69f!important;
+  font-size:.97rem!important;line-height:1.7!important;
+}
+
+/* Idea esencial de cada tema */
+.memory-pill:first-child{
+  background:linear-gradient(90deg,rgba(228,189,54,.10),rgba(255,255,255,.025))!important;
+  border:1px solid rgba(228,189,54,.13)!important;border-left:4px solid var(--cw-yellow)!important;
+  color:#d6cdbd!important;box-shadow:none!important;
+}
+.memory-pill:first-child:before{color:#e8c957!important}
+
+/* Cada subtema vive en su propia tarjeta */
+.lesson-section{
+  background:rgba(255,255,255,.035)!important;
+  border:1px solid var(--cw-line)!important;
+  border-radius:15px!important;
+  box-shadow:none!important;
+  backdrop-filter:blur(10px)!important;
+}
+.lesson-section:hover{border-color:rgba(109,162,226,.20)!important}
+.lesson-section[open]{
+  background:rgba(255,255,255,.055)!important;
+  border-color:rgba(229,213,184,.17)!important;
+  box-shadow:var(--cw-shadow)!important;
+}
+.lesson-section summary{
+  color:#ded6c8!important;font-size:.95rem!important;font-weight:680!important;
+  padding:16px 17px!important;
+}
+.lesson-section summary:hover{background:transparent!important;color:#fff0d5!important}
+.lesson-section summary:after{
+  background:rgba(255,255,255,.045)!important;color:#8f979f!important;border:1px solid rgba(229,213,184,.08)!important;
+}
+.lesson-section[open] summary:after{background:rgba(228,189,54,.09)!important;color:#e4bd36!important}
+.lesson-content{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  color:#bbb6ae!important;font-size:.91rem!important;line-height:1.7!important;
+  padding:0 17px 17px!important;
+}
+.lesson-content strong{color:#e4daca!important}
+
+/* Microtarjetas: colores de la referencia, bajados de saturación */
+.lesson-example,.lesson-client,.lesson-advisor,.lesson-warning{
+  background:rgba(255,255,255,.025)!important;
+  color:#bdb8af!important;border:1px solid rgba(229,213,184,.08)!important;
+  border-radius:12px!important;padding:12px 13px!important;
+}
+.lesson-example{border-left:4px solid var(--cw-yellow)!important;background:rgba(228,189,54,.055)!important}
+.lesson-client{border-left:4px solid var(--cw-blue)!important;background:rgba(109,162,226,.055)!important}
+.lesson-advisor{border-left:4px solid var(--cw-green)!important;background:rgba(116,139,104,.06)!important}
+.lesson-warning{border-left:4px solid var(--cw-red)!important;background:rgba(185,80,63,.055)!important}
+.lesson-box-title{color:#85898d!important}
+.lesson-example .lesson-box-title{color:#d1ad32!important}
+.lesson-client .lesson-box-title{color:#7fa9df!important}
+.lesson-advisor .lesson-box-title{color:#8fa184!important}
+.lesson-warning .lesson-box-title{color:#c56b5e!important}
+
+.guide-nextbar{border-top:1px solid rgba(229,213,184,.08)!important}
+.guide-nextbar button{
+  background:transparent!important;color:#a8a39b!important;
+  border:1px solid rgba(229,213,184,.10)!important;box-shadow:none!important;
+}
+.guide-nextbar button:hover:not(:disabled){background:rgba(255,255,255,.04)!important;color:#eee5d6!important}
+.guide-nextbar .guide-next{border-color:rgba(228,189,54,.22)!important;color:#e2c45c!important}
+.guide-step-label{color:#777d83!important}
+
+/* Diccionario */
+.tabpage>.section-head .kicker{color:#8c9298!important}
+.tabpage>.section-head h2{color:#eee4d5!important}
+.tabpage>.section-head p{color:#9f9c96!important}
+.searchbox{
+  background:rgba(255,255,255,.04)!important;border:1px solid rgba(229,213,184,.10)!important;
+  box-shadow:none!important;
+}
+.searchbox input{color:#e5ddd0!important}
+.searchbox input::placeholder{color:#777c82!important}
+.searchbox span{color:var(--cw-yellow)!important}
+.ghost{background:rgba(255,255,255,.04)!important;color:#aaa59d!important;border:1px solid rgba(229,213,184,.09)!important}
+.chip{
+  background:rgba(255,255,255,.035)!important;border:1px solid rgba(229,213,184,.09)!important;
+  color:#a9a59e!important;
+}
+.chip.active{background:var(--cw-yellow)!important;color:#292a2e!important;border-color:var(--cw-yellow)!important}
+.result-summary{color:#85898d!important}
+.concept-card{
+  background:rgba(255,255,255,.035)!important;border:1px solid rgba(229,213,184,.10)!important;
+  border-top:0!important;border-left:4px solid var(--accent)!important;border-radius:14px!important;
+  box-shadow:none!important;
+}
+.concept-card:hover{background:rgba(255,255,255,.05)!important;transform:translateY(-1px)!important;box-shadow:none!important}
+.concept-card h3{color:#e1d8ca!important}
+.short{color:#9f9d98!important}
+.badge{background:rgba(255,255,255,.05)!important;color:#8d9298!important}
+.expand,.fav{background:rgba(255,255,255,.045)!important;color:#8e949b!important}
+.concept-body{background:rgba(0,0,0,.06)!important;border-top:1px solid rgba(229,213,184,.08)!important}
+.detail-block p{color:#aaa69f!important}.source-note{color:#73787e!important;border-color:rgba(229,213,184,.08)!important}
+
+/* Casos */
+.advisor-rule{background:rgba(109,162,226,.055)!important;border-left:4px solid var(--cw-blue)!important;color:#b6b2aa!important}
+.case-card{background:rgba(255,255,255,.035)!important;border:1px solid rgba(229,213,184,.10)!important;box-shadow:none!important}
+.case-card h3{color:#e0d8ca!important}.case-tag{background:rgba(228,189,54,.08)!important;color:#cbb66c!important}
+.client-quote{background:rgba(185,80,63,.055)!important;color:#c8beb0!important;border-left:3px solid var(--cw-red)!important}
+.case-card summary{color:#8db0dc!important}.case-card ol{color:#a8a49d!important}
+
+/* Identificadores / quiz / favoritos */
+.id-map,.quizbox{background:rgba(255,255,255,.035)!important;border:1px solid rgba(229,213,184,.10)!important;box-shadow:none!important;color:#ddd5c8!important}
+.id-card{background:rgba(255,255,255,.025)!important;border-color:rgba(229,213,184,.08)!important}.id-card p,.mini-example{color:#a7a39c!important}.mini-example{background:rgba(255,255,255,.035)!important}
+.compare-panel{background:rgba(0,0,0,.12)!important;color:#ddd5c8!important}
+.compare-grid>div{background:rgba(255,255,255,.035)!important;border-color:rgba(229,213,184,.09)!important}
+.quiz-option{background:rgba(255,255,255,.035)!important;border-color:rgba(229,213,184,.10)!important;color:#bdb8af!important}
+.quiz-question{color:#e5dccf!important}.quiz-progress{color:#8e9296!important}.progressbar{background:#3a3f47!important}
+
+footer{display:none!important}
+
+@media(max-width:760px){
+  .site-header__inner{min-height:62px!important;padding:9px 14px!important;gap:12px!important}
+  .brand-copy small{display:none!important}.brand-mark{width:33px!important;height:33px!important}
+  .topnav__inner{overflow-x:auto!important;justify-content:flex-start!important;scrollbar-width:none!important}
+  .navtab{padding:8px 8px!important;font-size:.72rem!important}
+  main{padding:20px 14px 60px!important}
+  .topic-progress-head{align-items:flex-start!important;gap:10px!important}.topic-progress-actions{gap:6px!important}
+  .topic-compact-select{width:105px!important;max-width:34vw!important}
+  .lesson-top h2{font-size:2.35rem!important}
+  .lesson-content{grid-template-columns:1fr!important}.lesson-content>*{grid-column:1!important}
+  .concept-grid,.case-grid{grid-template-columns:1fr!important}
+}
