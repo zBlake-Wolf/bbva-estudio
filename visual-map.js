@@ -1,6 +1,6 @@
-// v15 · Temas arriba + conceptos en escalera. Reutiliza guideTopics sin tocar el contenido de estudio.
+// v16 · Buscador/selector de temas + conceptos en escalera. Reutiliza guideTopics sin tocar el contenido.
 (function(){
-  function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));}
+  function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
   function plain(v){
     const tmp=document.createElement('div');
     tmp.innerHTML=String(v||'');
@@ -36,7 +36,7 @@
     9:'Temas de certificación y puntos que deben confirmarse en el CUC vigente.',
     10:'Junta todo en una sola secuencia mental para atender una llamada real.'
   };
-  const colors=['#ef3f34','#2468f2','#ff7a18','#ffc928','#17ad5d','#7b3ff2','#10b8df','#e83f91','#84b918','#334d8f'];
+  const colors=['#ff3026','#155eef','#ff5c16','#ffc400','#08a84f','#7b2cff','#00b7df','#ef2f8f','#73b500','#24458f'];
 
   function helperBox(type,label,value){
     if(!value) return '';
@@ -47,7 +47,6 @@
     const page=document.querySelector('#guia');
     if(!page || typeof guideTopics==='undefined' || !Array.isArray(guideTopics) || !guideTopics.length) return;
 
-    // Si una versión anterior creó su mapa, la quitamos visualmente y montamos la nueva experiencia.
     page.querySelectorAll('.visual-course-v15').forEach(n=>n.remove());
 
     const grouped=new Map();
@@ -84,12 +83,14 @@
     root.className='visual-course-v15';
     root.innerHTML=`
       <section class="v15-top">
-        <label class="v15-search">
+        <label class="v15-search" for="v15Search">
           <span>⌕</span>
-          <input id="v15Search" type="search" placeholder="Busca banco, cuenta, TDC, SPEI, fraude…" autocomplete="off" />
+          <input id="v15Search" type="search" placeholder="Busca un tema o concepto…" autocomplete="off" aria-haspopup="listbox" aria-expanded="false" />
         </label>
-        <div class="v15-theme-label">Ruta de estudio</div>
-        <div class="v15-theme-tabs" id="v15ThemeTabs" aria-label="Temas principales"></div>
+        <div class="v16-theme-menu" id="v16ThemeMenu" role="listbox" aria-label="Temas de estudio">
+          <div class="v16-theme-menu__title">Elige un tema</div>
+          <div class="v16-theme-list" id="v16ThemeList"></div>
+        </div>
       </section>
       <section class="v15-stage" id="v15Stage" aria-live="polite">
         <div class="v15-theme-title-wrap">
@@ -101,22 +102,43 @@
       </section>`;
     page.prepend(root);
 
-    const tabs=root.querySelector('#v15ThemeTabs');
     const stage=root.querySelector('#v15Stage');
     const title=root.querySelector('#v15ThemeTitle');
     const subtitle=root.querySelector('#v15ThemeSubtitle');
     const stair=root.querySelector('#v15Stair');
     const input=root.querySelector('#v15Search');
     const status=root.querySelector('#v15SearchStatus');
+    const menu=root.querySelector('#v16ThemeMenu');
+    const themeList=root.querySelector('#v16ThemeList');
 
     let currentTheme=0;
     let query='';
 
-    function renderTabs(){
-      tabs.innerHTML=themes.map((theme,i)=>`
-        <button class="v15-theme-tab ${i===currentTheme?'active':''}" type="button" data-theme-index="${i}" style="--theme:${theme.color}">
-          Tema ${i+1} · ${esc(theme.title)}
-        </button>`).join('');
+    function themeMatches(theme){
+      if(!query) return theme.concepts.length;
+      const q=query.toLowerCase();
+      const direct=(theme.title+' '+theme.description).toLowerCase().includes(q);
+      if(direct) return theme.concepts.length;
+      return theme.concepts.filter(c=>c.searchText.includes(q)).length;
+    }
+
+    function openMenu(){
+      menu.classList.add('open');
+      input.setAttribute('aria-expanded','true');
+    }
+    function closeMenu(){
+      menu.classList.remove('open');
+      input.setAttribute('aria-expanded','false');
+    }
+
+    function renderMenu(){
+      const available=themes.map((theme,i)=>({theme,i,count:themeMatches(theme)})).filter(x=>!query||x.count>0);
+      themeList.innerHTML=available.length?available.map(({theme,i,count})=>`
+        <button class="v16-theme-option ${i===currentTheme?'active':''}" type="button" role="option" aria-selected="${i===currentTheme?'true':'false'}" data-theme-index="${i}" style="--theme:${theme.color}">
+          <span class="v16-theme-option__dot"></span>
+          <span><strong>Tema ${i+1} · ${esc(theme.title)}</strong><small>${esc(theme.description)}</small></span>
+          <span class="v16-theme-option__count">${query?`${count} coincidencia${count===1?'':'s'}`:`${theme.concepts.length} conceptos`}</span>
+        </button>`).join(''):`<div class="v16-menu-empty">No encontré un tema con esa palabra.</div>`;
     }
 
     function cardHTML(item,index){
@@ -151,7 +173,8 @@
 
     function matchingConcepts(theme){
       if(!query) return theme.concepts;
-      return theme.concepts.filter(c=>c.searchText.includes(query));
+      const direct=(theme.title+' '+theme.description).toLowerCase().includes(query);
+      return direct?theme.concepts:theme.concepts.filter(c=>c.searchText.includes(query));
     }
 
     function renderStage(scroll=false){
@@ -163,18 +186,21 @@
       subtitle.textContent=theme.description;
       status.textContent=query
         ? `${matches.length} coincidencia${matches.length===1?'':'s'} en este tema`
-        : `${theme.concepts.length} conceptos · abre una figura para leerla`;
+        : `${theme.concepts.length} conceptos · toca una figura para abrirla`;
       stair.innerHTML=matches.length
         ? matches.map(cardHTML).join('')
         : `<div class="v15-empty">No encontré ese concepto dentro de este tema.</div>`;
-      renderTabs();
+      renderMenu();
       if(scroll) requestAnimationFrame(()=>stage.scrollIntoView({behavior:'smooth',block:'start'}));
     }
 
-    tabs.addEventListener('click',e=>{
+    themeList.addEventListener('click',e=>{
       const btn=e.target.closest('[data-theme-index]');
       if(!btn) return;
       currentTheme=Number(btn.dataset.themeIndex);
+      query='';
+      input.value='';
+      closeMenu();
       renderStage(true);
     });
 
@@ -198,13 +224,22 @@
       }
     });
 
+    input.addEventListener('focus',()=>{renderMenu();openMenu();});
+    input.addEventListener('click',()=>{renderMenu();openMenu();});
     input.addEventListener('input',()=>{
       query=input.value.trim().toLowerCase();
       if(query){
-        const firstTheme=themes.findIndex(theme=>theme.concepts.some(c=>c.searchText.includes(query)));
+        const firstTheme=themes.findIndex(theme=>themeMatches(theme)>0);
         if(firstTheme>=0) currentTheme=firstTheme;
       }
       renderStage(false);
+      openMenu();
+    });
+    input.addEventListener('keydown',e=>{
+      if(e.key==='Escape'){closeMenu();input.blur();}
+    });
+    document.addEventListener('click',e=>{
+      if(!root.querySelector('.v15-top').contains(e.target)) closeMenu();
     });
 
     renderStage(false);
