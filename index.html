@@ -6,20 +6,20 @@
   <meta name="theme-color" content="#ffffff" />
   <title>Banca desde cero · Guía interactiva</title>
   <meta name="description" content="Guía interactiva para estudiar banca desde cero, certificación, productos BBVA, atención telefónica, rutas CUC y diagnóstico de llamadas." />
-  <link rel="stylesheet" href="styles.css?v=24" />
-  <link rel="stylesheet" href="guide.css?v=24" />
-  <link rel="stylesheet" href="minimal.css?v=24" />
-  <link rel="stylesheet" href="course-v2.css?v=24" />
-  <link rel="stylesheet" href="visual-map.css?v=24" />
-  <link rel="stylesheet" href="visual-map-v14.css?v=24" />
-  <link rel="stylesheet" href="visual-stair-v15.css?v=24" />
-  <link rel="stylesheet" href="visual-stair-v16.css?v=24" />
-  <link rel="stylesheet" href="depth-bg-v17.css?v=24" />
-  <link rel="stylesheet" href="depth-bg-v18.css?v=24" />
-  <link rel="stylesheet" href="visual-focus-v21.css?v=24" />
-  <link rel="stylesheet" href="visual-detail-v22.css?v=24" />
-  <link rel="stylesheet" href="real-data-v23.css?v=24" />
-  <link rel="stylesheet" href="operational-v24.css?v=24" />
+  <link rel="stylesheet" href="styles.css?v=25" />
+  <link rel="stylesheet" href="guide.css?v=25" />
+  <link rel="stylesheet" href="minimal.css?v=25" />
+  <link rel="stylesheet" href="course-v2.css?v=25" />
+  <link rel="stylesheet" href="visual-map.css?v=25" />
+  <link rel="stylesheet" href="visual-map-v14.css?v=25" />
+  <link rel="stylesheet" href="visual-stair-v15.css?v=25" />
+  <link rel="stylesheet" href="visual-stair-v16.css?v=25" />
+  <link rel="stylesheet" href="depth-bg-v17.css?v=25" />
+  <link rel="stylesheet" href="depth-bg-v18.css?v=25" />
+  <link rel="stylesheet" href="visual-focus-v21.css?v=25" />
+  <link rel="stylesheet" href="visual-detail-v22.css?v=25" />
+  <link rel="stylesheet" href="real-data-v23.css?v=25" />
+  <link rel="stylesheet" href="operational-v24.css?v=25" />
 </head>
 <body>
   <header class="site-header">
@@ -66,9 +66,9 @@
       </div></div>
     </section>
 
-    <section id="casos" class="tabpage"><div class="section-head"><div><p class="kicker">PENSAMIENTO DE ASESOR</p><h2>¿Qué me podría pedir un cliente?</h2><p>Abre cada caso. La idea es practicar cómo <strong>clasificar</strong> antes de operar.</p></div></div><div class="advisor-rule"><strong>Orden mental:</strong> producto → qué pasó → sondeo → autenticación vigente → revisar sistema → código/estatus → CUC/mapa → explicar → resolver/canalizar → cierre.</div><div id="caseGrid" class="case-grid"></div></section>
+    <section id="casos" class="tabpage"><div class="section-head"><div><p class="kicker">PENSAMIENTO DE ASESOR</p><h2>¿Qué me podría pedir un cliente?</h2><p>Ahora incluye casos de rechazo TDC, TRIAD, TDD bloqueada, retenidos, cheques, fraude, SPEI y pagos.</p></div></div><div class="advisor-rule"><strong>Orden mental:</strong> producto → qué pasó → sondeo → autenticación vigente → revisar sistema → código/estatus → CUC/mapa → explicar → resolver/canalizar → cierre.</div><div id="caseGrid" class="case-grid"></div></section>
 
-    <section id="quiz" class="tabpage"><div class="section-head"><div><p class="kicker">REPASO RÁPIDO</p><h2>Mini quiz</h2><p>Preguntas cortas para comprobar si ya entendiste la lógica.</p></div></div><div class="quizbox"><div class="quiz-progress"><span id="quizProgress">1 / 10</span><span id="quizScore">0 correctas</span></div><div class="progressbar"><i id="quizBar"></i></div><div id="quizQuestion" class="quiz-question"></div><div id="quizOptions" class="quiz-options"></div><div id="quizExplain" class="quiz-explain"></div><button id="quizNext" class="primary hidden">Siguiente</button><button id="quizRestart" class="secondary hidden">Volver a empezar</button></div></section>
+    <section id="quiz" class="tabpage"><div class="section-head"><div><p class="kicker">REPASO + EXAMEN</p><h2>Mini quiz</h2><p>Ya incluye preguntas de rutas, Movimientos Declinados, TRIAD, Behavior Score, retenidos, cheques, PPNGI y lógica de CUC.</p></div></div><div class="quizbox"><div class="quiz-progress"><span id="quizProgress">1 / 10</span><span id="quizScore">0 correctas</span></div><div class="progressbar"><i id="quizBar"></i></div><div id="quizQuestion" class="quiz-question"></div><div id="quizOptions" class="quiz-options"></div><div id="quizExplain" class="quiz-explain"></div><button id="quizNext" class="primary hidden">Siguiente</button><button id="quizRestart" class="secondary hidden">Volver a empezar</button></div></section>
 
     <section id="favoritos" class="tabpage"><div class="section-head"><div><p class="kicker">TU REPASO</p><h2>Conceptos guardados</h2><p>Marca ⭐ en cualquier concepto y aparecerá aquí.</p></div></div><div id="favGrid" class="concept-grid"></div></section>
   </main>
@@ -76,18 +76,19 @@
   <dialog id="randomDialog" class="random-dialog"><button class="dialog-close" id="closeRandom" aria-label="Cerrar">×</button><div id="randomContent"></div></dialog>
   <footer><div><strong>Banca desde cero</strong><p>Guía construida con tu Manual de Banca Remota y referencias públicas actuales de BBVA/Banxico.</p></div><p class="footer-note">Las rutas internas mostradas como “Manual 2022” son material de estudio histórico: aprende la lógica y confirma el CUC vigente. No prometas desbloqueos, bonificaciones, montos o plazos si el sistema/proceso actual no los confirma.</p></footer>
 
-  <script src="app.js?v=24"></script>
-  <script src="concepts-v19.js?v=24"></script>
-  <script src="guide.js?v=24"></script>
-  <script src="course-v2.js?v=24"></script>
-  <script src="course-v3.js?v=24"></script>
-  <script src="course-v3-extra.js?v=24"></script>
-  <script src="mnemonics-v21.js?v=24"></script>
-  <script src="bbva-detail-v22.js?v=24"></script>
-  <script src="operational-v24.js?v=24"></script>
-  <script src="minimal.js?v=24"></script>
-  <script src="visual-map.js?v=24"></script>
-  <script src="real-data-v23.js?v=24"></script>
-  <script src="depth-bg-v17.js?v=24"></script>
+  <script src="app.js?v=25"></script>
+  <script src="concepts-v19.js?v=25"></script>
+  <script src="guide.js?v=25"></script>
+  <script src="course-v2.js?v=25"></script>
+  <script src="course-v3.js?v=25"></script>
+  <script src="course-v3-extra.js?v=25"></script>
+  <script src="mnemonics-v21.js?v=25"></script>
+  <script src="bbva-detail-v22.js?v=25"></script>
+  <script src="operational-v24.js?v=25"></script>
+  <script src="operational-practice-v24.js?v=25"></script>
+  <script src="minimal.js?v=25"></script>
+  <script src="visual-map.js?v=25"></script>
+  <script src="real-data-v23.js?v=25"></script>
+  <script src="depth-bg-v17.js?v=25"></script>
 </body>
 </html>
